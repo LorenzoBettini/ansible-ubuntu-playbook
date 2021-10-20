@@ -1,28 +1,40 @@
 ---
 - hosts: localhost
   tasks:
-  - name: Update all packages for Debian-like Systems
-    become: yes
-    apt:
-      update_cache: yes
-      name: '*'
-      force_apt_get: yes
-      state: latest
-    when: ansible_facts['os_family'] == 'Debian'
   - name: Install Main Packages
     become: yes
-    package:
+    apt:
       name: "{{packages}}"
-      state: present
+      update_cache: yes
+      state: latest
     vars:
       packages:
-        - vim
-        - curl
-        - wget
-        - curl
-        - git
-        - git-gui
-        - gitk
-        - apt-transport-https
-        - unison-gtk
-        - thunderbird
+      - vim
+      - curl
+      - wget
+      - curl
+      - git
+      - git-gui
+      - gitk
+      - apt-transport-https
+      - unison-gtk
+      - thunderbird
+    register: aptout
+
+  - debug: msg="{{ aptout.stdout_lines }}"
+    when: aptout.stdout_lines is defined
+
+  - name: Remove useless packages from the cache
+    become: yes
+    apt:
+      autoclean: yes
+
+  - name: Remove dependencies that are no longer required
+    become: yes
+    apt:
+      autoremove: yes
+    register: aptout
+
+  - debug: msg="{{ aptout.stdout_lines }}"
+    when: aptout.stdout_lines is defined
+
