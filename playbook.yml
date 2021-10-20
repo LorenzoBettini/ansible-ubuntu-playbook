@@ -9,3 +9,17 @@
       force_apt_get: yes
       state: latest
     when: ansible_facts['os_family'] == 'Debian'
+  - name: Install Main Packages
+    package:
+      name: "{{packages}}"
+      state: present
+    vars:
+      packages:
+        - vim
+        - curl
+        - wget
+        - curl
+        - git
+        - git-gui
+        - gitk
+        - apt-transport-https
