@@ -36,6 +36,30 @@
   - debug: msg="{{ aptout.stdout_lines }}"
     when: aptout.stdout_lines is defined
 
+  - name: Add Google Chrome apt key
+    become: yes
+    apt_key:
+      url: https://dl-ssl.google.com/linux/linux_signing_key.pub
+      state: present
+
+  - name: Add Google Chrome apt repository
+    become: yes
+    apt_repository:
+      repo: deb https://dl.google.com/linux/chrome/deb/ stable main
+      state: present
+
+  - name: Install Google Chrome
+    become: yes
+    apt:
+      update_cache: yes
+      state: latest
+      pkg:
+      - google-chrome-stable
+    register: aptout
+
+  - debug: msg="{{ aptout.stdout_lines }}"
+    when: aptout.stdout_lines is defined
+
   - name: Install Docker
     become: yes
     apt:
