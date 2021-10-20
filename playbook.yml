@@ -23,3 +23,5 @@
         - git-gui
         - gitk
         - apt-transport-https
+        - unison-gtk
+        - thunderbird
