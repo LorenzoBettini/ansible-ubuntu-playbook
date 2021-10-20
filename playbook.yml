@@ -1,8 +1,8 @@
 ---
 - hosts: localhost
-  become: yes
   tasks:
   - name: Update all packages for Debian-like Systems
+    become: yes
     apt:
       update_cache: yes
       name: '*'
@@ -10,6 +10,7 @@
       state: latest
     when: ansible_facts['os_family'] == 'Debian'
   - name: Install Main Packages
+    become: yes
     package:
       name: "{{packages}}"
       state: present
