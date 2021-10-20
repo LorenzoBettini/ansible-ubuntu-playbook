@@ -4,11 +4,9 @@
   - name: Install Main Packages
     become: yes
     apt:
-      name: "{{packages}}"
       update_cache: yes
       state: latest
-    vars:
-      packages:
+      pkg:
       - vim
       - curl
       - wget
