@@ -16,6 +16,7 @@
       - git-gui
       - gitk
       - gkrellm
+      - net-tools
       - apt-transport-https
       - unison-gtk
       - thunderbird
