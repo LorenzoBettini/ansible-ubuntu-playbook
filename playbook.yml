@@ -32,6 +32,7 @@
       pkg:
       - gnome-tweaks
       - dconf-editor
+      - guake
     register: aptout
 
   - debug: msg="{{ aptout.stdout_lines }}"
