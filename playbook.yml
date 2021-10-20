@@ -1,0 +1,10 @@
+---
+- hosts: all
+  become: yes
+  tasks:
+  - name: Update all packages for Debian-like Systems
+    apt:
+      update_cache: yes
+      name: '*'
+      force_apt_get: yes
+      state: latest
