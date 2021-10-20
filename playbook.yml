@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: localhost
   become: yes
   tasks:
   - name: Update all packages for Debian-like Systems
