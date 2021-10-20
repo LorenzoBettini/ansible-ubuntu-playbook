@@ -38,6 +38,19 @@
   - debug: msg="{{ aptout.stdout_lines }}"
     when: aptout.stdout_lines is defined
 
+  - name: Install KDE Packages
+    become: yes
+    apt:
+      update_cache: yes
+      state: latest
+      pkg:
+      - kate
+      - kde-spectacle
+    register: aptout
+
+  - debug: msg="{{ aptout.stdout_lines }}"
+    when: aptout.stdout_lines is defined
+
   - name: Add Google Chrome apt key
     become: yes
     apt_key:
