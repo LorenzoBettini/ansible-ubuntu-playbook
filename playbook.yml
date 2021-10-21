@@ -2,6 +2,13 @@
 - hosts: localhost
   tasks:
 
+  - name: Download required roles
+    delegate_to: localhost
+    command: ansible-galaxy install -r {{ playbook_dir }}/requirements.yml
+    become: no
+    changed_when: False
+    tags: always
+
   - name: Install Main Packages
     become: yes
     apt:
@@ -78,6 +85,12 @@
 
   - debug: msg="{{ aptout.stdout_lines }}"
     when: aptout.stdout_lines is defined
+
+  - name: Install Maven
+    include_role:
+      name: gantsign.maven
+    vars:
+      maven_version: '3.8.3'
 
   - name: Add Google Chrome apt key
     become: yes
