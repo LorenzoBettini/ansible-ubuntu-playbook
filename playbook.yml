@@ -86,6 +86,21 @@
   - debug: msg="{{ aptout.stdout_lines }}"
     when: aptout.stdout_lines is defined
 
+  - name: Create Java links directory
+    file:
+      path: '~/.jdk'
+      state: directory
+
+  - name: Create Java links
+    file:
+      src: '/usr/lib/jvm/java-{{ item }}-openjdk-amd64'
+      dest: '~/.jdk/jdk{{ item }}'
+      state: link
+    loop:
+      - 8
+      - 11
+      - 17
+
   - name: Install Maven
     include_role:
       name: gantsign.maven
