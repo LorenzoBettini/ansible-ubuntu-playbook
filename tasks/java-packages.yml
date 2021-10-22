@@ -1,0 +1,41 @@
+- name: Download required roles
+  delegate_to: localhost
+  command: ansible-galaxy install -r {{ playbook_dir }}/requirements.yml
+  become: no
+  changed_when: False
+  tags: always
+
+- name: Install Java Packages
+  become: yes
+  apt:
+    update_cache: yes
+    state: latest
+    pkg:
+    - openjdk-8-source
+    - openjdk-11-source
+    - openjdk-17-source
+  register: aptout
+
+- debug: msg="{{ aptout.stdout_lines }}"
+  when: aptout.stdout_lines is defined
+
+- name: Create Java links directory
+  file:
+    path: '~/.jdk'
+    state: directory
+
+- name: Create Java links
+  file:
+    src: '/usr/lib/jvm/java-{{ item }}-openjdk-amd64'
+    dest: '~/.jdk/jdk{{ item }}'
+    state: link
+  loop:
+    - 8
+    - 11
+    - 17
+
+- name: Install Maven
+  include_role:
+    name: gantsign.maven
+  vars:
+    maven_version: '3.8.3'

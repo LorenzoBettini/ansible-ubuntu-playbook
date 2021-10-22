@@ -1,189 +1,30 @@
 ---
 - hosts: localhost
+  pre_tasks:
+    - name: update repositories
+      become: yes
+      apt: update_cache=yes
+      changed_when: False
   tasks:
+    - include: tasks/main-packages.yml
+    - include: tasks/gnome-packages.yml
+    - include: tasks/kde-packages.yml
+    - include: tasks/java-packages.yml
+    - include: tasks/google-chrome.yml
+    - include: tasks/dropbox.yml
+    - include: tasks/docker.yml
+  post_tasks:
+    - name: Remove useless packages from the cache
+      become: yes
+      apt:
+        autoclean: yes
 
-  - name: Download required roles
-    delegate_to: localhost
-    command: ansible-galaxy install -r {{ playbook_dir }}/requirements.yml
-    become: no
-    changed_when: False
-    tags: always
+    - name: Remove dependencies that are no longer required
+      become: yes
+      apt:
+        autoremove: yes
+      register: aptout
 
-  - name: Install Main Packages
-    become: yes
-    apt:
-      update_cache: yes
-      state: latest
-      pkg:
-      - vim
-      - curl
-      - wget
-      - curl
-      - git
-      - git-gui
-      - gitk
-      - gkrellm
-      - net-tools
-      - apt-transport-https
-      - unison-gtk
-      - thunderbird
-    register: aptout
-
-  - debug: msg="{{ aptout.stdout_lines }}"
-    when: aptout.stdout_lines is defined
-
-  - name: Install Gnome Packages
-    become: yes
-    apt:
-      update_cache: yes
-      state: latest
-      pkg:
-      - gnome-tweaks
-      - dconf-editor
-      - guake
-    register: aptout
-
-  - debug: msg="{{ aptout.stdout_lines }}"
-    when: aptout.stdout_lines is defined
-
-  - name: Install KDE Packages
-    become: yes
-    apt:
-      update_cache: yes
-      state: latest
-      pkg:
-      - kate
-      - kde-spectacle
-    register: aptout
-
-  - debug: msg="{{ aptout.stdout_lines }}"
-    when: aptout.stdout_lines is defined
-
-  - name: Ensure xdg mime default application is set
-    command: "xdg-mime default {{ item[0].desktop_file }} {{ item[1] }}"
-    changed_when: False
-    with_subelements:
-      - "{{ xdg_mime_defaults }}"
-      - mime_types
-    vars:
-      xdg_mime_defaults:
-      - desktop_file: org.kde.kate.desktop
-        mime_types:
-        - text/plain
-        - text/xml
-
-  - name: Install Java Packages
-    become: yes
-    apt:
-      update_cache: yes
-      state: latest
-      pkg:
-      - openjdk-8-source
-      - openjdk-11-source
-      - openjdk-17-source
-    register: aptout
-
-  - debug: msg="{{ aptout.stdout_lines }}"
-    when: aptout.stdout_lines is defined
-
-  - name: Create Java links directory
-    file:
-      path: '~/.jdk'
-      state: directory
-
-  - name: Create Java links
-    file:
-      src: '/usr/lib/jvm/java-{{ item }}-openjdk-amd64'
-      dest: '~/.jdk/jdk{{ item }}'
-      state: link
-    loop:
-      - 8
-      - 11
-      - 17
-
-  - name: Install Maven
-    include_role:
-      name: gantsign.maven
-    vars:
-      maven_version: '3.8.3'
-
-  - name: Add Google Chrome apt key
-    become: yes
-    apt_key:
-      url: https://dl-ssl.google.com/linux/linux_signing_key.pub
-      state: present
-
-  - name: Add Google Chrome apt repository
-    become: yes
-    apt_repository:
-      repo: deb https://dl.google.com/linux/chrome/deb/ stable main
-      state: present
-
-  - name: Install Google Chrome
-    become: yes
-    apt:
-      update_cache: yes
-      state: latest
-      pkg:
-      - google-chrome-stable
-    register: aptout
-
-  - debug: msg="{{ aptout.stdout_lines }}"
-    when: aptout.stdout_lines is defined
-
-  - name: Install Dropbox key
-    become: yes
-    apt_key:
-      keyserver: pgp.mit.edu
-      id: 1C61A2656FB57B7E4DE0F4C1FC918B335044912E
-
-  - name: Add Dropbox apt repository
-    become: yes
-    apt_repository:
-      repo: deb https://linux.dropbox.com/ubuntu disco main
-      state: present
-
-  - name: Install Dropbox
-    become: yes
-    apt:
-      name: dropbox
-      state: present
-    register: aptout
-
-  - debug: msg="{{ aptout.stdout_lines }}"
-    when: aptout.stdout_lines is defined
-
-  - name: Install Docker
-    become: yes
-    apt:
-      update_cache: yes
-      state: latest
-      pkg:
-      - docker.io
-      - docker-compose
-    register: aptout
-
-  - debug: msg="{{ aptout.stdout_lines }}"
-    when: aptout.stdout_lines is defined
-
-  - name: Allow running Docker without sudo
-    become: yes
-    user:
-      name: "{{ ansible_user_id }}"
-      groups: docker
-      append: yes
-
-  - name: Remove useless packages from the cache
-    become: yes
-    apt:
-      autoclean: yes
-
-  - name: Remove dependencies that are no longer required
-    become: yes
-    apt:
-      autoremove: yes
-    register: aptout
-
-  - debug: msg="{{ aptout.stdout_lines }}"
-    when: aptout.stdout_lines is defined
+    - debug: msg="{{ aptout.stdout_lines }}"
+      when: aptout.stdout_lines is defined
 

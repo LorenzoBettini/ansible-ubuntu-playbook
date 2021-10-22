@@ -1,0 +1,13 @@
+- name: Install Gnome Packages
+  become: yes
+  apt:
+    update_cache: yes
+    state: latest
+    pkg:
+    - gnome-tweaks
+    - dconf-editor
+    - guake
+  register: aptout
+
+- debug: msg="{{ aptout.stdout_lines }}"
+  when: aptout.stdout_lines is defined

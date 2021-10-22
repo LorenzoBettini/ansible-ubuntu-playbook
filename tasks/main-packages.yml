@@ -1,0 +1,22 @@
+- name: Install Main Packages
+  become: yes
+  apt:
+    update_cache: yes
+    state: latest
+    pkg:
+    - vim
+    - curl
+    - wget
+    - curl
+    - git
+    - git-gui
+    - gitk
+    - gkrellm
+    - net-tools
+    - apt-transport-https
+    - unison-gtk
+    - thunderbird
+  register: aptout
+
+- debug: msg="{{ aptout.stdout_lines }}"
+  when: aptout.stdout_lines is defined

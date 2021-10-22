@@ -1,0 +1,19 @@
+- name: Install Docker
+  become: yes
+  apt:
+    update_cache: yes
+    state: latest
+    pkg:
+    - docker.io
+    - docker-compose
+  register: aptout
+
+- debug: msg="{{ aptout.stdout_lines }}"
+  when: aptout.stdout_lines is defined
+
+- name: Allow running Docker without sudo
+  become: yes
+  user:
+    name: "{{ ansible_user_id }}"
+    groups: docker
+    append: yes
