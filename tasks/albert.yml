@@ -22,3 +22,8 @@
 
 - debug: msg="{{ aptout.stdout_lines }}"
   when: aptout.stdout_lines is defined
+
+- name: Set Albert configuration
+  copy:
+    src: "{{ ansible_env.PWD }}/tasks/files/albert"
+    dest: "~/.config/"
