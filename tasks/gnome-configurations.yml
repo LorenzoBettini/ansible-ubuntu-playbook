@@ -1,0 +1,28 @@
+- name: Download required collections
+  delegate_to: localhost
+  command: ansible-galaxy collection install community.general
+  become: no
+  changed_when: False
+  tags: always
+
+- name: Install Gnome Dconf requirements
+  become: yes
+  apt:
+    update_cache: yes
+    state: latest
+    pkg:
+    - python3-psutil
+  register: aptout
+
+- debug: msg="{{ aptout.stdout_lines }}"
+  when: aptout.stdout_lines is defined
+
+- name: terminal transparency
+  dconf:
+    key: "/org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/use-transparent-background"
+    value: "true"
+
+- name: terminal transparency percentage
+  dconf:
+    key: "/org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/background-transparency-percent"
+    value: "5"

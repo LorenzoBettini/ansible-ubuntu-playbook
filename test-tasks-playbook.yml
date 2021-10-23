@@ -1,4 +1,4 @@
 ---
 - hosts: localhost
   tasks:
-    - include: tasks/latex.yml
+    - include: tasks/gnome-configurations.yml

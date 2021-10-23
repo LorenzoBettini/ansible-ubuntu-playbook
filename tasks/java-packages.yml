@@ -1,6 +1,6 @@
 - name: Download required roles
   delegate_to: localhost
-  command: ansible-galaxy install -r {{ playbook_dir }}/requirements.yml
+  command: ansible-galaxy install gantsign.maven
   become: no
   changed_when: False
   tags: always

@@ -8,6 +8,7 @@
   tasks:
     - include: tasks/main-packages.yml
     - include: tasks/gnome-packages.yml
+    - include: tasks/gnome-configurations.yml
     - include: tasks/zsh.yml
     - include: tasks/zsh-antigen.yml
     - include: tasks/kde-packages.yml
