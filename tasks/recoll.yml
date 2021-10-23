@@ -1,0 +1,30 @@
+- name: Add Recoll apt repository
+  become: yes
+  apt_repository:
+    repo: ppa:recoll-backports/recoll-1.15-on
+    state: present
+
+- name: Install Recoll
+  become: yes
+  apt:
+    update_cache: yes
+    state: latest
+    pkg:
+    - recoll
+    - unrtf
+    - untex
+    - djvulibre-bin
+  register: aptout
+
+- debug: msg="{{ aptout.stdout_lines }}"
+  when: aptout.stdout_lines is defined
+
+- name: Create Recoll configuration directory
+  file:
+    path: '~/.recoll'
+    state: directory
+
+- name: Set Recoll configuration
+  copy:
+    src: "{{ ansible_env.PWD }}/tasks/files/recoll/"
+    dest: "~/.recoll/"

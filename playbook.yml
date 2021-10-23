@@ -16,6 +16,7 @@
     - include: tasks/dropbox.yml
     - include: tasks/docker.yml
     - include: tasks/albert.yml
+    - include: tasks/recoll.yml
   post_tasks:
     - name: Remove useless packages from the cache
       become: yes
