@@ -1,0 +1,12 @@
+- name: Install ZSH
+  become: yes
+  apt: name=zsh
+  register: aptout
+
+- debug: msg="{{ aptout.stdout_lines }}"
+  when: aptout.stdout_lines is defined
+
+# Better to do that manually, when needed and wanted
+#- name: Change shell to zsh
+#  become: yes
+#  shell: "chsh -s $(which zsh) {{ lookup('env', 'USER') }}"

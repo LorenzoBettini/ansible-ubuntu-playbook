@@ -1,4 +1,4 @@
 ---
 - hosts: localhost
   tasks:
-    - include: tasks/albert.yml
+    - include: tasks/zsh.yml

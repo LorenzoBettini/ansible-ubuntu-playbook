@@ -8,11 +8,13 @@
   tasks:
     - include: tasks/main-packages.yml
     - include: tasks/gnome-packages.yml
+    - include: tasks/zsh.yml
     - include: tasks/kde-packages.yml
     - include: tasks/java-packages.yml
     - include: tasks/google-chrome.yml
     - include: tasks/dropbox.yml
     - include: tasks/docker.yml
+    - include: tasks/albert.yml
   post_tasks:
     - name: Remove useless packages from the cache
       become: yes
