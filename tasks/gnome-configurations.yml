@@ -26,3 +26,13 @@
   dconf:
     key: "/org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/background-transparency-percent"
     value: "5"
+
+- name: Ctrl+Alt+Up reserved for Eclipse
+  dconf:
+    key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-up"
+    value: "['<Super>Page_Up']"
+
+- name: Ctrl+Alt+Down reserved for Eclipse
+  dconf:
+    key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-down"
+    value: "['<Super>Page_Down']"
