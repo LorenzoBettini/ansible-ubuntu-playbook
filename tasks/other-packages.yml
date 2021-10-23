@@ -1,0 +1,29 @@
+- name: Install Other Packages
+  become: yes
+  apt:
+    update_cache: yes
+    state: latest
+    pkg:
+    - emacs
+    - homebank
+    - ofx
+    - vlc
+    - meld
+    - iotop
+    - nethogs
+    - p7zip-full
+    - unrar
+    - libreoffice-l10n-it
+    - hyphen-it
+    - hunspell-it
+    - exfat-utils
+    - ispell
+    - gimp
+    - ppa-purge
+    - tree
+    - plocate
+    - ubuntu-restricted-extras
+  register: aptout
+
+- debug: msg="{{ aptout.stdout_lines }}"
+  when: aptout.stdout_lines is defined

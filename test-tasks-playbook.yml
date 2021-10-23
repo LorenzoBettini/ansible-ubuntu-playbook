@@ -1,4 +1,4 @@
 ---
 - hosts: localhost
   tasks:
-    - include: tasks/vscode.yml
+    - include: tasks/other-packages.yml
