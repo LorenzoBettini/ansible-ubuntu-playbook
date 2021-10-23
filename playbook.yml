@@ -9,6 +9,7 @@
     - include: tasks/main-packages.yml
     - include: tasks/gnome-packages.yml
     - include: tasks/zsh.yml
+    - include: tasks/zsh-antigen.yml
     - include: tasks/kde-packages.yml
     - include: tasks/java-packages.yml
     - include: tasks/google-chrome.yml

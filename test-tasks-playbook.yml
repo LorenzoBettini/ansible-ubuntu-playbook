@@ -1,4 +1,4 @@
 ---
 - hosts: localhost
   tasks:
-    - include: tasks/zsh.yml
+    - include: tasks/zsh-antigen.yml

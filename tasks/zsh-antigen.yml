@@ -1,0 +1,22 @@
+- name: Install Antigen requirements
+  become: yes
+  apt:
+    state: latest
+    pkg:
+    - fonts-powerline
+    - curl
+    - git
+  register: aptout
+
+- debug: msg="{{ aptout.stdout_lines }}"
+  when: aptout.stdout_lines is defined
+
+- name: Download Antigen
+  get_url:
+    url: "https://git.io/antigen"
+    dest: "~/antigen.zsh"
+
+- name: Set Antigen configuration
+  copy:
+    src: "{{ ansible_env.PWD }}/tasks/files/antigen/"
+    dest: "~/"
