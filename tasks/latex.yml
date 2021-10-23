@@ -1,0 +1,19 @@
+- name: Install Latex Packages
+  become: yes
+  apt:
+    update_cache: yes
+    state: latest
+    pkg:
+    - texlive
+    - texlive-plain-generic
+    - texlive-latex-extra
+    - texlive-science
+    - texlive-fonts-extra
+    - texlive-lang-italian
+    - texlive-xetex
+    - texlive-bibtex-extra
+    - cm-super
+  register: aptout
+
+- debug: msg="{{ aptout.stdout_lines }}"
+  when: aptout.stdout_lines is defined
