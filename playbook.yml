@@ -1,5 +1,5 @@
 ---
-- hosts: localhost
+- hosts: all
   pre_tasks:
     - name: update repositories
       become: yes
