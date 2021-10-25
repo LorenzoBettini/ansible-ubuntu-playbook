@@ -25,5 +25,5 @@
 
 - name: Set Albert configuration
   copy:
-    src: "{{ ansible_env.PWD }}/tasks/files/albert"
+    src: "{{ playbook_dir }}/tasks/files/albert"
     dest: "~/.config/"

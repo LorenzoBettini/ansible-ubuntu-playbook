@@ -1,10 +1,3 @@
-- name: Download required roles
-  delegate_to: localhost
-  command: ansible-galaxy install gantsign.maven
-  become: no
-  changed_when: False
-  tags: always
-
 - name: Install Java Packages
   become: yes
   apt:

@@ -26,5 +26,5 @@
 
 - name: Set Recoll configuration
   copy:
-    src: "{{ ansible_env.PWD }}/tasks/files/recoll/"
+    src: "{{ playbook_dir }}/tasks/files/recoll/"
     dest: "~/.recoll/"

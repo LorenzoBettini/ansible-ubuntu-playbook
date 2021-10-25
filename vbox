@@ -1,0 +1,2 @@
+# assumes VirtualBox is configured with port forwarding
+127.0.0.1 ansible_ssh_port=3022

@@ -1,4 +1,4 @@
 ---
 - hosts: all
   tasks:
-    - include: tasks/gnome-configurations.yml
+    - include: tasks/zsh-antigen.yml

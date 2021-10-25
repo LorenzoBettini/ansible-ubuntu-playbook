@@ -18,5 +18,5 @@
 
 - name: Set Antigen configuration
   copy:
-    src: "{{ ansible_env.PWD }}/tasks/files/antigen/"
+    src: "{{ playbook_dir }}/tasks/files/antigen/"
     dest: "~/"
