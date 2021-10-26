@@ -1,4 +1,4 @@
 ---
 - hosts: all
   tasks:
-    - include: tasks/dropbox.yml
+    - include: tasks/google-chrome.yml

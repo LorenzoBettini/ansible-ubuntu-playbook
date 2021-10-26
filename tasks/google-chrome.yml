@@ -7,7 +7,7 @@
 - name: Add Google Chrome apt repository
   become: yes
   apt_repository:
-    repo: deb https://dl.google.com/linux/chrome/deb/ stable main
+    repo: deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
     state: present
     filename: google-chrome
 
