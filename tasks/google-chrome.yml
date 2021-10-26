@@ -4,12 +4,12 @@
     url: https://dl-ssl.google.com/linux/linux_signing_key.pub
     state: present
 
-- name: Add Google Chrome apt repository
+- name: Add Google Chrome temporary apt repository
   become: yes
   apt_repository:
     repo: deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
     state: present
-    filename: google-chrome
+    filename: google-chrome-temp
 
 - name: Install Google Chrome
   become: yes
@@ -22,3 +22,13 @@
 
 - debug: msg="{{ aptout.stdout_lines }}"
   when: aptout.stdout_lines is defined
+
+# When installing Chrome, it will configure google-chrome.list anyway
+# So we use another list file that we remove later, otherwise we
+# end up with two "deb" lines in google-chrome.list
+- name: Remove Google Chrome temporary apt repository
+  become: yes
+  apt_repository:
+    repo: deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
+    state: absent
+    filename: google-chrome-temp
