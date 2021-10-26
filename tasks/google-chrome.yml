@@ -1,3 +1,8 @@
+- name: Check if Google Chrome repo is already configured
+  stat: 
+    path: /etc/default/google-chrome
+  register: google_chrome_default
+
 - name: Add Google Chrome apt key
   become: yes
   apt_key:
@@ -10,6 +15,7 @@
     repo: deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
     state: present
     filename: google-chrome-temp
+  when: google_chrome_default.stat.exists == False
 
 - name: Install Google Chrome
   become: yes
@@ -25,10 +31,13 @@
 
 # When installing Chrome, it will configure google-chrome.list anyway
 # So we use another list file that we remove later, otherwise we
-# end up with two "deb" lines in google-chrome.list
+# end up with two "deb" lines in google-chrome.list.
+# The alternative would be to simply touch /etc/default/google-chrome
+# and rely only on our created list file.
 - name: Remove Google Chrome temporary apt repository
   become: yes
   apt_repository:
     repo: deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
     state: absent
     filename: google-chrome-temp
+  when: google_chrome_default.stat.exists == False
