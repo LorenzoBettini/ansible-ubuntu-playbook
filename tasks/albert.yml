@@ -7,7 +7,7 @@
 - name: Add Albert apt repository
   become: yes
   apt_repository:
-    repo: deb https://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_21.04/ /
+    repo: deb http://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_21.04/ /
     filename: home:manuelschneid3r
     state: present
 
