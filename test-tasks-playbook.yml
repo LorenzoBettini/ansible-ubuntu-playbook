@@ -1,4 +1,4 @@
 ---
 - hosts: all
   tasks:
-    - include: tasks/zsh-antigen.yml
+    - include: tasks/google-chrome.yml
