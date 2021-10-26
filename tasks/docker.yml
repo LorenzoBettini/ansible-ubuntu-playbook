@@ -1,7 +1,6 @@
 - name: Install Docker
   become: yes
   apt:
-    update_cache: yes
     state: latest
     pkg:
     - docker.io

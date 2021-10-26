@@ -14,5 +14,6 @@
 - name: Install VS Code (apt)
   become: yes
   apt:
+    update_cache: yes
     name: code
     state: present

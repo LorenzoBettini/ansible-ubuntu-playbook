@@ -16,6 +16,7 @@
   become: yes
   apt:
     name: dropbox
+    update_cache: yes
     state: present
   register: aptout
 

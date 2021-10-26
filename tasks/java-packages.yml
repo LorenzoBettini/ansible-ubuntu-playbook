@@ -1,7 +1,6 @@
 - name: Install Java Packages
   become: yes
   apt:
-    update_cache: yes
     state: latest
     pkg:
     - openjdk-8-source

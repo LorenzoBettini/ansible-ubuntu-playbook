@@ -1,7 +1,6 @@
 - name: Install KDE Packages
   become: yes
   apt:
-    update_cache: yes
     state: latest
     pkg:
     - kate
