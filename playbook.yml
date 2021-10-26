@@ -7,6 +7,7 @@
       changed_when: False
   tasks:
     - include: tasks/main-packages.yml
+    - include: tasks/firefox.yml
     - include: tasks/gnome-packages.yml
     - include: tasks/gnome-configurations.yml
     - include: tasks/zsh.yml

@@ -1,0 +1,16 @@
+- name: Remove Firefox Snap
+  become: yes
+  snap:
+    state: absent
+    name: firefox
+
+- name: Install Firefox from APT
+  become: yes
+  apt:
+    update_cache: yes
+    state: latest
+    pkg: firefox
+  register: aptout
+
+- debug: msg="{{ aptout.stdout_lines }}"
+  when: aptout.stdout_lines is defined
