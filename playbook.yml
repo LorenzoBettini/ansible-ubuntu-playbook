@@ -21,7 +21,9 @@
     - include: tasks/recoll.yml
     - include: tasks/vscode.yml
     - include: tasks/other-packages.yml
-    - include: tasks/latex.yml
+    - block:
+      - include: tasks/latex.yml
+      tags: latex
   post_tasks:
     - name: Remove useless packages from the cache
       become: yes
