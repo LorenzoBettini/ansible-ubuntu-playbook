@@ -21,6 +21,7 @@
     - include: tasks/recoll.yml
     - include: tasks/vscode.yml
     - include: tasks/other-packages.yml
+    - include: tasks/amarok.yml
     - block:
       - include: tasks/latex.yml
       tags: latex

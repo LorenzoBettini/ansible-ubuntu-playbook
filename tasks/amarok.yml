@@ -1,0 +1,18 @@
+- name: Add Amarok KF5 snapshots
+  become: yes
+  apt_repository:
+    repo: ppa:pgomes/amarok
+    state: present
+    codename: hirsute # Impish not yet supported
+
+- name: Install Amarok
+  become: yes
+  apt:
+    update_cache: yes
+    state: latest
+    pkg:
+    - amarok
+  register: aptout
+
+- debug: msg="{{ aptout.stdout_lines }}"
+  when: aptout.stdout_lines is defined
