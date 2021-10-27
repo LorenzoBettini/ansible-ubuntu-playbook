@@ -39,3 +39,11 @@
     - debug: msg="{{ aptout.stdout_lines }}"
       when: aptout.stdout_lines is defined
 
+    - name: Dist-upgrade
+      become: yes
+      apt:
+        upgrade: dist
+      register: aptout
+
+    - debug: msg="{{ aptout.stdout_lines }}"
+      when: aptout.stdout_lines is defined
