@@ -12,6 +12,7 @@
     state: latest
     pkg:
     - amarok
+    - breeze-icon-theme
   register: aptout
 
 - debug: msg="{{ aptout.stdout_lines }}"
