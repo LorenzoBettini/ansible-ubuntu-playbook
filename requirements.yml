@@ -2,6 +2,9 @@
 roles:
   # Install a role from Ansible Galaxy.
   - name: gantsign.maven
+  - name: petermosmans.customize-gnome
+    src: https://github.com/LorenzoBettini/ansible-role-customize-gnome
+    version: "issue-8"
 
 collections:
   # Install a collection from Ansible Galaxy.

@@ -1,0 +1,16 @@
+- name: Disable Ubuntu Dock
+  dconf:
+    key: "/org/gnome/shell/disabled-extensions"
+    value: "['ubuntu-dock@ubuntu.com']"
+
+- name: Install Gnome Extensions
+  include_role:
+    name: petermosmans.customize-gnome
+  vars:
+    gnome_extensions:
+      - id: 19 # User Theme
+      - id: 3740 # Magic Lamp
+
+# - name: Show GNOME Shell extensions
+#   debug: msg="{{ gnome_extensions_full | map(attribute='name') | list | join(",") }}"
+
