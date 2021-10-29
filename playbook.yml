@@ -16,11 +16,12 @@
     - block:
       - include: tasks/git.yml
       tags: git
-    - include: tasks/gnome-configurations.yml
+    - include: tasks/gnome-dconf.yml
     - include: tasks/gnome-extensions.yml
     - include: tasks/main-packages.yml
     - include: tasks/firefox.yml
     - include: tasks/gnome-packages.yml
+    - include: tasks/gnome-configurations.yml
     - include: tasks/zsh.yml
     - include: tasks/zsh-antigen.yml
     - include: tasks/kde-packages.yml

@@ -1,0 +1,11 @@
+- name: Install Gnome dconf
+  become: yes
+  apt:
+    state: latest
+    pkg:
+    - dconf-editor
+    - python3-psutil
+  register: aptout
+
+- debug: msg="{{ aptout.stdout_lines }}"
+  when: aptout.stdout_lines is defined
