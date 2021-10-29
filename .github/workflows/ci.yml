@@ -21,13 +21,6 @@ jobs:
           ~/.ansible
         key: ${{ runner.os }}-ansible-${{ hashFiles('requirements.yml') }}
         restore-keys: ${{ runner.os }}-ansible-
-    - name: Upgrade system
-      run: |
-        sudo apt update
-        sudo apt upgrade -y
-    - name: Install Python
-      run: |
-        sudo apt install -y python3
     - name: Install requirements
       run: |
         ansible-galaxy install -r requirements.yml

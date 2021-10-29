@@ -7,7 +7,6 @@
     - curl
     - wget
     - curl
-    - git
     - git-gui
     - gitk
     - gkrellm
