@@ -1,0 +1,26 @@
+name: Run Ansible Playbook
+
+on:
+  push:
+    paths-ignore:
+     - '**.md'
+  pull_request:
+    paths-ignore:
+     - '**.md'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Cache Ansible dependencies
+      uses: actions/cache@v2
+      with:
+        path: |
+          ~/.ansible
+        key: ${{ runner.os }}-ansible-${{ hashFiles('requirements.yml') }}
+        restore-keys: ${{ runner.os }}-ansible-
+    - name: Install requirements
+      run: |
+        ansible-galaxy install -r requirements.yml
