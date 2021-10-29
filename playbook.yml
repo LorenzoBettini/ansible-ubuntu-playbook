@@ -9,6 +9,7 @@
     - block:
       - include: tasks/git.yml
       tags: git
+    - include: tasks/albert.yml
     - include: tasks/main-packages.yml
     - include: tasks/firefox.yml
     - include: tasks/gnome-packages.yml
@@ -20,7 +21,6 @@
     - include: tasks/google-chrome.yml
     - include: tasks/dropbox.yml
     - include: tasks/docker.yml
-    - include: tasks/albert.yml
     - include: tasks/recoll.yml
     - include: tasks/vscode.yml
     - include: tasks/other-packages.yml
