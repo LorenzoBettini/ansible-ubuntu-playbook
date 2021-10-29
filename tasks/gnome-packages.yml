@@ -4,7 +4,9 @@
     state: latest
     pkg:
     - gnome-tweaks
-    - guake
+    - dconf-cli
+    - dconf-editor
+    - python3-psutil
   register: aptout
 
 - debug: msg="{{ aptout.stdout_lines }}"

@@ -1,11 +1,9 @@
-- name: Install Gnome dconf
+- name: Install Guake Drop-down Terminal
   become: yes
   apt:
     state: latest
     pkg:
-    - dconf-cli
-    - dconf-editor
-    - python3-psutil
+    - guake
   register: aptout
 
 - debug: msg="{{ aptout.stdout_lines }}"
