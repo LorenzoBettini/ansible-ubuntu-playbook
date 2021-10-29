@@ -15,6 +15,7 @@
     - block:
       - include: tasks/git.yml
       tags: git
+    - include: tasks/version-dependent-packages.yml
     - include: tasks/main-packages.yml
     - include: tasks/firefox.yml
     - include: tasks/gnome-packages.yml
