@@ -15,7 +15,6 @@
     - block:
       - include: tasks/git.yml
       tags: git
-    - include: tasks/version-dependent-packages.yml
     - include: tasks/main-packages.yml
     - include: tasks/firefox.yml
     - include: tasks/gnome-packages.yml
@@ -31,6 +30,7 @@
     - include: tasks/recoll.yml
     - include: tasks/vscode.yml
     - include: tasks/other-packages.yml
+    - include: tasks/version-dependent-packages.yml
     - include: tasks/amarok.yml
     - block:
       - include: tasks/latex.yml
