@@ -7,8 +7,6 @@
     - curl
     - wget
     - curl
-    - git-gui
-    - gitk
     - gkrellm
     - net-tools
     - apt-transport-https

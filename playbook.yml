@@ -6,6 +6,9 @@
       apt: update_cache=yes
       changed_when: False
   tasks:
+    - block:
+      - include: tasks/git.yml
+      tags: git
     - include: tasks/main-packages.yml
     - include: tasks/firefox.yml
     - include: tasks/gnome-packages.yml
