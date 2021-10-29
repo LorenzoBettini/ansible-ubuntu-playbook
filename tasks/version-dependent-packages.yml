@@ -1,4 +1,4 @@
-# These depends on a specific version of Ubuntu
+# These depend on a specific version of Ubuntu
 
 - name: Install plocate
   become: yes

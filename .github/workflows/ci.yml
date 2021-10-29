@@ -9,7 +9,7 @@ on:
      - '**.md'
 
 jobs:
-  build:
+  local-playbook:
     runs-on: ubuntu-latest
 
     steps:
