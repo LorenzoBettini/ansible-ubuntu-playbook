@@ -4,7 +4,6 @@
     state: latest
     pkg:
     - gnome-tweaks
-    - dconf-editor
     - guake
   register: aptout
 
