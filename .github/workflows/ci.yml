@@ -24,7 +24,10 @@ jobs:
     - name: Upgrade system
       run: |
         sudo apt update
-        sudo apt dist-upgrade -y
+        sudo apt upgrade -y
+    - name: Install Python
+      run: |
+        sudo apt install -y python3
     - name: Install requirements
       run: |
         ansible-galaxy install -r requirements.yml
