@@ -24,3 +24,6 @@ jobs:
     - name: Install requirements
       run: |
         ansible-galaxy install -r requirements.yml
+    - name: Run playbook locally
+      run: |
+       ansible-playbook -i local playbook.yml --skip-tags latex
