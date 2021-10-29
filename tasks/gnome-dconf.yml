@@ -3,6 +3,7 @@
   apt:
     state: latest
     pkg:
+    - dconf-cli
     - dconf-editor
     - python3-psutil
   register: aptout
