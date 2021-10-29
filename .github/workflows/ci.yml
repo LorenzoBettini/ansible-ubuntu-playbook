@@ -31,7 +31,7 @@ jobs:
       run: |
         ansible-playbook -i local playbook.yml --skip-tags latex,git | tee second-run.output
     - name: Test idempotency
-      run: |
+      run: >
         grep -q 'changed=0.*failed=0' second-run.output
         && (echo 'Idempotence test: pass' && exit 0)
         || (echo 'Idempotence test: fail' && exit 1)
