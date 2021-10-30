@@ -1,3 +1,21 @@
+- name: Add Touchegg apt repository
+  become: yes
+  apt_repository:
+    repo: ppa:touchegg/stable
+    state: present
+
+- name: Install Touchegg
+  become: yes
+  apt:
+    update_cache: yes
+    state: latest
+    pkg:
+    - touchegg
+  register: aptout
+
+- debug: msg="{{ aptout.stdout_lines }}"
+  when: aptout.stdout_lines is defined
+
 - name: Disable Ubuntu Dock
   dconf:
     key: "/org/gnome/shell/disabled-extensions"
@@ -12,6 +30,7 @@
       - id: 3740 # Magic Lamp "compiz-alike-magic-lamp-effect@hermes83.github.com"
       - id: 307 # dash-to-dock "dash-to-dock@micxgx.gmail.com"
       - id: 973 # switcher "switcher@landau.fi"
+      - id: 4033 # x11-gestures "x11gestures@joseexposito.github.io"
 
 # - name: Show GNOME Shell extensions
 #   debug: msg="{{ gnome_extensions_full | map(attribute='name') | list | join(",") }}"
