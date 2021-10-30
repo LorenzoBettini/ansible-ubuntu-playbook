@@ -20,7 +20,6 @@
     - gimp
     - ppa-purge
     - tree
-    - plocate
     - ubuntu-restricted-extras
   register: aptout
 

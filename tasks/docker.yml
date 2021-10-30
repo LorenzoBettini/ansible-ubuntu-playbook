@@ -3,6 +3,8 @@
   apt:
     state: latest
     pkg:
+    - runc
+    - containerd
     - docker.io
     - docker-compose
   register: aptout

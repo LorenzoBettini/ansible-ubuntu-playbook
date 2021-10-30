@@ -1,12 +1,11 @@
-- name: Install Gnome Packages
+- name: Install Git Packages
   become: yes
   apt:
     state: latest
     pkg:
-    - gnome-tweaks
-    - dconf-cli
-    - dconf-editor
-    - python3-psutil
+    - git
+    - git-gui
+    - gitk
   register: aptout
 
 - debug: msg="{{ aptout.stdout_lines }}"

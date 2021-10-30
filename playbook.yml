@@ -1,15 +1,27 @@
 ---
 - hosts: all
   pre_tasks:
+    - name: System details
+      debug: msg="{{ item }}"
+      with_items: 
+      - "{{ ansible_distribution }}"
+      - "{{ ansible_distribution_release }}"
+      - "{{ ansible_distribution_version }}"
+      - "{{ ansible_distribution_major_version }}"
     - name: update repositories
       become: yes
       apt: update_cache=yes
       changed_when: False
   tasks:
+    - block:
+      - include: tasks/git.yml
+      tags: git
+    - include: tasks/gnome-packages.yml
+    - include: tasks/gnome-extensions.yml
+    - include: tasks/gnome-configurations.yml
     - include: tasks/main-packages.yml
     - include: tasks/firefox.yml
-    - include: tasks/gnome-packages.yml
-    - include: tasks/gnome-configurations.yml
+    - include: tasks/guake.yml
     - include: tasks/zsh.yml
     - include: tasks/zsh-antigen.yml
     - include: tasks/kde-packages.yml
@@ -21,6 +33,7 @@
     - include: tasks/recoll.yml
     - include: tasks/vscode.yml
     - include: tasks/other-packages.yml
+    - include: tasks/version-dependent-packages.yml
     - include: tasks/amarok.yml
     - block:
       - include: tasks/latex.yml

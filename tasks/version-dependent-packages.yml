@@ -1,0 +1,13 @@
+# These depend on a specific version of Ubuntu
+
+- name: Install plocate
+  become: yes
+  apt:
+    state: latest
+    pkg:
+    - plocate
+  register: aptout
+  when: ansible_distribution_version is version('21.04', '>=')
+
+- debug: msg="{{ aptout.stdout_lines }}"
+  when: aptout.stdout_lines is defined
