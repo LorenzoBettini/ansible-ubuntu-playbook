@@ -8,13 +8,15 @@
     name: petermosmans.customize-gnome
   vars:
     gnome_extensions:
-      - id: 19 # User Theme
-      - id: 3740 # Magic Lamp
+      - id: 19 # User Theme "user-theme@gnome-shell-extensions.gcampax.github.com"
+      - id: 3740 # Magic Lamp "compiz-alike-magic-lamp-effect@hermes83.github.com"
+      - id: 307 # dash-to-dock "dash-to-dock@micxgx.gmail.com"
+      - id: 973 # switcher "switcher@landau.fi"
 
 # - name: Show GNOME Shell extensions
 #   debug: msg="{{ gnome_extensions_full | map(attribute='name') | list | join(",") }}"
 
-- name: Enable Extension
-  dconf:
-    key: "/org/gnome/shell/enabled-extensions"
-    value: "['user-theme@gnome-shell-extensions.gcampax.github.com']"
+# - name: Enable Extension
+#   dconf:
+#     key: "/org/gnome/shell/enabled-extensions"
+#     value: "['user-theme@gnome-shell-extensions.gcampax.github.com']"
