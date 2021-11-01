@@ -1,0 +1,17 @@
+- name: Add Touchegg apt repository
+  become: yes
+  apt_repository:
+    repo: ppa:touchegg/stable
+    state: present
+
+- name: Install Touchegg
+  become: yes
+  apt:
+    update_cache: yes
+    state: latest
+    pkg:
+    - touchegg
+  register: aptout
+
+- debug: msg="{{ aptout.stdout_lines }}"
+  when: aptout.stdout_lines is defined
