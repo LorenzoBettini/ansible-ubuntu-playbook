@@ -1,0 +1,16 @@
+- name: Install Kde Packages
+  become: yes
+  apt:
+    state: latest
+    pkg:
+    - latte-dock
+    - yakuake
+    - korganizer
+    - kaddressbook
+    - kdepim-addons
+    - kio-gdrive
+    - dolphin-plugins
+  register: aptout
+
+- debug: msg="{{ aptout.stdout_lines }}"
+  when: aptout.stdout_lines is defined
