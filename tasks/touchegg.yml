@@ -1,3 +1,19 @@
+- name: Copy Touchegg apt key
+  # The apt_key file is expected to be found on the remote host
+  # so we first need to copy it
+  become: yes
+  copy:
+    src: "{{ playbook_dir }}/tasks/files/keys/touchegg_signing_key.pub"
+    dest: "/tmp/"
+
+- name: Add Touchegg key
+  become: yes
+  apt_key:
+    # use locally save key to avoid possible temporary failures
+    # repo: ppa:recoll-backports/recoll-1.15-on
+    file: "/tmp/touchegg_signing_key.pub"
+    state: present
+
 - name: Add Touchegg apt repository
   become: yes
   apt_repository:
