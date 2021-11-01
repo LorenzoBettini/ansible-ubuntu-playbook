@@ -1,4 +1,4 @@
 ---
 - hosts: all
   tasks:
-    - include: tasks/gnome-extensions.yml
+    - include: tasks/dropbox.yml
