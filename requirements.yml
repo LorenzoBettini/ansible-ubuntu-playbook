@@ -3,7 +3,6 @@ roles:
   # Install a role from Ansible Galaxy.
   - name: gantsign.maven
   - name: petermosmans.customize-gnome
-    src: https://github.com/PeterMosmans/ansible-role-customize-gnome/archive/refs/tags/0.2.4.tar.gz
     # src: https://github.com/LorenzoBettini/ansible-role-customize-gnome
     # version: "issue-8"
     # now https://github.com/PeterMosmans/ansible-role-customize-gnome/issues/8 is fixed
