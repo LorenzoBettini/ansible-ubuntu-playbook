@@ -1,4 +1,4 @@
-- name: Install KDE Packages
+- name: Install KDE Packages in Gnome
   become: yes
   apt:
     state: latest

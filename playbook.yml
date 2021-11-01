@@ -24,7 +24,7 @@
     - include: tasks/guake.yml
     - include: tasks/zsh.yml
     - include: tasks/zsh-antigen.yml
-    - include: tasks/kde-packages.yml
+    - include: tasks/kde-gnome-packages.yml
     - include: tasks/java-packages.yml
     - include: tasks/google-chrome.yml
     - include: tasks/dropbox.yml
