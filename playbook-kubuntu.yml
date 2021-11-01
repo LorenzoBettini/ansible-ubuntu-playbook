@@ -19,6 +19,7 @@
     #- include: tasks/gnome-packages.yml
     #- include: tasks/gnome-extensions.yml
     #- include: tasks/gnome-configurations.yml
+    - include: tasks/kubuntu-backports.yml
     - include: tasks/main-packages.yml
     - include: tasks/firefox.yml
     #- include: tasks/guake.yml
@@ -39,6 +40,15 @@
       - include: tasks/latex.yml
       tags: latex
   post_tasks:
+    - name: Dist-upgrade
+      become: yes
+      apt:
+        upgrade: dist
+      register: aptout
+
+    - debug: msg="{{ aptout.stdout_lines }}"
+      when: aptout.stdout_lines is defined
+
     - name: Remove useless packages from the cache
       become: yes
       apt:
@@ -48,15 +58,6 @@
       become: yes
       apt:
         autoremove: yes
-      register: aptout
-
-    - debug: msg="{{ aptout.stdout_lines }}"
-      when: aptout.stdout_lines is defined
-
-    - name: Dist-upgrade
-      become: yes
-      apt:
-        upgrade: dist
       register: aptout
 
     - debug: msg="{{ aptout.stdout_lines }}"

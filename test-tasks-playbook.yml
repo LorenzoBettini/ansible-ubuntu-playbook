@@ -1,4 +1,27 @@
 ---
 - hosts: all
   tasks:
-    - include: tasks/gnome-extensions.yml
+    - include: tasks/kubuntu-backports.yml
+  post_tasks:
+    - name: Dist-upgrade
+      become: yes
+      apt:
+        upgrade: dist
+      register: aptout
+
+    - debug: msg="{{ aptout.stdout_lines }}"
+      when: aptout.stdout_lines is defined
+
+    - name: Remove useless packages from the cache
+      become: yes
+      apt:
+        autoclean: yes
+
+    - name: Remove dependencies that are no longer required
+      become: yes
+      apt:
+        autoremove: yes
+      register: aptout
+
+    - debug: msg="{{ aptout.stdout_lines }}"
+      when: aptout.stdout_lines is defined
