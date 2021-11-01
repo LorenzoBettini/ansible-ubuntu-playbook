@@ -20,7 +20,9 @@ jobs:
         path: |
           ~/.ansible
         key: ${{ runner.os }}-ansible-${{ hashFiles('requirements.yml') }}
-        restore-keys: ${{ runner.os }}-ansible-
+        # restore-keys: ${{ runner.os }}-ansible-
+        # make sure that when an exact cache is not found we start with new
+        # downloaded requirements
     - name: Install requirements
       run: |
         ansible-galaxy install -r requirements.yml
