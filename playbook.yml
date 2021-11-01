@@ -32,6 +32,7 @@
     - include: tasks/albert.yml
     - include: tasks/recoll.yml
     - include: tasks/vscode.yml
+    - include: tasks/ubuntu-restricted-extras.yml
     - include: tasks/other-packages.yml
     - include: tasks/version-dependent-packages.yml
     - include: tasks/touchegg.yml
