@@ -1,4 +1,4 @@
-- name: Install Other Packages
+- name: Install Kubuntu restricted extras
   become: yes
   apt:
     state: latest

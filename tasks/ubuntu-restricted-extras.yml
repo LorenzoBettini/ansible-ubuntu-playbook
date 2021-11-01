@@ -1,4 +1,4 @@
-- name: Install Other Packages
+- name: Install Ubuntu restricted extras
   become: yes
   apt:
     state: latest
