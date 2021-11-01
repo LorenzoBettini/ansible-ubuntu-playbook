@@ -1,8 +1,18 @@
-- name: Install Dropbox key
+- name: Copy Dropbox apt key
+  # The apt_key file is expected to be found on the remote host
+  # so we first need to copy it
+  become: yes
+  copy:
+    src: "{{ playbook_dir }}/tasks/files/keys/dropbox.gpg"
+    dest: "/tmp/"
+
+- name: Add Dropbox key
   become: yes
   apt_key:
-    keyserver: pgp.mit.edu
-    id: 1C61A2656FB57B7E4DE0F4C1FC918B335044912E
+    # use locally save key to avoid possible temporary failures
+    # keyserver: pgp.mit.edu
+    # id: 1C61A2656FB57B7E4DE0F4C1FC918B335044912E
+    file: "/tmp/dropbox.gpg"
     state: present
 
 - name: Add Dropbox apt repository

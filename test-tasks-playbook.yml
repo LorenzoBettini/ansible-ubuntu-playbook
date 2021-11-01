@@ -1,4 +1,5 @@
 ---
 - hosts: all
   tasks:
-    - include: tasks/gnome-extensions.yml
+    - include: tasks/recoll.yml
+    - include: tasks/touchegg.yml

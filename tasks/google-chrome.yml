@@ -1,7 +1,17 @@
+- name: Copy Google Chrome apt key
+  # The apt_key file is expected to be found on the remote host
+  # so we first need to copy it
+  become: yes
+  copy:
+    src: "{{ playbook_dir }}/tasks/files/keys/google_linux_signing_key.pub"
+    dest: "/tmp/"
+
 - name: Add Google Chrome apt key
   become: yes
   apt_key:
-    url: https://dl-ssl.google.com/linux/linux_signing_key.pub
+    # url: https://dl-ssl.google.com/linux/linux_signing_key.pub
+    # use locally save key to avoid possible temporary failures
+    file: "/tmp/google_linux_signing_key.pub"
     state: present
 
 - stat: path=/etc/default/google-chrome
