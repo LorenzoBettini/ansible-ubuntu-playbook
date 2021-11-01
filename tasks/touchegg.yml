@@ -10,14 +10,14 @@
   become: yes
   apt_key:
     # use locally save key to avoid possible temporary failures
-    # repo: ppa:recoll-backports/recoll-1.15-on
+    # repo: ppa:touchegg/stable
     file: "/tmp/touchegg_signing_key.pub"
     state: present
 
 - name: Add Touchegg apt repository
   become: yes
   apt_repository:
-    repo: ppa:touchegg/stable
+    repo: "deb http://ppa.launchpad.net/touchegg/stable/ubuntu {{ ansible_distribution_release }} main"
     state: present
 
 - name: Install Touchegg
