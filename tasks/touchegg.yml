@@ -18,6 +18,7 @@
   become: yes
   apt_repository:
     repo: "deb http://ppa.launchpad.net/touchegg/stable/ubuntu {{ ansible_distribution_release }} main"
+    filename: "touchegg-ubuntu-stable-{{ ansible_distribution_release }}"
     state: present
 
 - name: Install Touchegg
