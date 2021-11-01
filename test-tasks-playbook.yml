@@ -1,4 +1,4 @@
 ---
 - hosts: all
   tasks:
-    - include: tasks/touchegg.yml
+    - include: tasks/recoll.yml
