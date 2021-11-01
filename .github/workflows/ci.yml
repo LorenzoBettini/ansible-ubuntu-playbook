@@ -9,7 +9,7 @@ on:
      - '**.md'
 
 jobs:
-  local-playbook:
+  local-ubuntu-playbook:
     runs-on: ubuntu-latest
 
     steps:
@@ -32,6 +32,35 @@ jobs:
     - name: Run playbook locally again
       run: |
         ansible-playbook -i local playbook.yml --skip-tags latex,git | tee second-run.output
+    - name: Test idempotency
+      run: >
+        grep -q 'changed=0.*failed=0' second-run.output
+        && (echo 'Idempotence test: pass' && exit 0)
+        || (echo 'Idempotence test: fail' && exit 1)
+
+  local-kubuntu-playbook:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Cache Ansible dependencies
+      uses: actions/cache@v2
+      with:
+        path: |
+          ~/.ansible
+        key: ${{ runner.os }}-ansible-${{ hashFiles('requirements.yml') }}
+        # restore-keys: ${{ runner.os }}-ansible-
+        # make sure that when an exact cache is not found we start with new
+        # downloaded requirements
+    - name: Install requirements
+      run: |
+        ansible-galaxy install -r requirements.yml
+    - name: Run playbook locally
+      run: |
+        ansible-playbook -i local playbook-kubuntu.yml --skip-tags latex,git
+    - name: Run playbook locally again
+      run: |
+        ansible-playbook -i local playbook-kubuntu.yml --skip-tags latex,git | tee second-run.output
     - name: Test idempotency
       run: >
         grep -q 'changed=0.*failed=0' second-run.output
