@@ -1,7 +1,17 @@
-- name: Add Recoll apt repository
+- name: Copy Recoll apt key
+  # The apt_key file is expected to be found on the remote host
+  # so we first need to copy it
   become: yes
-  apt_repository:
-    repo: ppa:recoll-backports/recoll-1.15-on
+  copy:
+    src: "{{ playbook_dir }}/tasks/files/keys/recoll_signing_key.pub"
+    dest: "/tmp/"
+
+- name: Add Recoll key
+  become: yes
+  apt_key:
+    # use locally save key to avoid possible temporary failures
+    # repo: ppa:recoll-backports/recoll-1.15-on
+    file: "/tmp/recoll_signing_key.pub"
     state: present
 
 - name: Install Recoll
