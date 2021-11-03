@@ -22,6 +22,24 @@
     value: Meta+X\tCtrl+F7,Ctrl+F7,Toggle Present Windows (Window class)
     no_extra_spaces: yes
 
+- name: Kate preferences
+  community.general.ini_file:
+    path: ~/.config/katerc
+    section: '{{ item.section }}'
+    option: '{{ item.option }}'
+    value: '{{ item.value }}'
+    no_extra_spaces: yes
+  loop:
+    - section: KTextEditor Document
+      option: ReplaceTabsDyn
+      value: 'false'
+    - section: KTextEditor Document
+      option: Swap Directory
+      value: /tmp/
+    - section: KTextEditor Document
+      option: Swap File Mode
+      value: 2
+
 - name: Create Konsole profile directory
   file:
     path: '~/.local/share/konsole'
