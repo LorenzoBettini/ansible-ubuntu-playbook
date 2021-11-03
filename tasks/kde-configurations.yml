@@ -21,3 +21,13 @@
     option: ExposeClass
     value: Meta+X\tCtrl+F7,Ctrl+F7,Toggle Present Windows (Window class)
     no_extra_spaces: yes
+
+- name: Create Konsole profile directory
+  file:
+    path: '~/.local/share/konsole'
+    state: directory
+
+- name: Copy Konsole profiles
+  copy:
+    src: "{{ playbook_dir }}/tasks/files/konsole/"
+    dest: "~/.local/share/konsole/"
