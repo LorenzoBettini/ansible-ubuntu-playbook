@@ -1,3 +1,11 @@
+- name: Meta for Expose (Toggle Present Windows)
+  community.general.ini_file:
+    path: ~/.config/kwinrc
+    section: ModifierOnlyShortcuts
+    option: Meta
+    value: org.kde.kglobalaccel,/component/kwin,org.kde.kglobalaccel.Component,invokeShortcut,Expose
+    no_extra_spaces: yes
+
 - name: Meta+X for ExposeAll (Toggle Present Windows (All desktops))
   community.general.ini_file:
     path: ~/.config/kglobalshortcutsrc
