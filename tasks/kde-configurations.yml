@@ -1,0 +1,15 @@
+- name: Meta+X for ExposeAll (Toggle Present Windows (All desktops))
+  community.general.ini_file:
+    path: ~/.config/kglobalshortcutsrc
+    section: kwin
+    option: ExposeAll
+    value: Ctrl+F10\tLaunch (C)\tMeta+Z,Ctrl+F10\tLaunch (C),Toggle Present Windows (All desktops)
+    no_extra_spaces: yes
+
+- name: Meta+Z for ExposeClass (Toggle Present Windows (Window class))
+  community.general.ini_file:
+    path: ~/.config/kglobalshortcutsrc
+    section: kwin
+    option: ExposeClass
+    value: Meta+X\tCtrl+F7,Ctrl+F7,Toggle Present Windows (Window class)
+    no_extra_spaces: yes

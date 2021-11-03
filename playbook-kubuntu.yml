@@ -18,6 +18,7 @@
       tags: git
     #- include: tasks/gnome-extensions.yml
     #- include: tasks/gnome-configurations.yml
+    - include: tasks/kde-configurations.yml
     - include: tasks/kubuntu-backports.yml
     - include: tasks/main-packages.yml
     - include: tasks/kde-packages.yml

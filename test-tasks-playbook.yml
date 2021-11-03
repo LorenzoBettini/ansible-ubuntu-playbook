@@ -1,5 +1,4 @@
 ---
 - hosts: all
   tasks:
-    - include: tasks/recoll.yml
-    - include: tasks/touchegg.yml
+    - include: tasks/kde-configurations.yml
