@@ -24,6 +24,21 @@
     option: magiclampEnabled
     value: 'true'
 
+- name: Switcher
+  community.general.ini_file:
+    path: ~/.config/kwinrc
+    section: '{{ item.section }}'
+    option: '{{ item.option }}'
+    value: '{{ item.value }}'
+    no_extra_spaces: yes
+  loop:
+  - section: TabBox
+    option: HighlightWindows
+    value: 'false'
+  - section: TabBox
+    option: LayoutName
+    value: compact
+
 - name: Meta+X for ExposeAll (Toggle Present Windows (All desktops))
   community.general.ini_file:
     path: ~/.config/kglobalshortcutsrc
@@ -38,6 +53,14 @@
     section: kwin
     option: ExposeClass
     value: Meta+X\tCtrl+F7,Ctrl+F7,Toggle Present Windows (Window class)
+    no_extra_spaces: yes
+
+- name: Alt+\ (Walk Through Windows of Current Application)
+  community.general.ini_file:
+    path: ~/.config/kglobalshortcutsrc
+    section: kwin
+    option: Walk Through Windows of Current Application
+    value: Alt+\\\\,Alt+`,Walk Through Windows of Current Application
     no_extra_spaces: yes
 
 - name: Kate preferences
