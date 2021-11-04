@@ -6,6 +6,24 @@
     value: org.kde.kglobalaccel,/component/kwin,org.kde.kglobalaccel.Component,invokeShortcut,Expose
     no_extra_spaces: yes
 
+- name: Desktop effects
+  community.general.ini_file:
+    path: ~/.config/kwinrc
+    section: '{{ item.section }}'
+    option: '{{ item.option }}'
+    value: '{{ item.value }}'
+    no_extra_spaces: yes
+  loop:
+  - section: Plugins
+    option: kwin4_effect_squashEnabled
+    value: 'false'
+  - section: Effect-MagicLamp
+    option: AnimationDuration
+    value: '400'
+  - section: Plugins
+    option: magiclampEnabled
+    value: 'true'
+
 - name: Meta+X for ExposeAll (Toggle Present Windows (All desktops))
   community.general.ini_file:
     path: ~/.config/kglobalshortcutsrc
