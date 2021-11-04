@@ -37,6 +37,7 @@
     - include: tasks/kubuntu-restricted-extras.yml
     - include: tasks/other-packages.yml
     - include: tasks/version-dependent-packages.yml
+    - include: tasks/skype.yml
     - include: tasks/amarok.yml
     - block:
       - include: tasks/latex.yml
