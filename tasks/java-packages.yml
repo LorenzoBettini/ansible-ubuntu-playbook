@@ -27,9 +27,14 @@
     - 17
 
 - name: Install libwebkit2gtk (for Eclipse SWT Browser)
+  become: yes
   apt:
     state: latest
     name: libwebkit2gtk-4.0-37
+  register: aptout
+
+- debug: msg="{{ aptout.stdout_lines }}"
+  when: aptout.stdout_lines is defined
 
 - name: Install Maven
   include_role:
