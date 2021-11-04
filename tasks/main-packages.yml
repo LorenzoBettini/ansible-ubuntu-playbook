@@ -10,6 +10,7 @@
     - gkrellm
     - net-tools
     - apt-transport-https
+    - synaptic
     - unison-gtk
     - thunderbird
   register: aptout
