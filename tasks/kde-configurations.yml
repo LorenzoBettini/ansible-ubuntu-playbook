@@ -49,3 +49,14 @@
   copy:
     src: "{{ playbook_dir }}/tasks/files/konsole/"
     dest: "~/.local/share/konsole/"
+
+- name: Create autostart-scripts directory
+  file:
+    path: '~/.config/autostart-scripts'
+    state: directory
+
+- name: Copy ssh-add scripts
+  copy:
+    src: "{{ playbook_dir }}/tasks/files/kde-ssh/"
+    dest: "~/.config/autostart-scripts/"
+    mode: u+rwx,g-wx,o-wx
