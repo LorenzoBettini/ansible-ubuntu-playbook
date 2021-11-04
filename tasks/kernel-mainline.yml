@@ -1,0 +1,34 @@
+- name: Copy Mainline apt key
+  # The apt_key file is expected to be found on the remote host
+  # so we first need to copy it
+  become: yes
+  copy:
+    src: "{{ playbook_dir }}/tasks/files/keys/kernel-mainline.pub"
+    dest: "/tmp/"
+
+- name: Add Mainline key
+  become: yes
+  apt_key:
+    # use locally save key to avoid possible temporary failures
+    # repo: ppa:cappelikan/ppa
+    file: "/tmp/kernel-mainline.pub"
+    state: present
+
+- name: Add Mainline apt repository
+  become: yes
+  apt_repository:
+    repo: "deb http://ppa.launchpad.net/cappelikan/ppa/ubuntu/ {{ ansible_distribution_release }} main"
+    filename: "cappelikan-ubuntu-ppa-{{ ansible_distribution_release }}"
+    state: present
+
+- name: Install Mainline
+  become: yes
+  apt:
+    update_cache: yes
+    state: latest
+    pkg:
+    - mainline
+  register: aptout
+
+- debug: msg="{{ aptout.stdout_lines }}"
+  when: aptout.stdout_lines is defined
