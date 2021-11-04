@@ -9,7 +9,7 @@ on:
      - '**.md'
 
 jobs:
-  local-playbook:
+  local-ubuntu-playbook:
     runs-on: ubuntu-latest
 
     steps:
@@ -28,10 +28,10 @@ jobs:
         ansible-galaxy install -r requirements.yml
     - name: Run playbook locally
       run: |
-        ansible-playbook -i local playbook.yml --skip-tags latex,git
+        ansible-playbook -i local playbook-ubuntu.yml --skip-tags latex,git
     - name: Run playbook locally again
       run: |
-        ansible-playbook -i local playbook.yml --skip-tags latex,git | tee second-run.output
+        ansible-playbook -i local playbook-ubuntu.yml --skip-tags latex,git | tee second-run.output
     - name: Test idempotency
       run: >
         grep -q 'changed=0.*failed=0' second-run.output
