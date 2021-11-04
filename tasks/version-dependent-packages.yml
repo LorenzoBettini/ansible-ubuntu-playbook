@@ -1,5 +1,17 @@
 # These depend on a specific version of Ubuntu
 
+- name: Remove mlocate
+  become: yes
+  apt:
+    state: absent
+    pkg:
+    - mlocate
+  register: aptout
+  when: ansible_distribution_version is version('21.04', '>=')
+
+- debug: msg="{{ aptout.stdout_lines }}"
+  when: aptout.stdout_lines is defined
+
 - name: Install plocate
   become: yes
   apt:
