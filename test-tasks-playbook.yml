@@ -1,6 +1,4 @@
 ---
 - hosts: all
   tasks:
-    - include: tasks/recoll.yml
-    - include: tasks/touchegg.yml
-    - include: tasks/skype.yml
+    - include: tasks/kernel-mainline.yml
