@@ -37,3 +37,9 @@
     name: "{{ ansible_user_id }}"
     groups: docker
     append: yes
+
+- name: Do NOT enable service docker on boot
+  become: yes
+  ansible.builtin.service:
+    name: docker
+    enabled: no
