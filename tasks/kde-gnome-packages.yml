@@ -1,0 +1,42 @@
+- name: Install KDE Packages in Gnome
+  become: yes
+  apt:
+    state: latest
+    pkg:
+    - kate
+    - kde-spectacle
+  register: aptout
+
+- debug: msg="{{ aptout.stdout_lines }}"
+  when: aptout.stdout_lines is defined
+
+- name: Ensure xdg mime default application is set
+  command: "xdg-mime default {{ item[0].desktop_file }} {{ item[1] }}"
+  changed_when: False
+  with_subelements:
+    - "{{ xdg_mime_defaults }}"
+    - mime_types
+  vars:
+    xdg_mime_defaults:
+    - desktop_file: org.kde.kate.desktop
+      mime_types:
+      - text/plain
+      - text/xml
+
+- name: Kate preferences
+  community.general.ini_file:
+    path: ~/.config/katerc
+    section: '{{ item.section }}'
+    option: '{{ item.option }}'
+    value: '{{ item.value }}'
+    no_extra_spaces: yes
+  loop:
+    - section: KTextEditor Document
+      option: ReplaceTabsDyn
+      value: 'false'
+    - section: KTextEditor Document
+      option: Swap Directory
+      value: /tmp/
+    - section: KTextEditor Document
+      option: Swap File Mode
+      value: 2

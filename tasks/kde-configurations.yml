@@ -1,0 +1,116 @@
+- name: Meta for Expose (Toggle Present Windows)
+  community.general.ini_file:
+    path: ~/.config/kwinrc
+    section: ModifierOnlyShortcuts
+    option: Meta
+    value: org.kde.kglobalaccel,/component/kwin,org.kde.kglobalaccel.Component,invokeShortcut,Expose
+    no_extra_spaces: yes
+
+- name: Desktop effects
+  community.general.ini_file:
+    path: ~/.config/kwinrc
+    section: '{{ item.section }}'
+    option: '{{ item.option }}'
+    value: '{{ item.value }}'
+    no_extra_spaces: yes
+  loop:
+  - section: Plugins
+    option: kwin4_effect_squashEnabled
+    value: 'false'
+  - section: Effect-MagicLamp
+    option: AnimationDuration
+    value: '400'
+  - section: Plugins
+    option: magiclampEnabled
+    value: 'true'
+
+- name: Switcher
+  community.general.ini_file:
+    path: ~/.config/kwinrc
+    section: '{{ item.section }}'
+    option: '{{ item.option }}'
+    value: '{{ item.value }}'
+    no_extra_spaces: yes
+  loop:
+  - section: TabBox
+    option: HighlightWindows
+    value: 'false'
+  - section: TabBox
+    option: LayoutName
+    value: compact
+
+- name: Meta+X for ExposeAll (Toggle Present Windows (All desktops))
+  community.general.ini_file:
+    path: ~/.config/kglobalshortcutsrc
+    section: kwin
+    option: ExposeAll
+    value: Ctrl+F10\tLaunch (C)\tMeta+Z,Ctrl+F10\tLaunch (C),Toggle Present Windows (All desktops)
+    no_extra_spaces: yes
+
+- name: Meta+Z for ExposeClass (Toggle Present Windows (Window class))
+  community.general.ini_file:
+    path: ~/.config/kglobalshortcutsrc
+    section: kwin
+    option: ExposeClass
+    value: Meta+X\tCtrl+F7,Ctrl+F7,Toggle Present Windows (Window class)
+    no_extra_spaces: yes
+
+- name: Alt+\ (Walk Through Windows of Current Application)
+  community.general.ini_file:
+    path: ~/.config/kglobalshortcutsrc
+    section: kwin
+    option: Walk Through Windows of Current Application
+    value: Alt+\\\\,Alt+`,Walk Through Windows of Current Application
+    no_extra_spaces: yes
+
+- name: Ensure xdg mime default application is set
+  command: "xdg-mime default {{ item[0].desktop_file }} {{ item[1] }}"
+  changed_when: False
+  with_subelements:
+    - "{{ xdg_mime_defaults }}"
+    - mime_types
+  vars:
+    xdg_mime_defaults:
+    - desktop_file: org.kde.kate.desktop
+      mime_types:
+      - text/plain
+      - text/xml
+
+- name: Kate preferences
+  community.general.ini_file:
+    path: ~/.config/katerc
+    section: '{{ item.section }}'
+    option: '{{ item.option }}'
+    value: '{{ item.value }}'
+    no_extra_spaces: yes
+  loop:
+    - section: KTextEditor Document
+      option: ReplaceTabsDyn
+      value: 'false'
+    - section: KTextEditor Document
+      option: Swap Directory
+      value: /tmp/
+    - section: KTextEditor Document
+      option: Swap File Mode
+      value: 2
+
+- name: Create Konsole profile directory
+  file:
+    path: '~/.local/share/konsole'
+    state: directory
+
+- name: Copy Konsole profiles
+  copy:
+    src: "{{ playbook_dir }}/tasks/files/konsole/"
+    dest: "~/.local/share/konsole/"
+
+- name: Create autostart-scripts directory
+  file:
+    path: '~/.config/autostart-scripts'
+    state: directory
+
+- name: Copy ssh-add scripts
+  copy:
+    src: "{{ playbook_dir }}/tasks/files/kde-ssh/"
+    dest: "~/.config/autostart-scripts/"
+    mode: u+rwx,g-wx,o-wx

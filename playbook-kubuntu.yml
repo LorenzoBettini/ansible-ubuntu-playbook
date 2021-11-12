@@ -16,26 +16,27 @@
     - block:
       - include: tasks/git.yml
       tags: git
-    - include: tasks/gnome-packages.yml
-    - include: tasks/gnome-extensions.yml
-    - include: tasks/gnome-configurations.yml
+    #- include: tasks/gnome-extensions.yml
+    #- include: tasks/gnome-configurations.yml
+    - include: tasks/kubuntu-backports.yml
     - include: tasks/main-packages.yml
+    - include: tasks/kde-packages.yml
+    - include: tasks/kde-configurations.yml
     - include: tasks/firefox.yml
-    - include: tasks/guake.yml
+    #- include: tasks/guake.yml
     - include: tasks/zsh.yml
     - include: tasks/zsh-antigen.yml
-    - include: tasks/kde-gnome-packages.yml
+    #- include: tasks/kde-packages.yml
     - include: tasks/java-packages.yml
     - include: tasks/google-chrome.yml
     - include: tasks/dropbox.yml
     - include: tasks/docker.yml
-    - include: tasks/albert.yml
+    #- include: tasks/albert.yml
     - include: tasks/recoll.yml
     - include: tasks/vscode.yml
-    - include: tasks/ubuntu-restricted-extras.yml
+    - include: tasks/kubuntu-restricted-extras.yml
     - include: tasks/other-packages.yml
     - include: tasks/version-dependent-packages.yml
-    - include: tasks/touchegg.yml
     - include: tasks/skype.yml
     - include: tasks/amarok.yml
     - include: tasks/kernel-mainline.yml

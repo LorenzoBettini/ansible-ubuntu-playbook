@@ -1,0 +1,10 @@
+- name: Install Ubuntu restricted extras
+  become: yes
+  apt:
+    state: latest
+    pkg:
+    - ubuntu-restricted-extras
+  register: aptout
+
+- debug: msg="{{ aptout.stdout_lines }}"
+  when: aptout.stdout_lines is defined

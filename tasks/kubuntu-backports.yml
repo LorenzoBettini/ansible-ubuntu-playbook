@@ -1,0 +1,6 @@
+- name: Add Kubuntu Backports apt repository
+  become: yes
+  apt_repository:
+    repo: ppa:kubuntu-ppa/backports
+    state: present
+    update_cache: yes

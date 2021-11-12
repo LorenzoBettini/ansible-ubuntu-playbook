@@ -1,4 +1,4 @@
 ---
 - hosts: all
   tasks:
-    - include: tasks/kernel-mainline.yml
+    - include: tasks/kde-configurations.yml

@@ -1,0 +1,10 @@
+- name: Install Kubuntu restricted extras
+  become: yes
+  apt:
+    state: latest
+    pkg:
+    - kubuntu-restricted-extras
+  register: aptout
+
+- debug: msg="{{ aptout.stdout_lines }}"
+  when: aptout.stdout_lines is defined
