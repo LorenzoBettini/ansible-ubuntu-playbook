@@ -63,6 +63,19 @@
     value: Alt+\\\\,Alt+`,Walk Through Windows of Current Application
     no_extra_spaces: yes
 
+- name: Ensure xdg mime default application is set
+  command: "xdg-mime default {{ item[0].desktop_file }} {{ item[1] }}"
+  changed_when: False
+  with_subelements:
+    - "{{ xdg_mime_defaults }}"
+    - mime_types
+  vars:
+    xdg_mime_defaults:
+    - desktop_file: org.kde.kate.desktop
+      mime_types:
+      - text/plain
+      - text/xml
+
 - name: Kate preferences
   community.general.ini_file:
     path: ~/.config/katerc
