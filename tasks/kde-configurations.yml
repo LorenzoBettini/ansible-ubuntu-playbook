@@ -104,6 +104,27 @@
     src: "{{ playbook_dir }}/tasks/files/konsole/"
     dest: "~/.local/share/konsole/"
 
+- name: Yakuake preferences
+  community.general.ini_file:
+    path: ~/.config/yakuakerc
+    section: '{{ item.section }}'
+    option: '{{ item.option }}'
+    value: '{{ item.value }}'
+    no_extra_spaces: yes
+  loop:
+    - section: Appearance # https://wiki.archlinux.org/title/Yakuake#Background_transparency_and_blur_on_Plasma
+      option: Blur
+      value: 'true'
+    - section: Appearance
+      option: Translucency
+      value: 'true'
+    - section: Desktop Entry
+      option: DefaultProfile
+      value: Apricot.profile
+    - section: Window
+      option: Height
+      value: 60
+
 - name: Create autostart-scripts directory
   file:
     path: '~/.config/autostart-scripts'
