@@ -35,10 +35,6 @@ antigen theme romkatv/powerlevel10k
 # Tell Antigen that you're done.
 antigen apply
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/bettini/.sdkman"
-[[ -s "/home/bettini/.sdkman/bin/sdkman-init.sh" ]] && source "/home/bettini/.sdkman/bin/sdkman-init.sh"
-
 # Hide user@hostname
 prompt_context () { }
 
