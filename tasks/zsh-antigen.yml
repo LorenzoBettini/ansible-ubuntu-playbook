@@ -1,6 +1,6 @@
 ---
 - name: Install Antigen requirements
-  become: yes
+  become: true
   apt:
     state: latest
     pkg:

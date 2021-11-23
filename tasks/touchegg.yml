@@ -2,13 +2,13 @@
 - name: Copy Touchegg apt key
   # The apt_key file is expected to be found on the remote host
   # so we first need to copy it
-  become: yes
+  become: true
   copy:
     src: "{{ playbook_dir }}/tasks/files/keys/touchegg_signing_key.pub"
     dest: "/tmp/"
 
 - name: Add Touchegg key
-  become: yes
+  become: true
   apt_key:
     # use locally save key to avoid possible temporary failures
     # repo: ppa:touchegg/stable
@@ -16,14 +16,14 @@
     state: present
 
 - name: Add Touchegg apt repository
-  become: yes
+  become: true
   apt_repository:
     repo: "deb http://ppa.launchpad.net/touchegg/stable/ubuntu {{ ansible_distribution_release }} main"
     filename: "touchegg-ubuntu-stable-{{ ansible_distribution_release }}"
     state: present
 
 - name: Install Touchegg
-  become: yes
+  become: true
   apt:
     update_cache: yes
     state: latest

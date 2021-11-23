@@ -2,13 +2,13 @@
 - name: Copy Microsoft apt key
   # The apt_key file is expected to be found on the remote host
   # so we first need to copy it
-  become: yes
+  become: true
   copy:
     src: "{{ playbook_dir }}/tasks/files/keys/microsoft.asc"
     dest: "/tmp/"
 
 - name: Add VS apt key
-  become: yes
+  become: true
   apt_key:
     # url: 'https://packages.microsoft.com/keys/microsoft.asc'
     # use locally save key to avoid possible temporary failures
@@ -16,14 +16,14 @@
     state: present
 
 - name: Add VS Code repo (apt)
-  become: yes
+  become: true
   apt_repository:
     repo: 'deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main'
     filename: vscode
     state: present
 
 - name: Install VS Code (apt)
-  become: yes
+  become: true
   apt:
     update_cache: yes
     name: code

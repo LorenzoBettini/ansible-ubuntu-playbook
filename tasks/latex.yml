@@ -1,6 +1,6 @@
 ---
 - name: Install Latex Packages
-  become: yes
+  become: true
   apt:
     state: latest
     pkg:

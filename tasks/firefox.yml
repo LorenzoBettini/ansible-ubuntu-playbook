@@ -1,12 +1,12 @@
 ---
 - name: Remove Firefox Snap
-  become: yes
+  become: true
   snap:
     state: absent
     name: firefox
 
 - name: Install Firefox from APT
-  become: yes
+  become: true
   apt:
     state: latest
     pkg: firefox

@@ -1,7 +1,7 @@
 ---
 - name: Remove possible Docker install from docker.com
   # if installed from https://docs.docker.com/engine/install/ubuntu/
-  become: yes
+  become: true
   apt:
     state: absent
     pkg:
@@ -13,13 +13,13 @@
 
 - name: Remove possible docker-compose installed from github
   # if installed from https://github.com/docker/compose/releases/download/
-  become: yes
+  become: true
   file:
     path: '/usr/local/bin/docker-compose'
     state: absent
 
 - name: Install Docker from Ubuntu APT
-  become: yes
+  become: true
   apt:
     state: latest
     pkg:
@@ -33,14 +33,14 @@
   when: aptout.stdout_lines is defined
 
 - name: Allow running Docker without sudo
-  become: yes
+  become: true
   user:
     name: "{{ ansible_user_id }}"
     groups: docker
     append: yes
 
 - name: Do NOT enable service docker on boot
-  become: yes
+  become: true
   ansible.builtin.service:
     name: docker
     enabled: no

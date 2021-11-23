@@ -2,7 +2,7 @@
 # These depend on a specific version of Ubuntu
 
 - name: Remove mlocate
-  become: yes
+  become: true
   apt:
     state: absent
     pkg:
@@ -14,7 +14,7 @@
   when: aptout.stdout_lines is defined
 
 - name: Install plocate
-  become: yes
+  become: true
   apt:
     state: latest
     pkg:

@@ -1,19 +1,19 @@
 ---
 - name: Add Albert apt key
-  become: yes
+  become: true
   apt_key:
     url: "https://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_{{ ansible_distribution_version }}/Release.key"
     state: present
 
 - name: Add Albert apt repository
-  become: yes
+  become: true
   apt_repository:
     repo: "deb http://download.opensuse.org/repositories/home:/manuelschneid3r/xUbuntu_{{ ansible_distribution_version }}/ /"
     filename: home:manuelschneid3r
     state: present
 
 - name: Install Albert
-  become: yes
+  become: true
   apt:
     update_cache: yes
     state: latest
