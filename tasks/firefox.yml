@@ -1,9 +1,16 @@
 ---
+- name: Check whether snap is installed and on system path 
+  command: 'which snap' 
+  register: snap_installed
+  ignore_errors: yes
+  changed_when: false
+
 - name: Remove Firefox Snap
   become: true
   snap:
     state: absent
     name: firefox
+  when: snap_installed.rc == 0
 
 - name: Install Firefox from APT
   become: true
