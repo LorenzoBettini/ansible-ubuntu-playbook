@@ -1,3 +1,4 @@
+---
 - name: Install Ubuntu restricted extras
   become: yes
   apt:

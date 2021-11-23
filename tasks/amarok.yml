@@ -1,3 +1,4 @@
+---
 - name: Add Amarok KF5 snapshots with Codename
   become: yes
   apt_repository:

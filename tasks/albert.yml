@@ -1,3 +1,4 @@
+---
 - name: Add Albert apt key
   become: yes
   apt_key:

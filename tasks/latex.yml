@@ -1,3 +1,4 @@
+---
 - name: Install Latex Packages
   become: yes
   apt:

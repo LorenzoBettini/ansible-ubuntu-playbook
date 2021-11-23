@@ -1,3 +1,4 @@
+---
 - name: Remove possible Docker install from docker.com
   # if installed from https://docs.docker.com/engine/install/ubuntu/
   become: yes

@@ -1,3 +1,4 @@
+---
 - name: Copy Skype apt key
   # The apt_key file is expected to be found on the remote host
   # so we first need to copy it
