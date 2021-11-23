@@ -1,4 +1,10 @@
 ---
+- name: Install dirmngr # required by gpg
+  become: true
+  apt:
+    state: present
+    pkg: dirmngr
+
 - name: Add Kubuntu Backports apt repository
   become: true
   apt_repository:
