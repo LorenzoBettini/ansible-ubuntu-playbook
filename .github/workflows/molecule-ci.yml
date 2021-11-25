@@ -29,7 +29,8 @@ jobs:
           path: |
             ~/.ansible
             ~/.cache/ansible-*
-          key: ${{ runner.os }}-ansible-molecule-${{ hashFiles('requirements.yml') }}
+            ~/.pip
+          key: ${{ runner.os }}-ansible-pip-molecule-${{ hashFiles('requirements.yml') }}
           # restore-keys: ${{ runner.os }}-ansible-
           # make sure that when an exact cache is not found we start with new
           # downloaded requirements
