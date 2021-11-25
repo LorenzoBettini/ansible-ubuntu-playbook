@@ -8,13 +8,12 @@ lint: |
   yamllint .
   ansible-lint
 platforms:
-  - name: instance
-    image: "geerlingguy/docker-ubuntu2004-ansible:latest"
+  - name: custom-docker
+    image: custom-ubuntu-ansible
+    dockerfile: ../common/Dockerfile
     command: ""
-    volumes:
-      - /sys/fs/cgroup:/sys/fs/cgroup:ro
     privileged: true
-    pre_build_image: true
+    build_image: true
 provisioner:
   name: ansible
 verifier:
