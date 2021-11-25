@@ -39,11 +39,6 @@
     groups: docker
     append: yes
 
-- name: systemctl daemon-reload
-  become: true
-  command: systemctl daemon-reload
-  changed_when: false
-
 - name: Do NOT enable service docker on boot
   become: true
   ansible.builtin.service:
