@@ -13,6 +13,7 @@
       apt: update_cache=yes
       changed_when: False
   tasks:
+    - include: tasks/docker.yml
     - block:
       - include: tasks/git.yml
       tags: git
@@ -28,7 +29,6 @@
     - include: tasks/java-packages.yml
     - include: tasks/google-chrome.yml
     - include: tasks/dropbox.yml
-    - include: tasks/docker.yml
     - include: tasks/albert.yml
     - include: tasks/recoll.yml
     - include: tasks/vscode.yml
