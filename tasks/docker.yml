@@ -39,12 +39,12 @@
     groups: docker
     append: yes
 
-  # with service module, when running in Docker in molecule
-  # we get this error FAILED! =>
-  # "msg": "Could not find the requested service docker: host"
-  # with systemd module instead it works
-  - name: Do NOT enable service docker on boot
-    become: true
-    ansible.builtin.systemd:
-      name: docker
-      enabled: false
+# with service module, when running in Docker in molecule
+# we get this error FAILED! =>
+# "msg": "Could not find the requested service docker: host"
+# with systemd module instead it works
+- name: Do NOT enable service docker on boot
+  become: true
+  ansible.builtin.systemd:
+    name: docker
+    enabled: false
