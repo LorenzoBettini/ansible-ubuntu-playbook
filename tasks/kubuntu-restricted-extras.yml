@@ -1,5 +1,6 @@
+---
 - name: Install Kubuntu restricted extras
-  become: yes
+  become: true
   apt:
     state: latest
     pkg:

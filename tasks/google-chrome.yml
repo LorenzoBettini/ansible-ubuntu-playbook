@@ -1,13 +1,14 @@
+---
 - name: Copy Google Chrome apt key
   # The apt_key file is expected to be found on the remote host
   # so we first need to copy it
-  become: yes
+  become: true
   copy:
     src: "{{ playbook_dir }}/tasks/files/keys/google_linux_signing_key.pub"
     dest: "/tmp/"
 
 - name: Add Google Chrome apt key
-  become: yes
+  become: true
   apt_key:
     # url: https://dl-ssl.google.com/linux/linux_signing_key.pub
     # use locally save key to avoid possible temporary failures
@@ -20,21 +21,21 @@
 # This way we avoid Chrome setting up the APT repository:
 # we want to set up it ourselves
 - name: Make sure /etc/default/google-chrome exists
-  become: yes
+  become: true
   file:
     path: /etc/default/google-chrome
     state: touch
   when: etc_default_google_chrome.stat.exists is defined and not etc_default_google_chrome.stat.exists
 
 - name: Add Google Chrome apt repository
-  become: yes
+  become: true
   apt_repository:
     repo: deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main
     state: present
     filename: google-chrome
 
 - name: Install Google Chrome
-  become: yes
+  become: true
   apt:
     update_cache: yes
     state: latest

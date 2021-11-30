@@ -1,5 +1,6 @@
+---
 - name: Add Amarok KF5 snapshots with Codename
-  become: yes
+  become: true
   apt_repository:
     repo: ppa:pgomes/amarok
     state: present
@@ -7,14 +8,14 @@
   when: ansible_distribution_version is version('21.10', '>=')
 
 - name: Add Amarok KF5 snapshots with automatic Codename
-  become: yes
+  become: true
   apt_repository:
     repo: ppa:pgomes/amarok
     state: present
   when: ansible_distribution_version is version('21.10', '<')
 
 - name: Install Amarok
-  become: yes
+  become: true
   apt:
     update_cache: yes
     state: latest

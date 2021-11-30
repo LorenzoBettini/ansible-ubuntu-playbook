@@ -1,5 +1,14 @@
+---
+# see https://github.com/geerlingguy/ansible-role-java/issues/64
+# see https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=863199#23
+- name: Make sure man directories are there
+  become: true
+  file:
+    path: '/usr/share/man/man1'
+    state: directory
+
 - name: Install Java Packages
-  become: yes
+  become: true
   apt:
     state: latest
     pkg:
@@ -27,7 +36,7 @@
     - 17
 
 - name: Install libwebkit2gtk (for Eclipse SWT Browser)
-  become: yes
+  become: true
   apt:
     state: latest
     name: libwebkit2gtk-4.0-37

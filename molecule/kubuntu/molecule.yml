@@ -1,0 +1,20 @@
+---
+dependency:
+  name: galaxy
+driver:
+  name: docker
+lint: |
+  set -e
+  yamllint .
+  ansible-lint
+platforms:
+  - name: kubuntu-instance
+    image: custom-ubuntu-ansible
+    dockerfile: ../common/Dockerfile
+    command: ""
+    privileged: true
+    build_image: true
+provisioner:
+  name: ansible
+verifier:
+  name: ansible

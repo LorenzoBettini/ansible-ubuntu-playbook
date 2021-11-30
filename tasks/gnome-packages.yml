@@ -1,5 +1,6 @@
+---
 - name: Install Gnome Packages
-  become: yes
+  become: true
   apt:
     state: latest
     pkg:

@@ -1,0 +1,5 @@
+# This makes linter to fully ignore rules/tags listed below
+skip_list:
+  - unnamed-task
+  - package-latest
+  - risky-file-permissions

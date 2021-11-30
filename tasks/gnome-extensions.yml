@@ -1,3 +1,4 @@
+---
 - name: Disable Ubuntu Dock
   dconf:
     key: "/org/gnome/shell/disabled-extensions"

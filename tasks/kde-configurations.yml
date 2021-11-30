@@ -1,3 +1,4 @@
+---
 - name: Meta for Expose (Toggle Present Windows)
   community.general.ini_file:
     path: ~/.config/kwinrc

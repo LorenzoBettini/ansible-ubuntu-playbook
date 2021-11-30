@@ -1,5 +1,6 @@
+---
 - name: Install Kde Packages
-  become: yes
+  become: true
   apt:
     state: latest
     pkg:
