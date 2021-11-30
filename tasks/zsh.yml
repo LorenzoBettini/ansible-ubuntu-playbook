@@ -3,7 +3,7 @@
   become: true
   apt:
     name: zsh
-    state: latest
+    state: present
   register: aptout
 
 - debug: msg="{{ aptout.stdout_lines }}"

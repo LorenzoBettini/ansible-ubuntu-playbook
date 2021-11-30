@@ -2,7 +2,7 @@
 - name: Install Ubuntu restricted extras
   become: true
   apt:
-    state: latest
+    state: present
     pkg:
     - ubuntu-restricted-extras
   register: aptout

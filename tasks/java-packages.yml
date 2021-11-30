@@ -10,7 +10,7 @@
 - name: Install Java Packages
   become: true
   apt:
-    state: latest
+    state: present
     pkg:
     - openjdk-8-source
     - openjdk-11-source
@@ -38,7 +38,7 @@
 - name: Install libwebkit2gtk (for Eclipse SWT Browser)
   become: true
   apt:
-    state: latest
+    state: present
     name: libwebkit2gtk-4.0-37
   register: aptout
 

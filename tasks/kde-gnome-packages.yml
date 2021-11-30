@@ -2,7 +2,7 @@
 - name: Install KDE Packages in Gnome
   become: true
   apt:
-    state: latest
+    state: present
     pkg:
     - kate
     - kde-spectacle

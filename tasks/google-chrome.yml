@@ -38,7 +38,7 @@
   become: true
   apt:
     update_cache: yes
-    state: latest
+    state: present
     pkg:
     - google-chrome-stable
   register: aptout

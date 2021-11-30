@@ -2,7 +2,7 @@
 - name: Install Latex Packages
   become: true
   apt:
-    state: latest
+    state: present
     pkg:
     - texlive
     - texlive-plain-generic

@@ -2,7 +2,7 @@
 - name: Install Gnome Packages
   become: true
   apt:
-    state: latest
+    state: present
     pkg:
     - gnome-tweaks
     - dconf-cli

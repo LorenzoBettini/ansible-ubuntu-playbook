@@ -2,7 +2,7 @@
 - name: Install Main Packages
   become: true
   apt:
-    state: latest
+    state: present
     pkg:
     - vim
     - curl
