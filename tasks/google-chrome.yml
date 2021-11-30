@@ -6,6 +6,7 @@
   copy:
     src: "{{ playbook_dir }}/tasks/files/keys/google_linux_signing_key.pub"
     dest: "/tmp/"
+    mode: 0600
 
 - name: Add Google Chrome apt key
   become: true
@@ -25,6 +26,7 @@
   file:
     path: /etc/default/google-chrome
     state: touch
+    mode: 0644
   when: etc_default_google_chrome.stat.exists is defined and not etc_default_google_chrome.stat.exists
 
 - name: Add Google Chrome apt repository

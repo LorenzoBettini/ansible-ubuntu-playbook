@@ -21,3 +21,4 @@
   copy:
     src: "{{ playbook_dir }}/tasks/files/antigen/"
     dest: "~/"
+    mode: 0600

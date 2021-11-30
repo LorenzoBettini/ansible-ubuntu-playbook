@@ -28,3 +28,4 @@
   copy:
     src: "{{ playbook_dir }}/tasks/files/albert"
     dest: "~/.config/"
+    mode: 0600

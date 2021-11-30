@@ -6,6 +6,7 @@
   copy:
     src: "{{ playbook_dir }}/tasks/files/keys/touchegg_signing_key.pub"
     dest: "/tmp/"
+    mode: 0600
 
 - name: Add Touchegg key
   become: true

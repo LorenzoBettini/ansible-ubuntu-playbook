@@ -6,6 +6,7 @@
   copy:
     src: "{{ playbook_dir }}/tasks/files/keys/skype.pub"
     dest: "/tmp/"
+    mode: 0600
 
 - name: Add Skype key
   become: true

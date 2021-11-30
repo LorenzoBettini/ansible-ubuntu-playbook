@@ -6,6 +6,7 @@
   file:
     path: '/usr/share/man/man1'
     state: directory
+    mode: 0755
 
 - name: Install Java Packages
   become: true
@@ -24,6 +25,7 @@
   file:
     path: '~/.jdk'
     state: directory
+    mode: 0775
 
 - name: Create Java links
   file:
