@@ -21,7 +21,7 @@
 - name: Install Docker from Ubuntu APT
   become: true
   apt:
-    state: latest
+    state: present
     pkg:
     - runc
     - containerd

@@ -6,6 +6,7 @@
   copy:
     src: "{{ playbook_dir }}/tasks/files/keys/recoll_signing_key.pub"
     dest: "/tmp/"
+    mode: 0600
 
 - name: Add Recoll key
   become: true
@@ -26,7 +27,7 @@
   become: true
   apt:
     update_cache: yes
-    state: latest
+    state: present
     pkg:
     - recoll
     - unrtf
@@ -41,8 +42,10 @@
   file:
     path: '~/.recoll'
     state: directory
+    mode: 0775
 
 - name: Set Recoll configuration
   copy:
     src: "{{ playbook_dir }}/tasks/files/recoll/"
     dest: "~/.recoll/"
+    mode: 0600

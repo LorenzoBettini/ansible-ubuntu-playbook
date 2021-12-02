@@ -16,7 +16,7 @@
   become: true
   apt:
     update_cache: yes
-    state: latest
+    state: present
     pkg:
     - albert
   register: aptout
@@ -28,3 +28,4 @@
   copy:
     src: "{{ playbook_dir }}/tasks/files/albert"
     dest: "~/.config/"
+    mode: 0600

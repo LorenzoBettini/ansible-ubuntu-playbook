@@ -16,7 +16,7 @@
 - name: Install plocate
   become: true
   apt:
-    state: latest
+    state: present
     pkg:
     - plocate
   register: aptout

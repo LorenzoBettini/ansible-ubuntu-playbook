@@ -6,11 +6,12 @@
   file:
     path: '/usr/share/man/man1'
     state: directory
+    mode: 0755
 
 - name: Install Java Packages
   become: true
   apt:
-    state: latest
+    state: present
     pkg:
     - openjdk-8-source
     - openjdk-11-source
@@ -24,6 +25,7 @@
   file:
     path: '~/.jdk'
     state: directory
+    mode: 0775
 
 - name: Create Java links
   file:
@@ -38,7 +40,7 @@
 - name: Install libwebkit2gtk (for Eclipse SWT Browser)
   become: true
   apt:
-    state: latest
+    state: present
     name: libwebkit2gtk-4.0-37
   register: aptout
 

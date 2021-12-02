@@ -2,6 +2,7 @@
 - name: Meta for Expose (Toggle Present Windows)
   community.general.ini_file:
     path: ~/.config/kwinrc
+    mode: 0600
     section: ModifierOnlyShortcuts
     option: Meta
     value: org.kde.kglobalaccel,/component/kwin,org.kde.kglobalaccel.Component,invokeShortcut,Expose
@@ -10,6 +11,7 @@
 - name: Desktop effects
   community.general.ini_file:
     path: ~/.config/kwinrc
+    mode: 0600
     section: '{{ item.section }}'
     option: '{{ item.option }}'
     value: '{{ item.value }}'
@@ -28,6 +30,7 @@
 - name: Switcher
   community.general.ini_file:
     path: ~/.config/kwinrc
+    mode: 0600
     section: '{{ item.section }}'
     option: '{{ item.option }}'
     value: '{{ item.value }}'
@@ -43,6 +46,7 @@
 - name: Meta+X for ExposeAll (Toggle Present Windows (All desktops))
   community.general.ini_file:
     path: ~/.config/kglobalshortcutsrc
+    mode: 0600
     section: kwin
     option: ExposeAll
     value: Ctrl+F10\tLaunch (C)\tMeta+Z,Ctrl+F10\tLaunch (C),Toggle Present Windows (All desktops)
@@ -51,6 +55,7 @@
 - name: Meta+Z for ExposeClass (Toggle Present Windows (Window class))
   community.general.ini_file:
     path: ~/.config/kglobalshortcutsrc
+    mode: 0600
     section: kwin
     option: ExposeClass
     value: Meta+X\tCtrl+F7,Ctrl+F7,Toggle Present Windows (Window class)
@@ -59,6 +64,7 @@
 - name: Alt+\ (Walk Through Windows of Current Application)
   community.general.ini_file:
     path: ~/.config/kglobalshortcutsrc
+    mode: 0600
     section: kwin
     option: Walk Through Windows of Current Application
     value: Alt+\\\\,Alt+`,Walk Through Windows of Current Application
@@ -80,6 +86,7 @@
 - name: Kate preferences
   community.general.ini_file:
     path: ~/.config/katerc
+    mode: 0600
     section: '{{ item.section }}'
     option: '{{ item.option }}'
     value: '{{ item.value }}'
@@ -98,16 +105,19 @@
 - name: Create Konsole profile directory
   file:
     path: '~/.local/share/konsole'
+    mode: 0775
     state: directory
 
 - name: Copy Konsole profiles
   copy:
     src: "{{ playbook_dir }}/tasks/files/konsole/"
     dest: "~/.local/share/konsole/"
+    mode: 0644
 
 - name: Yakuake preferences
   community.general.ini_file:
     path: ~/.config/yakuakerc
+    mode: 0600
     section: '{{ item.section }}'
     option: '{{ item.option }}'
     value: '{{ item.value }}'
@@ -129,6 +139,7 @@
 - name: Create autostart-scripts directory
   file:
     path: '~/.config/autostart-scripts'
+    mode: 0775
     state: directory
 
 - name: Copy ssh-add scripts

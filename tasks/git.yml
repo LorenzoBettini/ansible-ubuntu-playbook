@@ -2,7 +2,7 @@
 - name: Install Git Packages
   become: true
   apt:
-    state: latest
+    state: present
     pkg:
     - git
     - git-gui

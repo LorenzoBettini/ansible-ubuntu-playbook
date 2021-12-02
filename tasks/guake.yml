@@ -2,7 +2,7 @@
 - name: Install Guake Drop-down Terminal
   become: true
   apt:
-    state: latest
+    state: present
     pkg:
     - guake
   register: aptout

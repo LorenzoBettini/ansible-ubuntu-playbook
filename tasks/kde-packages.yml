@@ -2,7 +2,7 @@
 - name: Install Kde Packages
   become: true
   apt:
-    state: latest
+    state: present
     pkg:
     - latte-dock
     - yakuake

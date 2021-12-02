@@ -2,7 +2,7 @@
 - name: Install Antigen requirements
   become: true
   apt:
-    state: latest
+    state: present
     pkg:
     - fonts-powerline
     - curl
@@ -21,3 +21,4 @@
   copy:
     src: "{{ playbook_dir }}/tasks/files/antigen/"
     dest: "~/"
+    mode: 0600

@@ -6,6 +6,7 @@
   copy:
     src: "{{ playbook_dir }}/tasks/files/keys/dropbox.gpg"
     dest: "/tmp/"
+    mode: 0600
 
 - name: Add Dropbox key
   become: true

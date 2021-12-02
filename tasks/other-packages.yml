@@ -2,7 +2,7 @@
 - name: Install Other Packages
   become: true
   apt:
-    state: latest
+    state: present
     pkg:
     - emacs
     - homebank

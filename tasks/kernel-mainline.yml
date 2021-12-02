@@ -6,6 +6,7 @@
   copy:
     src: "{{ playbook_dir }}/tasks/files/keys/kernel-mainline.pub"
     dest: "/tmp/"
+    mode: 0600
 
 - name: Add Mainline key
   become: true
@@ -26,7 +27,7 @@
   become: true
   apt:
     update_cache: yes
-    state: latest
+    state: present
     pkg:
     - mainline
   register: aptout

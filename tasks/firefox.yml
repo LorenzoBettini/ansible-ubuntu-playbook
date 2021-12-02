@@ -15,7 +15,7 @@
 - name: Install Firefox from APT
   become: true
   apt:
-    state: latest
+    state: present
     pkg: firefox
   register: aptout
 

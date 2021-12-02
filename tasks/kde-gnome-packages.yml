@@ -2,7 +2,7 @@
 - name: Install KDE Packages in Gnome
   become: true
   apt:
-    state: latest
+    state: present
     pkg:
     - kate
     - kde-spectacle
@@ -13,7 +13,7 @@
 
 - name: Ensure xdg mime default application is set
   command: "xdg-mime default {{ item[0].desktop_file }} {{ item[1] }}"
-  changed_when: False
+  changed_when: false
   with_subelements:
     - "{{ xdg_mime_defaults }}"
     - mime_types
@@ -27,6 +27,7 @@
 - name: Kate preferences
   community.general.ini_file:
     path: ~/.config/katerc
+    mode: 0600
     section: '{{ item.section }}'
     option: '{{ item.option }}'
     value: '{{ item.value }}'

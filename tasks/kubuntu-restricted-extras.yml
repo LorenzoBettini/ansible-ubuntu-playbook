@@ -2,7 +2,7 @@
 - name: Install Kubuntu restricted extras
   become: true
   apt:
-    state: latest
+    state: present
     pkg:
     - kubuntu-restricted-extras
   register: aptout
