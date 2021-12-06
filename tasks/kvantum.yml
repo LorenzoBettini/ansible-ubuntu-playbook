@@ -1,0 +1,12 @@
+---
+- name: Install Kvantum
+  become: true
+  apt:
+    state: present
+    pkg:
+    - qt5-style-kvantum
+    - qt5-style-kvantum-themes
+  register: aptout
+
+- debug: msg="{{ aptout.stdout_lines }}"
+  when: aptout.stdout_lines is defined

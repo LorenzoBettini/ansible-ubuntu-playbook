@@ -21,6 +21,7 @@
     - include: tasks/kubuntu-backports.yml
     - include: tasks/main-packages.yml
     - include: tasks/kde-packages.yml
+    - include: tasks/kvantum.yml
     - include: tasks/kde-configurations.yml
     - include: tasks/firefox.yml
     #- include: tasks/guake.yml
