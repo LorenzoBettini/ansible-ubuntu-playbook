@@ -49,6 +49,6 @@
 
 - name: Enable Touchegg on boot
   become: yes
-  ansible.builtin.service:
+  ansible.builtin.systemd:
     name: touchegg
-    enabled: yes
+    enabled: true
