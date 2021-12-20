@@ -34,3 +34,21 @@
 
 - debug: msg="{{ aptout.stdout_lines }}"
   when: aptout.stdout_lines is defined
+
+- name: Create Touchegg configuration directory
+  file:
+    path: '~/.config/touchegg'
+    state: directory
+    mode: 0775
+
+- name: Set Touchegg configuration
+  copy:
+    src: "{{ playbook_dir }}/tasks/files/touchegg/"
+    dest: "~/.config/touchegg/"
+    mode: 0600
+
+- name: Enable Touchegg on boot
+  become: yes
+  ansible.builtin.service:
+    name: touchegg
+    enabled: yes
