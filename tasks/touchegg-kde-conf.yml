@@ -1,0 +1,12 @@
+---
+- name: Create Touchegg configuration directory
+  file:
+    path: '~/.config/touchegg'
+    state: directory
+    mode: 0775
+
+- name: Set Touchegg configuration
+  copy:
+    src: "{{ playbook_dir }}/tasks/files/touchegg/"
+    dest: "~/.config/touchegg/"
+    mode: 0600
