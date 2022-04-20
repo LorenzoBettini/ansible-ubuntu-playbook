@@ -37,8 +37,8 @@
     - include: tasks/version-dependent-packages.yml
     - include: tasks/touchegg.yml
     - include: tasks/skype.yml
-    - include: tasks/amarok.yml
-    - include: tasks/kernel-mainline.yml
+#    - include: tasks/amarok.yml
+#    - include: tasks/kernel-mainline.yml
     - block:
       - include: tasks/latex.yml
       tags: latex
