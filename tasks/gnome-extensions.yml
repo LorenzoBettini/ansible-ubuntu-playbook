@@ -20,8 +20,8 @@
       - id: 1112 # screenshot-tool
       - id: 3088 # extension-list
       - id: 7 # removable-drive-menu
-      - id: 120 # system-monitor
-      - id: 3843 # just-perfection
+      #- id: 120 # system-monitor
+      #- id: 3843 # just-perfection
 
 # - name: Show GNOME Shell extensions
 #   debug: msg="{{ gnome_extensions_full | map(attribute='name') | list | join(",") }}"
