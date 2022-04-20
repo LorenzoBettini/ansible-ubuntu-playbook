@@ -3,6 +3,8 @@
   dconf:
     key: "/org/gnome/shell/disabled-extensions"
     value: "['ubuntu-dock@ubuntu.com']"
+  when: ansible_distribution_version is version('21.10', '<=')
+  # In Jammy we can configure the dock as a real dock
 
 - name: Install Gnome Extensions
   include_role:

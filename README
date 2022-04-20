@@ -1,1 +1,6 @@
 An example of Ansible Playbook for installing and configuring Ubuntu.
+
+ansible-galaxy collection install -r requirements.yml
+ansible-galaxy install -r requirements.yml
+
+ansible-playbook -i local -v playbook-ubuntu.yml -K
