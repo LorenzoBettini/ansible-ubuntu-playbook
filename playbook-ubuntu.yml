@@ -29,7 +29,7 @@
     - include: tasks/google-chrome.yml
     - include: tasks/dropbox.yml
     - include: tasks/docker.yml
-    - include: tasks/albert.yml
+#    - include: tasks/albert.yml
     - include: tasks/recoll.yml
     - include: tasks/vscode.yml
     - include: tasks/ubuntu-restricted-extras.yml
