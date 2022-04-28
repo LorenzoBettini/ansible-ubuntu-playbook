@@ -41,7 +41,7 @@
     - include: tasks/touchegg.yml
     - include: tasks/touchegg-kde-conf.yml
     - include: tasks/skype.yml
-    - include: tasks/amarok.yml
+    # - include: tasks/amarok.yml # Amarok not yet available in Jammy
     - include: tasks/kernel-mainline.yml
     - block:
       - include: tasks/latex.yml
