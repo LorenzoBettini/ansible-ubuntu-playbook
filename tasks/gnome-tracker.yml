@@ -1,0 +1,11 @@
+# the default was ['.trackerignore', '.git', '.hg', '.nomedia']
+# but that way the contents of a git working directory are not indexed
+- name: customize Tracker Ignored directories with content
+  dconf:
+    key: "/org/freedesktop/tracker/miner/files/ignored-directories-with-content"
+    value: "['.trackerignore', '.hg', '.nomedia']"
+
+- name: customize Tracker Ignored directories
+  dconf:
+    key: "/org/freedesktop/tracker/miner/files/ignored-directories"
+    value: "['po', 'CVS', 'core-dumps', 'lost+found', 'bin', 'test-bin', 'bin-test', 'target', 'xtend-gen', 'src-gen', 'cache', 'node_modules', 'node_packages', 'thunderbird']"
