@@ -8,7 +8,5 @@
     - dconf-cli
     - dconf-editor
     - python3-psutil
-  register: aptout
-
-- debug: msg="{{ aptout.stdout_lines }}"
-  when: aptout.stdout_lines is defined
+    - gnome-shell-extension-prefs
+    - chrome-gnome-shell
