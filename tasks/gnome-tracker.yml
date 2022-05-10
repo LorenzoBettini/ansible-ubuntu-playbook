@@ -9,3 +9,9 @@
   dconf:
     key: "/org/freedesktop/tracker/miner/files/ignored-directories"
     value: "['po', 'CVS', 'core-dumps', 'lost+found', 'bin', 'test-bin', 'bin-test', 'target', 'xtend-gen', 'src-gen', 'cache', 'node_modules', 'node_packages', 'thunderbird']"
+
+- name: Disable Tracker Extract for user
+  ansible.builtin.systemd:
+    name: tracker-extract-3
+    scope: user
+    masked: yes
