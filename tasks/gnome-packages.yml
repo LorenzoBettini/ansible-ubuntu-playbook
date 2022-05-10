@@ -10,3 +10,4 @@
     - python3-psutil
     - gnome-shell-extension-prefs
     - chrome-gnome-shell
+    - gnome-contacts
