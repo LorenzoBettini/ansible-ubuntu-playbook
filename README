@@ -7,3 +7,7 @@ cd molecule
 cd default (for Ubuntu) or kubuntu (for Kubuntu)
 
 molecule lint
+
+molecule converge
+
+molecule test
