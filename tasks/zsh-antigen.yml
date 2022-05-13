@@ -16,6 +16,7 @@
   get_url:
     url: "https://git.io/antigen"
     dest: "~/antigen.zsh"
+    mode: 0644
 
 - name: Set Antigen configuration
   copy:

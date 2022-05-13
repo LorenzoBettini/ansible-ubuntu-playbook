@@ -1,3 +1,4 @@
 # This makes linter to fully ignore rules/tags listed below
 skip_list:
   - unnamed-task
+  - fqcn-builtins  # Use FQCN for builtin actions

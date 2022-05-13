@@ -10,3 +10,14 @@ or
 ansible-playbook -i local -v playbook-kubuntu.yml -K
 
 In case, --skip-tags latex
+# Molecule testing
+
+cd molecule
+
+cd default (for Ubuntu) or kubuntu (for Kubuntu)
+
+molecule lint
+
+molecule converge
+
+molecule test
