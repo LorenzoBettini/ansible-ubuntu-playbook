@@ -52,4 +52,3 @@ jobs:
           ANSIBLE_FORCE_COLOR: '1'
           MOLECULE_DISTRO: ${{ matrix.playbookdistro }}
           MOLECULE_DOCKER_DISTRO: ${{ matrix.dockerdistro }}
-
