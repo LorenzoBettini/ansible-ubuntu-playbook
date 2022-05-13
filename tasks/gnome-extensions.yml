@@ -4,6 +4,14 @@
     key: "/org/gnome/shell/disabled-extensions"
     value: "['ubuntu-dock@ubuntu.com']"
 
+# In Ubuntu 18.04 Docker image it's not installed
+- name: Ensure gnome-shell is installed
+  become: true
+  package:
+    state: present
+    name:
+    - gnome-shell
+
 - name: Install Gnome Extensions
   include_role:
     name: petermosmans.customize-gnome
