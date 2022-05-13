@@ -10,14 +10,27 @@ or
 ansible-playbook -i local -v playbook-kubuntu.yml -K
 
 In case, --skip-tags latex
+
 # Molecule testing
 
-cd molecule
+From the main directory
 
-cd default (for Ubuntu) or kubuntu (for Kubuntu)
+For linting:
 
 molecule lint
 
-molecule converge
+For checking idempotency
 
 molecule test
+
+To build an environment, have the playbook run inside it, then be able to log in and observe the environment, run:
+
+molecule converge
+
+And then, to log into the environment:
+
+molecule login
+
+Optionally specify the scenario name (default is Ubuntu, "kubuntu" is for Kubuntu):
+
+--scenario-name ${{ matrix.scenario }}
