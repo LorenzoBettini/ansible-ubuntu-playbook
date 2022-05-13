@@ -17,6 +17,7 @@ jobs:
     - name: loginctl enable-linger
       run: |
         loginctl enable-linger $UID
+        systemctl --user
     - name: Set XDG_RUNTIME_DIR
       run: echo "XDG_RUNTIME_DIR=/home/runner/work/xdg" >> $GITHUB_ENV
     - name: Show XDG_RUNTIME_DIR
