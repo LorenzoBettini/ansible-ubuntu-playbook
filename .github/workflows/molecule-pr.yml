@@ -1,0 +1,55 @@
+---
+# On PR we also test with older versions of the
+# Docker images
+name: Molecule PR
+on:
+  pull_request:
+    paths-ignore:
+     - '**.md'
+
+jobs:
+
+  test:
+    name: Molecule
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        playbookdistro:
+          - ubuntu
+          - kubuntu
+        dockerdistro:
+          - ubuntu-18.04
+          - ubuntu-20.04
+
+    steps:
+      - name: Check out the codebase.
+        uses: actions/checkout@v2
+
+      - name: Cache Ansible dependencies
+        uses: actions/cache@v2
+        with:
+          path: |
+            ~/.ansible
+            ~/.cache/ansible-*
+            ~/.pip
+          key: ${{ runner.os }}-ansible-pip-molecule-${{ hashFiles('requirements.yml') }}
+          # restore-keys: ${{ runner.os }}-ansible-
+          # make sure that when an exact cache is not found we start with new
+          # downloaded requirements
+
+      - name: Set up Python 3.
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.x'
+
+      - name: Install test dependencies.
+        run: pip3 install ansible molecule[docker] yamllint ansible-lint
+
+      - name: Run Molecule tests.
+        run: molecule test
+        env:
+          PY_COLORS: '1'
+          ANSIBLE_FORCE_COLOR: '1'
+          MOLECULE_DISTRO: ${{ matrix.playbookdistro }}
+          MOLECULE_DOCKER_DISTRO: ${{ matrix.dockerdistro }}
+
