@@ -14,6 +14,8 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
+    - name: Set XDG_RUNTIME_DIR
+      run: echo "XDG_RUNTIME_DIR=/run/user/$UID" >> $GITHUB_ENV
     - name: Cache Ansible dependencies
       uses: actions/cache@v2
       with:
