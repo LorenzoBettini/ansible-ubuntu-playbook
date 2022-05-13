@@ -18,6 +18,7 @@ jobs:
       run: echo "XDG_RUNTIME_DIR=/run/user/$UID" >> $GITHUB_ENV
     - name: Show XDG_RUNTIME_DIR
       run: |
+        mkdir $XDG_RUNTIME_DIR
         ls -l $XDG_RUNTIME_DIR
         ls -l /run/user/$UID
     - name: Cache Ansible dependencies
