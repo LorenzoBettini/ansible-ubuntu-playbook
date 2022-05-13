@@ -15,8 +15,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        scenario:
-          - default
+        playbookdistro:
+          - ubuntu
           - kubuntu
 
     steps:
@@ -44,7 +44,8 @@ jobs:
         run: pip3 install ansible molecule[docker] yamllint ansible-lint
 
       - name: Run Molecule tests.
-        run: molecule test --scenario-name ${{ matrix.scenario }}
+        run: molecule test
         env:
           PY_COLORS: '1'
           ANSIBLE_FORCE_COLOR: '1'
+          MOLECULE_DISTRO: ${{ matrix.playbookdistro }}

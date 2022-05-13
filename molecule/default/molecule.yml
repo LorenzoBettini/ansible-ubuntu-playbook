@@ -19,5 +19,7 @@ platforms:
     build_image: true
 provisioner:
   name: ansible
+  playbooks:
+    converge: ../${MOLECULE_DISTRO:-ubuntu}/converge.yml
 verifier:
   name: ansible
