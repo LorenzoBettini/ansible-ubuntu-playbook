@@ -17,8 +17,14 @@
     name:
     - tracker
 
+# In previous versions of ubuntu the service file was
+# tracker-extract.service
+# In more recent versions is
+# tracker-extract-3.service
 - name: Disable Tracker Extract for user
   ansible.builtin.systemd:
-    name: tracker-extract-3
+    name: "{{ item | basename }}"
     scope: user
     masked: yes
+  with_fileglob:
+    - "/usr/lib/systemd/user/tracker-extract*.service"
