@@ -14,11 +14,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: loginctl enable-linger
-      run: |
-        loginctl enable-linger $UID
-        export XDG_RUNTIME_DIR=/run/user/$(id -u)
-        systemctl --user
     - name: Set XDG_RUNTIME_DIR
       run: echo "XDG_RUNTIME_DIR=/home/runner/work/xdg" >> $GITHUB_ENV
     - name: Show XDG_RUNTIME_DIR
@@ -26,6 +21,10 @@ jobs:
         mkdir $XDG_RUNTIME_DIR
         chown $USER $XDG_RUNTIME_DIR
         ls -l $XDG_RUNTIME_DIR
+    - name: loginctl enable-linger
+      run: |
+        loginctl enable-linger $UID
+        systemctl --user
     - name: Cache Ansible dependencies
       uses: actions/cache@v2
       with:
