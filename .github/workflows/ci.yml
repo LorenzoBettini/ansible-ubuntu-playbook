@@ -23,7 +23,7 @@ jobs:
         ls -l $XDG_RUNTIME_DIR
     - name: loginctl enable-linger
       run: |
-        loginctl enable-linger $UID
+        loginctl enable-linger $USER
         systemctl --user
     - name: Cache Ansible dependencies
       uses: actions/cache@v2
