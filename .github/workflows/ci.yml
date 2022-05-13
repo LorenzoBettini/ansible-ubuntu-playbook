@@ -15,14 +15,12 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: Set XDG_RUNTIME_DIR
-      run: echo "XDG_RUNTIME_DIR=/run/user/$UID" >> $GITHUB_ENV
+      run: echo "XDG_RUNTIME_DIR=/home/runner/work/xdg" >> $GITHUB_ENV
     - name: Show XDG_RUNTIME_DIR
       run: |
-        ls -d /run/user
-        ls -l /run/user/
         mkdir $XDG_RUNTIME_DIR
+        chown $USER $XDG_RUNTIME_DIR
         ls -l $XDG_RUNTIME_DIR
-        ls -l /run/user/$UID
     - name: Cache Ansible dependencies
       uses: actions/cache@v2
       with:
