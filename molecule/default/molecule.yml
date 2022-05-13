@@ -12,7 +12,7 @@ lint: |
   ansible-lint
 platforms:
   - name: ubuntu-instance
-    image: custom-ubuntu-ansible
+    image: custom-${MOLECULE_DOCKER_DISTRO:-ubuntu-20.04}-ansible
     dockerfile: ../docker/${MOLECULE_DOCKER_DISTRO:-ubuntu-20.04}/Dockerfile
     command: ""
     privileged: true
