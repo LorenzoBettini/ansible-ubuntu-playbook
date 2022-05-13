@@ -13,7 +13,7 @@ lint: |
 platforms:
   - name: ubuntu-instance
     image: custom-ubuntu-ansible
-    dockerfile: ../common/Dockerfile
+    dockerfile: ../docker/${MOLECULE_DOCKER_DISTRO:-ubuntu-20.04}/Dockerfile
     command: ""
     privileged: true
     build_image: true
