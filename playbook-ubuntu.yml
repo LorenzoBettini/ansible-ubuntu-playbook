@@ -37,7 +37,8 @@
     - include: tasks/other-packages.yml
     - include: tasks/version-dependent-packages.yml
     - include: tasks/touchegg.yml
-      when: ansible_distribution_version is version('20.04', '>=')
+      when: ansible_distribution_version is version('20.04', '>=') and ansible_distribution_version is version('22.04', '<')
+      # In 22.04 I use Wayland where touchpad gestures work automatically
     - include: tasks/skype.yml
 #    - include: tasks/amarok.yml
 #    - include: tasks/kernel-mainline.yml
