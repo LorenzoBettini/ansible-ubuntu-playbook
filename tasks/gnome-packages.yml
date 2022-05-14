@@ -8,6 +8,13 @@
     - dconf-cli
     - dconf-editor
     - python3-psutil
-    - gnome-shell-extension-prefs
     - chrome-gnome-shell
     - gnome-contacts
+
+- name: Install gnome-shell-extension-prefs
+  become: true
+  apt:
+    state: present
+    pkg:
+    - gnome-shell-extension-prefs
+  when: ansible_distribution_version is version('20.04', '>=')
