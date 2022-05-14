@@ -43,7 +43,8 @@
     - include: tasks/touchegg-kde-conf.yml
       when: ansible_distribution_version is version('20.04', '>=')
     - include: tasks/skype.yml
-    # - include: tasks/amarok.yml # Amarok not yet available in Jammy
+    - include: tasks/amarok.yml # Amarok not yet available in Jammy
+      when: ansible_distribution_version is version('22.04', '<')
     - include: tasks/kernel-mainline.yml
     - block:
       - include: tasks/latex.yml
