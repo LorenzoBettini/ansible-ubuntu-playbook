@@ -39,7 +39,9 @@
     - include: tasks/other-packages.yml
     - include: tasks/version-dependent-packages.yml
     - include: tasks/touchegg.yml
+      when: ansible_distribution_version is version('20.04', '>=')
     - include: tasks/touchegg-kde-conf.yml
+      when: ansible_distribution_version is version('20.04', '>=')
     - include: tasks/skype.yml
     # - include: tasks/amarok.yml # Amarok not yet available in Jammy
     - include: tasks/kernel-mainline.yml

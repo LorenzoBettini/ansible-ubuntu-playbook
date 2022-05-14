@@ -6,6 +6,14 @@
   when: ansible_distribution_version is version('21.10', '<=')
   # In Jammy we can configure the dock as a real dock
 
+# In Ubuntu 18.04 Docker image it's not installed
+- name: Ensure gnome-shell is installed
+  become: true
+  package:
+    state: present
+    name:
+    - gnome-shell
+
 - name: Install Gnome Extensions
   include_role:
     name: petermosmans.customize-gnome

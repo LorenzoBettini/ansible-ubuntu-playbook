@@ -12,12 +12,14 @@ lint: |
   ansible-lint
 platforms:
   - name: ubuntu-instance
-    image: custom-ubuntu-ansible
-    dockerfile: ../common/Dockerfile
+    image: custom-${MOLECULE_DOCKER_DISTRO:-ubuntu-default}-ansible
+    dockerfile: ../docker/${MOLECULE_DOCKER_DISTRO:-ubuntu-default}/Dockerfile
     command: ""
     privileged: true
     build_image: true
 provisioner:
   name: ansible
+  playbooks:
+    converge: ../${MOLECULE_DISTRO:-ubuntu}/converge.yml
 verifier:
   name: ansible

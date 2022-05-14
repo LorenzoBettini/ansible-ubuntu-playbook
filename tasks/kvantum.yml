@@ -6,7 +6,5 @@
     pkg:
     - qt5-style-kvantum
     - qt5-style-kvantum-themes
-  register: aptout
-
-- debug: msg="{{ aptout.stdout_lines }}"
-  when: aptout.stdout_lines is defined
+  when: ansible_distribution_version is version('20.04', '>=')
+# Before Ubuntu 20.04 Kvantum has to be installed from PPA
