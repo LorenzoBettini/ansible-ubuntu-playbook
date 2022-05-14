@@ -53,3 +53,9 @@ To execute the Kubuntu playbook, `playbook-kubuntu.yml` run molecule with the `M
 ```
 MOLECULE_DISTRO="kubuntu" molecule ...
 ```
+
+By default it uses the Docker image related to `ubuntu-default/Dockerfile`. To use a different Docker image run molecule with the `MOLECULE_DOCKER_DISTRO` environment variable set with the name of the subdirectory of the `docker` directory, e.g.:
+
+```
+MOLECULE_DOCKER_DISTRO="ubuntu-18.04" molecule ...
+```
