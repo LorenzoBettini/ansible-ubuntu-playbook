@@ -30,10 +30,6 @@
     state: present
     pkg:
     - touchegg
-  register: aptout
-
-- debug: msg="{{ aptout.stdout_lines }}"
-  when: aptout.stdout_lines is defined
 
 - name: Enable Touchegg on boot
   become: yes
