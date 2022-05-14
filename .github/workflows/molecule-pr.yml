@@ -1,9 +1,8 @@
 ---
-name: Molecule CI
+# On PR we also test with older versions of the
+# Docker images
+name: Molecule PR
 on:
-  push:
-    paths-ignore:
-     - '**.md'
   pull_request:
     paths-ignore:
      - '**.md'
@@ -19,6 +18,9 @@ jobs:
         playbookdistro:
           - ubuntu
           - kubuntu
+        dockerdistro:
+          - ubuntu-18.04
+          - ubuntu-20.04
 
     steps:
       - name: Check out the codebase.
@@ -50,3 +52,4 @@ jobs:
           PY_COLORS: '1'
           ANSIBLE_FORCE_COLOR: '1'
           MOLECULE_DISTRO: ${{ matrix.playbookdistro }}
+          MOLECULE_DOCKER_DISTRO: ${{ matrix.dockerdistro }}
