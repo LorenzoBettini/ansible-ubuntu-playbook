@@ -6,18 +6,13 @@ ENV LC_ALL C
 ENV DEBIAN_FRONTEND noninteractive
 
 RUN apt-get update \
-    && apt-get install -y python3 sudo bash ca-certificates iproute2 python3-apt aptitude systemd systemd-sysv \
+    && apt-get install -y --no-install-recommends \
+        python3 sudo bash ca-certificates iproute2 python3-apt \
     && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
+    && rm -Rf /usr/share/doc && rm -Rf /usr/share/man
 
-RUN rm -f /lib/systemd/system/multi-user.target.wants/* \
-    /etc/systemd/system/*.wants/* \
-    /lib/systemd/system/local-fs.target.wants/* \
-    /lib/systemd/system/sockets.target.wants/*udev* \
-    /lib/systemd/system/sockets.target.wants/*initctl* \
-    /lib/systemd/system/sysinit.target.wants/systemd-tmpfiles-setup* \
-    /lib/systemd/system/systemd-update-utmp*
+ADD https://raw.githubusercontent.com/gdraheim/docker-systemctl-replacement/master/files/docker/systemctl3.py /usr/bin/systemctl
+RUN chmod +x /usr/bin/systemctl
 
-RUN systemctl set-default multi-user.target
-
-CMD [ "/lib/systemd/systemd", "log-level=info", "unit=sysinit.target" ]
+CMD ["/usr/bin/systemctl"]
