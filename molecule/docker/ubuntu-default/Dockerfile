@@ -5,8 +5,12 @@ ENV container docker
 ENV LC_ALL C
 ENV DEBIAN_FRONTEND noninteractive
 
+# apt-utils is required for codename in ppa to work automatically
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
+        apt-utils \
+        build-essential \
+        software-properties-common \
         python3 sudo bash ca-certificates iproute2 python3-apt \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
