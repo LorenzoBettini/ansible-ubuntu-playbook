@@ -8,7 +8,13 @@
     - dconf-cli
     - dconf-editor
     - python3-psutil
-  register: aptout
+    - chrome-gnome-shell
+    - gnome-contacts
 
-- debug: msg="{{ aptout.stdout_lines }}"
-  when: aptout.stdout_lines is defined
+- name: Install gnome-shell-extension-prefs
+  become: true
+  apt:
+    state: present
+    pkg:
+    - gnome-shell-extension-prefs
+  when: ansible_distribution_version is version('20.04', '>=')

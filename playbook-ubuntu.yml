@@ -19,6 +19,7 @@
     - include: tasks/gnome-packages.yml
     - include: tasks/gnome-extensions.yml
     - include: tasks/gnome-configurations.yml
+    - include: tasks/gnome-tracker.yml
     - include: tasks/main-packages.yml
     - include: tasks/firefox.yml
     - include: tasks/guake.yml
@@ -36,9 +37,11 @@
     - include: tasks/other-packages.yml
     - include: tasks/version-dependent-packages.yml
     - include: tasks/touchegg.yml
-      when: ansible_distribution_version is version('20.04', '>=')
+      when: ansible_distribution_version is version('20.04', '>=') and ansible_distribution_version is version('22.04', '<')
+      # In 22.04 I use Wayland where touchpad gestures work automatically
     - include: tasks/skype.yml
-    - include: tasks/amarok.yml
+    - include: tasks/amarok.yml # Amarok not yet available in Jammy
+      when: ansible_distribution_version is version('22.04', '<')
     - include: tasks/kernel-mainline.yml
     - block:
       - include: tasks/latex.yml

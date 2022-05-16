@@ -14,7 +14,4 @@
     - synaptic
     - unison-gtk
     - thunderbird
-  register: aptout
-
-- debug: msg="{{ aptout.stdout_lines }}"
-  when: aptout.stdout_lines is defined
+    - libfuse2 # required by AppImages, not installed by default in Ubuntu 22.04

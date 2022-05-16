@@ -5,19 +5,19 @@
   ignore_errors: yes
   changed_when: false
 
+# In Jammy 22.04 the deb version is just a pointer to the snap package
+# so in that case we keep the snap version
+
 - name: Remove Firefox Snap
   become: true
   snap:
     state: absent
     name: firefox
-  when: snap_installed.rc == 0
+  when: snap_installed.rc == 0 and ansible_distribution_version is version('21.10', '<=')
 
 - name: Install Firefox from APT
   become: true
   apt:
     state: present
     pkg: firefox
-  register: aptout
-
-- debug: msg="{{ aptout.stdout_lines }}"
-  when: aptout.stdout_lines is defined
+  when: ansible_distribution_version is version('21.10', '<=')

@@ -4,15 +4,15 @@
   apt_repository:
     repo: ppa:pgomes/amarok
     state: present
-    codename: hirsute # Impish not yet supported
-  when: ansible_distribution_version is version('21.10', '>=')
+    codename: impish # Jammy not yet supported
+  when: ansible_distribution_version is version('22.04', '>=')
 
 - name: Add Amarok KF5 snapshots with automatic Codename
   become: true
   apt_repository:
     repo: ppa:pgomes/amarok
     state: present
-  when: ansible_distribution_version is version('21.10', '<')
+  when: ansible_distribution_version is version('21.10', '<=')
 
 - name: Install Amarok
   become: true
@@ -22,7 +22,3 @@
     pkg:
     - amarok
     - breeze-icon-theme
-  register: aptout
-
-- debug: msg="{{ aptout.stdout_lines }}"
-  when: aptout.stdout_lines is defined

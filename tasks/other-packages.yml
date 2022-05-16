@@ -16,12 +16,8 @@
     - libreoffice-l10n-it
     - hyphen-it
     - hunspell-it
-    - exfat-utils
     - ispell
     - gimp
     - ppa-purge
     - tree
-  register: aptout
-
-- debug: msg="{{ aptout.stdout_lines }}"
-  when: aptout.stdout_lines is defined
+#    - exfat-utils # Not available in Jammy?

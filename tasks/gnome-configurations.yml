@@ -18,3 +18,26 @@
   dconf:
     key: "/org/gnome/desktop/wm/keybindings/switch-to-workspace-down"
     value: "['<Super>Page_Down']"
+
+# Custom shortcuts:
+#   For each shortcut, define a name, a command, and a binding.
+
+- name: Maximized terminal shortcut <Super>t"
+  dconf:
+    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/name"
+    value: "'terminal'"
+- name: terminal shortcut command
+  dconf:
+    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/command"
+    value: "'gnome-terminal --maximize'"
+- name: terminal shortcut binding
+  dconf:
+    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/binding"
+    value: "'<Super>t'"
+
+# All custom shortcuts must also be added to an array.
+
+- name: enable custom keybindings
+  dconf:
+    key: "/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings"
+    value: "['/org/gnome/settings-daemon/plugins/media-keys/custom-keybindings/custom0/']"
