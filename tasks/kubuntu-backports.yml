@@ -10,4 +10,7 @@
   apt_repository:
     repo: ppa:kubuntu-ppa/backports
     state: present
+    codename: "{{ ansible_distribution_release }}"
     update_cache: yes
+  # The codename seems to be required to avoid errors of the shape:
+  # The repository 'http://ppa.launchpad.net/kubuntu-ppa/backports/ubuntu sid Release' does not have a Release file.
