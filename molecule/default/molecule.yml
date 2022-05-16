@@ -11,7 +11,7 @@ lint: |
   yamllint .
   ansible-lint
 platforms:
-  - name: ubuntu-instance
+  - name: ${MOLECULE_DOCKER_DISTRO:-ubuntu-default}-instance
     image: custom-${MOLECULE_DOCKER_DISTRO:-ubuntu-default}-ansible
     dockerfile: ../docker/${MOLECULE_DOCKER_DISTRO:-ubuntu-default}/Dockerfile
     command: ""
