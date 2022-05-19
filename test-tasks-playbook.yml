@@ -1,4 +1,5 @@
 ---
 - hosts: all
   tasks:
-    - include: tasks/kde-configurations.yml
+    - include: tasks/flatpak.yml
+    - include: tasks/gnome-extension-manager.yml

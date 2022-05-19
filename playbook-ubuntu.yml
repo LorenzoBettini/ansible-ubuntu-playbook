@@ -20,6 +20,8 @@
     - include: tasks/gnome-extensions.yml
     - include: tasks/gnome-configurations.yml
     - include: tasks/gnome-tracker.yml
+    - include: tasks/flatpak.yml
+    - include: tasks/gnome-extension-manager.yml
     - include: tasks/main-packages.yml
     - include: tasks/firefox.yml
     - include: tasks/guake.yml
