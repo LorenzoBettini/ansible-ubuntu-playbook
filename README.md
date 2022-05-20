@@ -19,6 +19,12 @@ ansible-playbook -i local -v playbook-kubuntu.yml -K
 
 In case, you can skip a few steps, e.g., `--skip-tags latex`.
 
+For local quick testing of single tasks, include them in `test-tasks-playbook.yml` and then:
+
+```
+ansible-playbook -i local -v test-tasks-playbook.yml -K
+```
+
 # Molecule testing
 
 From the main directory

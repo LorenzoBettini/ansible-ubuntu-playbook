@@ -1,0 +1,13 @@
+- name: Install Flatpak
+  become: yes
+  package:
+    state: present
+    name:
+    - flatpak
+
+- name: Add the flathub flatpak repository remote
+  community.general.flatpak_remote:
+    name: flathub
+    state: present
+    flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
+    method: user
