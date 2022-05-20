@@ -29,6 +29,7 @@
       - id: 3088 # extension-list
       - id: 7 # removable-drive-menu
       - id: 97 # Coverflow Alt-Tab
+      - id: 16 # Auto Move Windows
       #- id: 120 # system-monitor
       #- id: 3843 # just-perfection
 
