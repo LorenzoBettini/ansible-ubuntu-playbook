@@ -1,16 +1,30 @@
 ---
 - hosts: all
   tasks:
-  - name: Check Docker status
+  - name: Check Docker service status
     become: true
     ansible.builtin.systemd:
-      name: docker
+      name: docker.service
       enabled: false
     register: result
 
-  - name: Check result
+  - name: Check result Docker service status
     ansible.builtin.debug:
       var: result
     failed_when: result.changed is not false
     # It should have already been disabled, so if the status has changed
     # it means we did not disable the service in the playbook
+
+  - name: Check Docker socket status
+    become: true
+    ansible.builtin.systemd:
+      name: docker.socket
+      enabled: true
+    register: result
+
+  - name: Check result Docker socket status
+    ansible.builtin.debug:
+      var: result
+    failed_when: result.changed is not false
+    # It should have already been enabled, so if the status has changed
+    # it means we did not enable the service in the playbook
