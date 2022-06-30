@@ -20,4 +20,5 @@
     - gimp
     - ppa-purge
     - tree
+    - duf
 #    - exfat-utils # Not available in Jammy?
