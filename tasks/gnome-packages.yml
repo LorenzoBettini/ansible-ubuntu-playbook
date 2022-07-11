@@ -4,12 +4,22 @@
   apt:
     state: present
     pkg:
+    - gnome-shell
     - gnome-tweaks
     - dconf-cli
     - dconf-editor
     - python3-psutil
     - chrome-gnome-shell
     - gnome-contacts
+
+- name: Gnome Shell version
+  ansible.builtin.command: "gnome-shell --version"
+  changed_when: False
+  register: command_output
+
+- name: Gnome Shell version show
+  ansible.builtin.debug:
+    var: command_output.stdout
 
 - name: Install gnome-shell-extension-prefs
   become: true
