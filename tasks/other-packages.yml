@@ -20,5 +20,12 @@
     - gimp
     - ppa-purge
     - tree
-    - duf
 #    - exfat-utils # Not available in Jammy?
+
+- name: Install other recent packages
+  become: true
+  apt:
+    state: present
+    pkg:
+    - duf
+  when: ansible_distribution_version is version('22.04', '>=')
