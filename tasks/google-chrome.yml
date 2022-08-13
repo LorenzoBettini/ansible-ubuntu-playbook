@@ -11,9 +11,9 @@
 - name: Add Google Chrome apt key
   become: true
   apt_key:
-    url: https://dl-ssl.google.com/linux/linux_signing_key.pub
+    # url: https://dl-ssl.google.com/linux/linux_signing_key.pub
     # use locally save key to avoid possible temporary failures
-    # file: "/tmp/google_linux_signing_key.pub"
+    file: "/tmp/google_linux_signing_key.pub"
     state: present
 
 - stat: path=/etc/default/google-chrome
