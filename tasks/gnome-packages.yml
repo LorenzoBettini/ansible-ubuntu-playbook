@@ -11,6 +11,7 @@
     - python3-psutil
     - chrome-gnome-shell
     - gnome-contacts
+    - gnome-screenshot # the original screenshot application
 
 - name: Gnome Shell version
   ansible.builtin.command: "gnome-shell --version"
