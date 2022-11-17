@@ -41,3 +41,9 @@
     name: dropbox
     update_cache: yes
     state: present
+  register: result
+  retries: 5
+  delay: 10
+  until: result is not failed
+# downloading from https://linux.dropbox.com/
+# is extremely flaky, but ignoring errors might undermine idempotency
