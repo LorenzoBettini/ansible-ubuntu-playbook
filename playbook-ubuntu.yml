@@ -17,7 +17,7 @@
       - include: tasks/git.yml
       tags: git
     - include: tasks/gnome-packages.yml
-    - include: tasks/gnome-extensions.yml
+#    - include: tasks/gnome-extensions.yml
     - include: tasks/gnome-configurations.yml
     - include: tasks/gnome-tracker.yml
     - include: tasks/flatpak.yml

@@ -42,7 +42,11 @@ jobs:
           python-version: '3.x'
 
       - name: Install test dependencies.
-        run: pip3 install ansible molecule[docker] yamllint ansible-lint
+        run: |
+          pip install ansible yamllint ansible-lint
+          pip install pip install git+https://github.com/ansible-community/molecule-docker.git
+        # We need to use molecule-docker from HEAD until the fix is released:
+        # https://github.com/ansible-community/molecule-docker/issues/184
 
       - name: Run Molecule tests.
         run: molecule test

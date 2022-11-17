@@ -1,4 +1,7 @@
 # This makes linter to fully ignore rules/tags listed below
 skip_list:
   - unnamed-task
-  - fqcn-builtins  # Use FQCN for builtin actions
+  - deprecated-module  # Deprecated module.
+  - experimental  # all rules tagged as experimental
+  - fqcn[action-core]  # Use FQCN for builtin actions.
+#  - fqcn-builtins  # Use FQCN for builtin actions
