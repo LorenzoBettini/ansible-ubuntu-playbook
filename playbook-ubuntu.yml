@@ -25,14 +25,14 @@
     - include: tasks/main-packages.yml
     - include: tasks/firefox.yml
     - include: tasks/guake.yml
-    - include: tasks/zsh.yml
-    - include: tasks/zsh-antigen.yml
+    - name: Install Oh My Zsh
+      ansible.builtin.include_role:
+        name: lorenzobettini.oh_my_zsh
     - include: tasks/kde-gnome-packages.yml
     - include: tasks/java-packages.yml
     - include: tasks/google-chrome.yml
     - include: tasks/dropbox.yml
     - include: tasks/docker.yml
-#    - include: tasks/albert.yml
     - include: tasks/recoll.yml
     - include: tasks/vscode.yml
     - include: tasks/ubuntu-restricted-extras.yml
