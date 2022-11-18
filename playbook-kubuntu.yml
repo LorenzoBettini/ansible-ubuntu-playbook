@@ -22,8 +22,9 @@
     - include: tasks/kvantum.yml
     - include: tasks/kde-configurations.yml
     - include: tasks/firefox.yml
-    - include: tasks/zsh.yml
-    - include: tasks/zsh-antigen.yml
+    - name: Install Oh My Zsh
+      ansible.builtin.include_role:
+        name: lorenzobettini.oh_my_zsh
     - include: tasks/java-packages.yml
     - include: tasks/google-chrome.yml
     - include: tasks/dropbox.yml
