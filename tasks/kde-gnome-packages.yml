@@ -6,10 +6,6 @@
     pkg:
     - kate
     - kde-spectacle
-  register: aptout
-
-- debug: msg="{{ aptout.stdout_lines }}"
-  when: aptout.stdout_lines is defined
 
 - name: Ensure xdg mime default application is set
   command: "xdg-mime default {{ item[0].desktop_file }} {{ item[1] }}"

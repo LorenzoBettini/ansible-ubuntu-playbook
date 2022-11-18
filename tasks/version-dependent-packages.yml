@@ -7,11 +7,7 @@
     state: absent
     pkg:
     - mlocate
-  register: aptout
   when: ansible_distribution_version is version('21.04', '>=')
-
-- debug: msg="{{ aptout.stdout_lines }}"
-  when: aptout.stdout_lines is defined
 
 - name: Install plocate
   become: true
@@ -19,8 +15,4 @@
     state: present
     pkg:
     - plocate
-  register: aptout
   when: ansible_distribution_version is version('21.04', '>=')
-
-- debug: msg="{{ aptout.stdout_lines }}"
-  when: aptout.stdout_lines is defined

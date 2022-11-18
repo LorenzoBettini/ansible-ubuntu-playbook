@@ -50,10 +50,6 @@
       become: true
       apt:
         upgrade: dist
-      register: aptout
-
-    - debug: msg="{{ aptout.stdout_lines }}"
-      when: aptout.stdout_lines is defined
 
     - name: Remove useless packages from the cache
       become: true
@@ -64,7 +60,3 @@
       become: true
       apt:
         autoremove: yes
-      register: aptout
-
-    - debug: msg="{{ aptout.stdout_lines }}"
-      when: aptout.stdout_lines is defined

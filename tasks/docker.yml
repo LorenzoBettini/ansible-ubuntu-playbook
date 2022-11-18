@@ -6,10 +6,6 @@
     state: absent
     pkg:
     - docker-ce
-  register: aptout
-
-- debug: msg="{{ aptout.stdout_lines }}"
-  when: aptout.stdout_lines is defined
 
 - name: Remove possible docker-compose installed from github
   # if installed from https://github.com/docker/compose/releases/download/
@@ -27,10 +23,6 @@
     - containerd
     - docker.io
     - docker-compose
-  register: aptout
-
-- debug: msg="{{ aptout.stdout_lines }}"
-  when: aptout.stdout_lines is defined
 
 - name: Allow running Docker without sudo
   become: true
