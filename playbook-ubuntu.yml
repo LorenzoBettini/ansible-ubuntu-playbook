@@ -28,6 +28,8 @@
     - name: Install Oh My Zsh
       ansible.builtin.include_role:
         name: lorenzobettini.oh_my_zsh
+    # Kvantum is needed to theme Kate in Gnome correctly
+    - include: tasks/kvantum.yml
     - include: tasks/kde-gnome-packages.yml
     - include: tasks/java-packages.yml
     - include: tasks/google-chrome.yml
