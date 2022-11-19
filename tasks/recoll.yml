@@ -33,10 +33,6 @@
     - unrtf
     - untex
     - djvulibre-bin
-  register: aptout
-
-- debug: msg="{{ aptout.stdout_lines }}"
-  when: aptout.stdout_lines is defined
 
 - name: Create Recoll configuration directory
   file:

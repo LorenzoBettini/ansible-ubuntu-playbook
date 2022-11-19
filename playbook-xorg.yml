@@ -24,7 +24,3 @@
       become: true
       apt:
         autoremove: yes
-      register: aptout
-
-    - debug: msg="{{ aptout.stdout_lines }}"
-      when: aptout.stdout_lines is defined

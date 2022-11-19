@@ -4,10 +4,6 @@
   apt:
     name: zsh
     state: present
-  register: aptout
-
-- debug: msg="{{ aptout.stdout_lines }}"
-  when: aptout.stdout_lines is defined
 
 # Better to do that manually, when needed and wanted
 #- name: Change shell to zsh

@@ -16,10 +16,6 @@
     - openjdk-8-source
     - openjdk-11-source
     - openjdk-17-source
-  register: aptout
-
-- debug: msg="{{ aptout.stdout_lines }}"
-  when: aptout.stdout_lines is defined
 
 - name: Create Java links directory
   file:
@@ -42,10 +38,6 @@
   apt:
     state: present
     name: libwebkit2gtk-4.0-37
-  register: aptout
-
-- debug: msg="{{ aptout.stdout_lines }}"
-  when: aptout.stdout_lines is defined
 
 - name: Install Maven
   include_role:

@@ -43,7 +43,3 @@
     state: present
     pkg:
     - google-chrome-stable
-  register: aptout
-
-- debug: msg="{{ aptout.stdout_lines }}"
-  when: aptout.stdout_lines is defined
