@@ -5,7 +5,8 @@
     state: present
     pkg:
     - kate
-    - kde-spectacle
+#    - kde-spectacle
+# Spectacle does not start anymore in Gnome (maybe Wayland?)
 
 - name: Ensure xdg mime default application is set
   command: "xdg-mime default {{ item[0].desktop_file }} {{ item[1] }}"
