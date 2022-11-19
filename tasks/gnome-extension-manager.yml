@@ -1,5 +1,6 @@
+# In Ubuntu installing as a user does not seem to work
 - name: Install Gnome Extension Manager
+  become: yes
   community.general.flatpak:
     name: com.mattjakeman.ExtensionManager
     state: present
-    method: user

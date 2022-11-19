@@ -1,13 +1,15 @@
 - name: Install Flatpak
-  become: yes
+  become: true
   package:
     state: present
     name:
     - flatpak
 
 - name: Add the flathub flatpak repository remote
+  become: true
   community.general.flatpak_remote:
     name: flathub
     state: present
     flatpakrepo_url: https://dl.flathub.org/repo/flathub.flatpakrepo
-    method: user
+#    method: user
+# In Ubuntu installing as a user does not seem to work
