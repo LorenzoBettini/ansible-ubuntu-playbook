@@ -11,4 +11,4 @@ RUN pip install pip install git+https://github.com/ansible-community/molecule-do
 # rsync is required by Molecule when building a Docker image from a custom file
 # install-packages is a wrapper for `apt` that helps skip a few commands in the docker env.
 RUN sudo install-packages \
-    rsync \
+    rsync
