@@ -9,12 +9,8 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
         software-properties-common \
-        python3 sudo bash ca-certificates iproute2 python3-apt \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-    && rm -Rf /usr/share/doc && rm -Rf /usr/share/man
+        python3 sudo bash ca-certificates iproute2 python3-apt
 
-ADD https://raw.githubusercontent.com/gdraheim/docker-systemctl-replacement/master/files/docker/systemctl3.py /usr/bin/systemctl
-RUN chmod +x /usr/bin/systemctl
+VOLUME ["/sys/fs/cgroup", "/tmp", "/run"]
 
 CMD ["/usr/bin/systemctl"]

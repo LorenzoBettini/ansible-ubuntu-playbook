@@ -11,8 +11,6 @@ platforms:
   - name: ${MOLECULE_DISTRO:-ubuntu}-instance
     image: custom-${MOLECULE_DOCKER_DISTRO:-ubuntu-default}-ansible
     dockerfile: ../docker/${MOLECULE_DOCKER_DISTRO:-ubuntu-default}/Dockerfile
-    command: ""
-    privileged: true
     build_image: true
 provisioner:
   name: ansible
