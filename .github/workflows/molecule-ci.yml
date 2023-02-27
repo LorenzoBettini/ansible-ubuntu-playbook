@@ -37,9 +37,6 @@ jobs:
       - name: Install test dependencies.
         run: |
           pip install -r pip/requirements.txt
-          pip install pip install git+https://github.com/ansible-community/molecule-docker.git
-        # We need to use molecule-docker from HEAD until the fix is released:
-        # https://github.com/ansible-community/molecule-docker/issues/184
 
       - name: Show versions.
         run: |
