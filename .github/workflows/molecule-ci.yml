@@ -19,9 +19,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        playbookdistro:
-          - ubuntu
-          - kubuntu
+        scenario:
+          - default # ubuntu 22.04
+          - kubuntu-22.04
 
     steps:
       - name: Check out the codebase.
@@ -46,8 +46,7 @@ jobs:
           ansible-lint --version
 
       - name: Run Molecule tests.
-        run: molecule test
+        run: molecule test -s ${{ matrix.scenario }}
         env:
           PY_COLORS: '1'
           ANSIBLE_FORCE_COLOR: '1'
-          MOLECULE_DISTRO: ${{ matrix.playbookdistro }}
