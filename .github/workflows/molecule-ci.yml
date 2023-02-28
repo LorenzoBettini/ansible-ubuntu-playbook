@@ -22,8 +22,8 @@ jobs:
       fail-fast: false
       matrix:
         scenario:
-          - default # ubuntu 22.04
-          - kubuntu-22.04
+          - default # ubuntu 22.10
+          - kubuntu-22.10
 
     steps:
       - name: Check out the codebase.
