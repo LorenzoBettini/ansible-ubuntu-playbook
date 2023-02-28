@@ -4,4 +4,8 @@ skip_list:
   - deprecated-module  # Deprecated module.
   - experimental  # all rules tagged as experimental
   - fqcn[action-core]  # Use FQCN for builtin actions.
-#  - fqcn-builtins  # Use FQCN for builtin actions
+  - name[play]
+  - name[casing]
+  - key-order[task]
+  - no-free-form
+  - fqcn[action]

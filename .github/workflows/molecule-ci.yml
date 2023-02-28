@@ -7,100 +7,45 @@ on:
   pull_request:
     paths-ignore:
      - '**.md'
+  schedule:
+    - cron: "0 7 * * 0"
 
 env:
   PYTHON_VERSION: '3.10.x'
 
 jobs:
 
-  cache-dependencies:
-    name: Cache dependencies
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Check out the codebase.
-        uses: actions/checkout@v2
-
-      - name: Set up Python 3.
-        uses: actions/setup-python@v4
-        with:
-          python-version: ${{ env.PYTHON_VERSION }}
-          cache: 'pip'
-
-      - name: Cache pip installed packages.
-        uses: actions/cache@v3
-        with:
-          path: /opt/hostedtoolcache/Python/*
-          key: ${{ runner.os }}-pip-${{ env.PYTHON_VERSION }}-${{ hashFiles('**/requirements.txt') }}
-
-      - name: Install test dependencies.
-        run: |
-          pip install -r pip/requirements.txt
-          pip install pip install git+https://github.com/ansible-community/molecule-docker.git
-        # We need to use molecule-docker from HEAD until the fix is released:
-        # https://github.com/ansible-community/molecule-docker/issues/184
-
-      - name: Cache Ansible dependencies
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.ansible
-            ~/.cache/molecule
-            ~/.cache/ansible-*
-          key: ${{ runner.os }}-ansible-molecule-${{ hashFiles('requirements.yml') }}
-          # make sure that when an exact cache is not found we start with new
-          # downloaded requirements
-
-      - name: Run Molecule dependency.
-        run: molecule dependency
-        env:
-          PY_COLORS: '1'
-          ANSIBLE_FORCE_COLOR: '1'
-
   test:
     name: Molecule
-    needs: cache-dependencies
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        playbookdistro:
-          - ubuntu
-          - kubuntu
+        scenario:
+          - default # ubuntu 22.10
+          - kubuntu-22.10
 
     steps:
       - name: Check out the codebase.
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Python 3.
         uses: actions/setup-python@v4
         with:
           python-version: ${{ env.PYTHON_VERSION }}
 
-      - name: Restore pip installed packages.
-        uses: actions/cache@v3
-        with:
-          path: /opt/hostedtoolcache/Python/*
-          key: ${{ runner.os }}-pip-${{ env.PYTHON_VERSION }}-${{ hashFiles('**/requirements.txt') }}
-          # perfect cache key match
-
-      - name: Cache Ansible dependencies
-        uses: actions/cache@v3
-        with:
-          path: |
-            ~/.ansible
-            ~/.cache/molecule
-            ~/.cache/ansible-*
-          key: ${{ runner.os }}-ansible-molecule-${{ hashFiles('requirements.yml') }}
-          # make sure that when an exact cache is not found we start with new
-          # downloaded requirements
+      - name: Install test dependencies.
+        run: |
+          pip install -r pip/requirements.txt
 
       - name: Show versions.
-        run: molecule --version
+        run: |
+          molecule --version
+          yamllint --version
+          ansible-lint --version
 
       - name: Run Molecule tests.
-        run: molecule test
+        run: molecule test -s ${{ matrix.scenario }}
         env:
           PY_COLORS: '1'
           ANSIBLE_FORCE_COLOR: '1'
-          MOLECULE_DISTRO: ${{ matrix.playbookdistro }}

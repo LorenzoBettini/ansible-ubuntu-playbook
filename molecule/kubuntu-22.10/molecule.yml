@@ -8,12 +8,12 @@ lint: |
   yamllint .
   ansible-lint
 platforms:
-  - name: ubuntu-kinetic-instance
-    image: ubuntu-kinetic-ansible
-    dockerfile: ./Dockerfile
+  - name: kubuntu-kinetic-instance
+    image: kubuntu-kinetic-ansible
+    dockerfile: ../default/Dockerfile
     build_image: true
 provisioner:
   name: ansible
   playbooks:
     converge: converge.yml
-    verify: verify.yml
+    verify: ../default/verify.yml
