@@ -1,4 +1,4 @@
-FROM gitpod/workspace-python:latest
+FROM gitpod/workspace-python-3.9:2023-01-16-03-31-28
 
 RUN pip install --upgrade pip
 
