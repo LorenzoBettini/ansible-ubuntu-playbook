@@ -1,5 +1,4 @@
 ---
 - hosts: all
   tasks:
-    - include: tasks/flatpak.yml
-    - include: tasks/gnome-extension-manager.yml
+    - include: tasks/vscode.yml

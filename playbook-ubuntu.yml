@@ -16,15 +16,11 @@
     - block:
       - include: tasks/git.yml
       tags: git
-    - include: tasks/gnome-packages.yml
-    - include: tasks/gnome-extensions.yml
-    - include: tasks/gnome-configurations.yml
-    - include: tasks/gnome-tracker.yml
-    - include: tasks/flatpak.yml
-    - include: tasks/gnome-extension-manager.yml
+    - name: Install GNOME
+      ansible.builtin.include_role:
+        name: lorenzobettini.my_gnome_role
     - include: tasks/main-packages.yml
     - include: tasks/firefox.yml
-    - include: tasks/guake.yml
     - name: Install Oh My Zsh
       ansible.builtin.include_role:
         name: lorenzobettini.oh_my_zsh
