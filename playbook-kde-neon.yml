@@ -1,0 +1,61 @@
+---
+- hosts: all
+  pre_tasks:
+    - name: System details
+      debug: msg="{{ item }}"
+      with_items: 
+      - "{{ ansible_distribution }}"
+      - "{{ ansible_distribution_release }}"
+      - "{{ ansible_distribution_version }}"
+      - "{{ ansible_distribution_major_version }}"
+    - name: update repositories
+      become: true
+      apt: update_cache=yes
+      changed_when: false
+  tasks:
+    - block:
+      - include: tasks/git.yml
+      tags: git
+    - include: tasks/main-packages.yml
+    - include: tasks/kde-packages.yml
+    - include: tasks/kvantum.yml
+    - include: tasks/kde-configurations.yml
+    - include: tasks/firefox.yml
+    - name: Install Oh My Zsh
+      ansible.builtin.include_role:
+        name: lorenzobettini.oh_my_zsh
+    - include: tasks/java-packages.yml
+    - include: tasks/google-chrome.yml
+    - include: tasks/dropbox.yml
+    - include: tasks/docker.yml
+    - include: tasks/recoll.yml
+    - include: tasks/vscode.yml
+    - include: tasks/kubuntu-restricted-extras.yml
+    - include: tasks/other-packages.yml
+    - include: tasks/version-dependent-packages.yml
+    - include: tasks/touchegg.yml
+      when: ansible_distribution_version is version('20.04', '>=')
+    - include: tasks/touchegg-kde-conf.yml
+      when: ansible_distribution_version is version('20.04', '>=')
+    - include: tasks/skype.yml
+    - include: tasks/amarok.yml # Amarok not yet available in Jammy
+      when: ansible_distribution_version is version('22.04', '<')
+    - include: tasks/kernel-mainline.yml
+    - block:
+      - include: tasks/latex.yml
+      tags: latex
+  post_tasks:
+    - name: Dist-upgrade
+      become: true
+      apt:
+        upgrade: dist
+
+    - name: Remove useless packages from the cache
+      become: true
+      apt:
+        autoclean: yes
+
+    - name: Remove dependencies that are no longer required
+      become: true
+      apt:
+        autoremove: yes
