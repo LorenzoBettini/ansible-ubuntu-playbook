@@ -15,3 +15,5 @@ roles:
 collections:
   # Install a collection from Ansible Galaxy.
   - name: community.general
+    version: 6.4.0
+    # pin older version until https://github.com/ansible-collections/community.general/issues/6271 is fixed
