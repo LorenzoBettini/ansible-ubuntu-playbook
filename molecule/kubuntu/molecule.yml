@@ -8,8 +8,8 @@ lint: |
   yamllint .
   ansible-lint
 platforms:
-  - name: kubuntu-kinetic-instance
-    image: kubuntu-kinetic-ansible
+  - name: kubuntu-instance
+    image: kubuntu-ansible
     dockerfile: ../default/Dockerfile
     build_image: true
 provisioner:
