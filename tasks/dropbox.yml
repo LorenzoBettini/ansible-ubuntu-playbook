@@ -17,23 +17,13 @@
     file: "/tmp/dropbox.gpg"
     state: present
 
-- name: Add Dropbox apt repository with Distribution codename
+# Let's use the Disco repository for good
+- name: Add Dropbox apt repository
   become: true
   apt_repository:
-    repo: "deb [arch=i386,amd64] http://linux.dropbox.com/ubuntu {{ ansible_distribution_release }} main"
+    repo: "deb [arch=i386,amd64] http://linux.dropbox.com/ubuntu disco main"
     state: present
     filename: dropbox
-  when: ansible_distribution_version is version('19.04', '<=')
-# Up to disco they were providing specific different directories
-
-- name: Add Dropbox apt repository with disco codename
-  become: true
-  apt_repository:
-    repo: deb [arch=i386,amd64] http://linux.dropbox.com/ubuntu disco main
-    state: present
-    filename: dropbox
-  when: ansible_distribution_version is version('19.04', '>')
-# Since eoan they stopped
 
 - name: Install Dropbox
   become: true
