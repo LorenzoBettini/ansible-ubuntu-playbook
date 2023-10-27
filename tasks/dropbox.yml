@@ -17,10 +17,11 @@
     file: "/tmp/dropbox.gpg"
     state: present
 
-- name: Add Dropbox apt repository with Distribution codename
+# Let's use the Disco repository for good
+- name: Add Dropbox apt repository
   become: true
   apt_repository:
-    repo: "deb [arch=i386,amd64] http://linux.dropbox.com/ubuntu {{ ansible_distribution_release }} main"
+    repo: "deb [arch=i386,amd64] http://linux.dropbox.com/ubuntu disco main"
     state: present
     filename: dropbox
 
