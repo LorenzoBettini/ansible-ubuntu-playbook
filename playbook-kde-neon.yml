@@ -22,8 +22,11 @@
     - include: tasks/kde-configurations.yml
     - include: tasks/firefox.yml
     - name: Install Oh My Zsh
+     - name: Install Oh My Zsh
       ansible.builtin.include_role:
         name: lorenzobettini.oh_my_zsh
+      vars:
+        with_starship: false
     - include: tasks/java-packages.yml
     - include: tasks/google-chrome.yml
     - include: tasks/dropbox.yml
