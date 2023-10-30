@@ -27,6 +27,7 @@
       vars:
         with_starship: false
     # Kvantum is needed to theme Kate in Gnome correctly
+    - include: tasks/zsh-gnome.yml
     - include: tasks/kvantum.yml
     - include: tasks/kde-gnome-packages.yml
     - include: tasks/java-packages.yml

@@ -1,0 +1,5 @@
+- name: Set .zshenv
+  ansible.builtin.copy:
+    src: "{{ playbook_dir }}/tasks/files/zsh-gnome/"
+    dest: "~/"
+    mode: 0600
