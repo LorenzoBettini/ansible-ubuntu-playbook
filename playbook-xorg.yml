@@ -13,7 +13,7 @@
       apt: update_cache=yes
       changed_when: false
   tasks:
-    - include: tasks/touchegg.yml
+    - include_tasks: tasks/touchegg.yml
   post_tasks:
     - name: Remove useless packages from the cache
       become: true

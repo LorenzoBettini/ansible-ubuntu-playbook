@@ -1,4 +1,4 @@
 ---
 - hosts: all
   tasks:
-    - include: tasks/vscode.yml
+    - include_tasks: tasks/vscode.yml

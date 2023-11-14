@@ -14,40 +14,40 @@
       changed_when: False
   tasks:
     - block:
-      - include: tasks/git.yml
+      - include_tasks: tasks/git.yml
       tags: git
     - name: Install GNOME
       ansible.builtin.include_role:
         name: lorenzobettini.my_gnome_role
-    - include: tasks/main-packages.yml
-    - include: tasks/firefox.yml
+    - include_tasks: tasks/main-packages.yml
+    - include_tasks: tasks/firefox.yml
     - name: Install Oh My Zsh
       ansible.builtin.include_role:
         name: lorenzobettini.oh_my_zsh
       vars:
         with_starship: false
     # Kvantum is needed to theme Kate in Gnome correctly
-    - include: tasks/zsh-gnome.yml
-    - include: tasks/kvantum.yml
-    - include: tasks/kde-gnome-packages.yml
-    - include: tasks/java-packages.yml
-    - include: tasks/google-chrome.yml
-    - include: tasks/dropbox.yml
-    - include: tasks/docker.yml
-    - include: tasks/recoll.yml
-    - include: tasks/vscode.yml
-    - include: tasks/ubuntu-restricted-extras.yml
-    - include: tasks/other-packages.yml
-    - include: tasks/version-dependent-packages.yml
-    - include: tasks/touchegg.yml
+    - include_tasks: tasks/zsh-gnome.yml
+    - include_tasks: tasks/kvantum.yml
+    - include_tasks: tasks/kde-gnome-packages.yml
+    - include_tasks: tasks/java-packages.yml
+    - include_tasks: tasks/google-chrome.yml
+    - include_tasks: tasks/dropbox.yml
+    - include_tasks: tasks/docker.yml
+    - include_tasks: tasks/recoll.yml
+    - include_tasks: tasks/vscode.yml
+    - include_tasks: tasks/ubuntu-restricted-extras.yml
+    - include_tasks: tasks/other-packages.yml
+    - include_tasks: tasks/version-dependent-packages.yml
+    - include_tasks: tasks/touchegg.yml
       when: ansible_distribution_version is version('20.04', '>=') and ansible_distribution_version is version('22.04', '<')
       # In 22.04 I use Wayland where touchpad gestures work automatically
-    - include: tasks/skype.yml
-    - include: tasks/amarok.yml # Amarok not yet available in Jammy
+    - include_tasks: tasks/skype.yml
+    - include_tasks: tasks/amarok.yml # Amarok not yet available in Jammy
       when: ansible_distribution_version is version('22.04', '<')
-    - include: tasks/kernel-mainline.yml
+    - include_tasks: tasks/kernel-mainline.yml
     - block:
-      - include: tasks/latex.yml
+      - include_tasks: tasks/latex.yml
       tags: latex
   post_tasks:
     - name: Dist-upgrade
