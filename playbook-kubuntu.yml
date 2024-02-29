@@ -18,6 +18,7 @@
       tags: git
     - include_tasks: tasks/kubuntu-backports.yml
     - include_tasks: tasks/main-packages.yml
+    - include_tasks: tasks/homebrew.yml
     - include_tasks: tasks/kde-packages.yml
     - include_tasks: tasks/kvantum.yml
     - include_tasks: tasks/kde-configurations.yml

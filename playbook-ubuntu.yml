@@ -20,6 +20,7 @@
       ansible.builtin.include_role:
         name: lorenzobettini.my_gnome_role
     - include_tasks: tasks/main-packages.yml
+    - include_tasks: tasks/homebrew.yml
     - include_tasks: tasks/firefox.yml
     - name: Install Oh My Zsh
       ansible.builtin.include_role:

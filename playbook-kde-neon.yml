@@ -17,12 +17,13 @@
       - include_tasks: tasks/git.yml
       tags: git
     - include_tasks: tasks/main-packages.yml
+    - include_tasks: tasks/homebrew.yml
     - include_tasks: tasks/kde-packages.yml
     - include_tasks: tasks/kvantum.yml
     - include_tasks: tasks/kde-configurations.yml
     - include_tasks: tasks/firefox.yml
     - name: Install Oh My Zsh
-     - name: Install Oh My Zsh
+    - name: Install Oh My Zsh
       ansible.builtin.include_role:
         name: lorenzobettini.oh_my_zsh
       vars:

@@ -1,0 +1,21 @@
+---
+# REQUIRED: git curl
+- name: Install Homebrew
+  become: true
+  ansible.builtin.shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  args:
+    creates: /home/linuxbrew/.linuxbrew/bin/brew
+
+- name: Install brew packages
+  community.general.homebrew:
+    name:
+    - chezmoi
+    - neovim # the version in Ubuntu repos is too old for lazy.vim
+    - shellcheck
+    state: present
+
+- name: Install npm
+  ansible.builtin.package:
+    name:
+    - npm # required for some neovim LSPs, e.g., bashls
+    state: present
