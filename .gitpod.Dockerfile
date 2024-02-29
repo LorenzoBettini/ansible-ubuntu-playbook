@@ -1,4 +1,7 @@
-FROM gitpod/workspace-python-3.11:latest
+FROM gitpod/workspace-python:latest
+# FROM gitpod/workspace-python-3.11:latest
+
+# see also https://www.gitpod.io/docs/introduction/languages/python#python-versions
 
 # To try this before committing:
 # docker build -f .gitpod.Dockerfile -t gitpod-dockerfile-test .
