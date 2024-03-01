@@ -15,7 +15,6 @@
 
 - name: Install npm
   ansible.builtin.package:
-    become: true
     name:
     - npm # required for some neovim LSPs, e.g., bashls
     state: present
