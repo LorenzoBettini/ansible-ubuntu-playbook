@@ -1,7 +1,6 @@
 ---
 # REQUIRED: git curl
 - name: Install Homebrew
-  become: true
   ansible.builtin.shell: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   args:
     creates: /home/linuxbrew/.linuxbrew/bin/brew
@@ -16,6 +15,7 @@
 
 - name: Install npm
   ansible.builtin.package:
+    become: true
     name:
     - npm # required for some neovim LSPs, e.g., bashls
     state: present
