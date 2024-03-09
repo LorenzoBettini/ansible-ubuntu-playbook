@@ -45,14 +45,16 @@
     - untex
     - djvulibre-bin
 
-- name: Create Recoll configuration directory
-  file:
-    path: '~/.recoll'
-    state: directory
-    mode: 0775
+# Now handled with dotfiles
+# - name: Create Recoll configuration directory
+#   ansible.builtin.file:
+#     path: '~/.recoll'
+#     state: directory
+#     mode: 0775
 
-- name: Set Recoll configuration
-  copy:
-    src: "{{ playbook_dir }}/tasks/files/recoll/"
-    dest: "~/.recoll/"
-    mode: 0600
+# - name: Set Recoll configuration
+#   ansible.builtin.copy:
+#     src: "{{ playbook_dir }}/tasks/files/recoll/"
+#     dest: "~/.recoll/"
+#     mode: 0600
+
