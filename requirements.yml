@@ -7,6 +7,8 @@ roles:
     src: https://github.com/LorenzoBettini/ansible-molecule-oh-my-zsh-example/
   - name: lorenzobettini.my_gnome_role
     src: https://github.com/LorenzoBettini/my_gnome_role/
+  - name: lorenzobettini.my_kde_role
+    src: https://github.com/LorenzoBettini/my_kde_role/
   # transitive dependencies
   # required by my_gnome_role
   - name: petermosmans.customize-gnome
