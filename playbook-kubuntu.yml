@@ -19,9 +19,14 @@
     - include_tasks: tasks/kubuntu-backports.yml
     - include_tasks: tasks/main-packages.yml
     - include_tasks: tasks/homebrew.yml
-    - include_tasks: tasks/kde-packages.yml
-    - include_tasks: tasks/kvantum.yml
-    - include_tasks: tasks/kde-configurations.yml
+    - name: Install KDE
+      ansible.builtin.include_role:
+        name: lorenzobettini.my_kde_role
+      vars:
+        with_konsole_profiles: false
+    #- include_tasks: tasks/kde-packages.yml
+    #- include_tasks: tasks/kde-configurations.yml
+    #- include_tasks: tasks/kde-ssh.yml
     - include_tasks: tasks/firefox.yml
     - name: Install Oh My Zsh
       ansible.builtin.include_role:
