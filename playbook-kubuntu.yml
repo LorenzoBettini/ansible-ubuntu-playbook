@@ -24,6 +24,7 @@
         name: lorenzobettini.my_kde_role
       vars:
         with_konsole_profiles: false
+        modify_ini_files: false
     #- include_tasks: tasks/kde-packages.yml
     #- include_tasks: tasks/kde-configurations.yml
     #- include_tasks: tasks/kde-ssh.yml

@@ -29,3 +29,10 @@
     pkg:
     - duf
   when: ansible_distribution_version is version('22.04', '>=')
+
+- name: Install chezmoi_modify_manager x86_64
+  become: true
+  ansible.builtin.unarchive:
+    src: "https://github.com/VorpalBlade/chezmoi_modify_manager/releases/download/v3.2.0/chezmoi_modify_manager-v3.2.0-x86_64-unknown-linux-gnu.tar.gz"
+    dest: /usr/local/bin
+    remote_src: true

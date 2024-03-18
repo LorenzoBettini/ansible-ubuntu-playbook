@@ -19,6 +19,8 @@
     - name: Install GNOME
       ansible.builtin.include_role:
         name: lorenzobettini.my_gnome_role
+      vars:
+        modify_dconf: false
     - include_tasks: tasks/main-packages.yml
     - include_tasks: tasks/homebrew.yml
     - include_tasks: tasks/firefox.yml
