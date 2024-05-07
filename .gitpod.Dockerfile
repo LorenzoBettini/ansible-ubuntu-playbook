@@ -1,5 +1,4 @@
-FROM gitpod/workspace-python:latest
-# FROM gitpod/workspace-python-3.11:latest
+FROM gitpod/workspace-python-3.12:2024-05-06-09-37-26
 
 # see also https://www.gitpod.io/docs/introduction/languages/python#python-versions
 
