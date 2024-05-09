@@ -29,6 +29,7 @@
         name: lorenzobettini.oh_my_zsh
       vars:
         with_starship: false
+        copy_dot_files: false
     # Kvantum is needed to theme Kate in Gnome correctly
     - include_tasks: tasks/zsh-gnome.yml
     - include_tasks: tasks/kvantum.yml

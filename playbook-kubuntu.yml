@@ -34,6 +34,7 @@
         name: lorenzobettini.oh_my_zsh
       vars:
         with_starship: false
+        copy_dot_files: false
     - include_tasks: tasks/java-packages.yml
     - include_tasks: tasks/google-chrome.yml
     - include_tasks: tasks/dropbox.yml
