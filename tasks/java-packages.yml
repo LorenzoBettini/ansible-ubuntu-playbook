@@ -37,7 +37,7 @@
   become: true
   apt:
     state: present
-    name: libwebkit2gtk-4.0-37
+    name: libwebkit2gtk-4.1-0
 
 - name: Install Maven
   include_role:
