@@ -21,7 +21,7 @@
 - name: Add Dropbox apt repository
   become: true
   apt_repository:
-    repo: "deb [arch=i386,amd64] http://linux.dropbox.com/ubuntu disco main"
+    repo: "deb [arch=i386,amd64] http://linux.dropbox.com/ubuntu noble main"
     state: present
     filename: dropbox
 
