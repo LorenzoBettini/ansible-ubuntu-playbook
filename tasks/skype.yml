@@ -1,31 +1,13 @@
 ---
-- name: Copy Skype apt key
-  # The apt_key file is expected to be found on the remote host
-  # so we first need to copy it
+# Does not work in Ansible/Molecule/Docker
+- name: Start snapd.service
   become: true
-  copy:
-    src: "{{ playbook_dir }}/tasks/files/keys/skype.pub"
-    dest: "/tmp/"
-    mode: 0600
+  ansible.builtin.systemd_service:
+    name: snapd
+    state: started
 
-- name: Add Skype key
+- name: Install Skype (snap package)
   become: true
-  apt_key:
-    # use locally save key to avoid possible temporary failures
-    file: "/tmp/skype.pub"
-    state: present
-
-- name: Add Skype apt repository
-  become: true
-  apt_repository:
-    repo: "deb [arch=amd64] https://repo.skype.com/deb stable main"
-    filename: "skype-stable"
-    state: present
-
-- name: Install Skype
-  become: true
-  apt:
-    update_cache: yes
-    state: present
-    pkg:
-    - skypeforlinux
+  community.general.snap:
+    name:
+      - skype

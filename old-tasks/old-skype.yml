@@ -1,0 +1,33 @@
+---
+# Skype is not available anymore as a package: only as a snap package:
+# https://snapcraft.io/install/skype/ubuntu
+- name: Copy Skype apt key
+  # The apt_key file is expected to be found on the remote host
+  # so we first need to copy it
+  become: true
+  copy:
+    src: "{{ playbook_dir }}/tasks/files/keys/skype.pub"
+    dest: "/tmp/"
+    mode: 0600
+
+- name: Add Skype key
+  become: true
+  apt_key:
+    # use locally save key to avoid possible temporary failures
+    file: "/tmp/skype.pub"
+    state: present
+
+- name: Add Skype apt repository
+  become: true
+  apt_repository:
+    repo: "deb [arch=amd64] https://repo.skype.com/deb stable main"
+    filename: "skype-stable"
+    state: present
+
+- name: Install Skype
+  become: true
+  apt:
+    update_cache: yes
+    state: present
+    pkg:
+    - skypeforlinux
