@@ -5,8 +5,7 @@
   become: true
   copy:
     src: "{{ playbook_dir }}/tasks/files/keys/dropbox.asc"
-    dest: "/tmp/"
-    mode: 0600
+    dest: "/etc/apt/keyrings/dropbox.asc"
 
 # To update the local PGP key:
 # - download the latest dropbox dep package
@@ -15,19 +14,19 @@
 # - open the postinst script
 # - take the PGP key from there
 
-- name: Add Dropbox key
-  become: true
-  apt_key:
-    file: "/tmp/dropbox.asc"
-    state: present
+# bypass apt-key completely and use the complete dep line below, referring to the copied asc key
+# - name: Add Dropbox key
+#   become: true
+#   apt_key:
+#     file: "/tmp/dropbox.asc"
+#     state: present
 
 # Let's use the Disco repository for good
 - name: Add Dropbox apt repository
   become: true
   apt_repository:
-    repo: "deb [arch=i386,amd64 signed-by=/etc/apt/keyrings/dropbox.asc] http://linux.dropbox.com/ubuntu noble main"
+    repo: deb [arch=i386,amd64 signed-by=/etc/apt/keyrings/dropbox.asc] http://linux.dropbox.com/ubuntu noble main
     state: present
-    filename: dropbox
 
 - name: Install Dropbox
   become: true
