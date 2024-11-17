@@ -16,7 +16,8 @@
     - block:
       - include_tasks: tasks/git.yml
       tags: git
-    - include_tasks: tasks/kubuntu-backports.yml
+    # temporarily disable backports until they're available
+    # - include_tasks: tasks/kubuntu-backports.yml
     - include_tasks: tasks/main-packages.yml
     - include_tasks: tasks/homebrew.yml
     - name: Install KDE
