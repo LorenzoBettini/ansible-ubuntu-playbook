@@ -12,11 +12,14 @@
     - chezmoi
     - neovim # the version in Ubuntu repos is too old for lazy.vim
     - shellcheck
+    - lazygit
     state: present
 
-- name: Install npm
+- name: Install Neovim requirements
   become: true
   ansible.builtin.package:
     name:
     - npm # required for some neovim LSPs, e.g., bashls
+    - wl-clipboard # for neovim clipboard sharing in Wayland
+    - xclip # for neovim clipboard sharing in X11
     state: present
