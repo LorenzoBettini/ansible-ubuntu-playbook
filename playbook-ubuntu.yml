@@ -37,7 +37,9 @@
     - include_tasks: tasks/java-packages.yml
     - include_tasks: tasks/google-chrome.yml
     - include_tasks: tasks/dropbox.yml
-    - include_tasks: tasks/docker.yml
+    - block:
+      - include_tasks: tasks/docker.yml
+      tags: docker
     - include_tasks: tasks/recoll.yml
     - include_tasks: tasks/vscode.yml
     - include_tasks: tasks/ubuntu-restricted-extras.yml
