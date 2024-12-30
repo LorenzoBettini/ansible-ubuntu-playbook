@@ -22,16 +22,15 @@
     repo: "deb http://ppa.launchpad.net/recoll-backports/recoll-1.15-on/ubuntu {{ ansible_distribution_release }} main"
     filename: "recoll-backports-ubuntu-recoll-1_15-on-{{ ansible_distribution_release }}"
     state: present
-  when: ansible_distribution_version is version('23.04', '<=')
-# For 23.10 there's no ppa yet
+#  when: ansible_distribution_version is version('23.04', '<=')
 
-- name: Add Recoll apt repository with fixed codename
-  become: true
-  apt_repository:
-    repo: "deb http://ppa.launchpad.net/recoll-backports/recoll-1.15-on/ubuntu lunar main"
-    filename: "recoll-backports-ubuntu-recoll-1_15-on-lunar"
-    state: present
-  when: ansible_distribution_version is version('23.04', '>')
+#- name: Add Recoll apt repository with fixed codename
+#  become: true
+#  apt_repository:
+#    repo: "deb http://ppa.launchpad.net/recoll-backports/recoll-1.15-on/ubuntu lunar main"
+#    filename: "recoll-backports-ubuntu-recoll-1_15-on-lunar"
+#    state: present
+#  when: ansible_distribution_version is version('23.04', '>')
 # And we use the latest available
 
 - name: Install Recoll
