@@ -13,9 +13,10 @@
   apt:
     state: present
     pkg:
-    - openjdk-8-source
-    - openjdk-11-source
+    #- openjdk-8-source
+    #- openjdk-11-source
     - openjdk-17-source
+    - openjdk-21-source
 
 - name: Create Java links directory
   file:
@@ -29,9 +30,10 @@
     dest: '~/.jdk/jdk{{ item }}'
     state: link
   loop:
-    - 8
-    - 11
+    #- 8
+    #- 11
     - 17
+    - 21
 
 - name: Install libwebkit2gtk (for Eclipse SWT Browser)
   become: true
