@@ -26,7 +26,7 @@
     #- include_tasks: tasks/kde-packages.yml
     #- include_tasks: tasks/kde-configurations.yml
     #- include_tasks: tasks/kde-ssh.yml
-    - include_tasks: tasks/firefox.yml
+    - include_tasks: tasks/mozilla.yml
     - name: Install Oh My Zsh
       ansible.builtin.include_role:
         name: lorenzobettini.oh_my_zsh

@@ -1,0 +1,76 @@
+---
+- name: Check whether snap is installed and on system path 
+  command: 'which snap' 
+  register: snap_installed
+  ignore_errors: yes
+  changed_when: false
+
+- name: Remove Firefox and Thunderbird Snaps
+  become: true
+  ansible.builtin.snap:
+    state: absent
+    name:
+    - firefox
+    - thunderbird
+  when: snap_installed.rc == 0
+
+- name: Copy Mozilla apt key
+  # The apt_key file is expected to be found on the remote host
+  # so we first need to copy it
+  become: true
+  copy:
+    src: "{{ playbook_dir }}/tasks/files/keys/mozilla.pub"
+    dest: "/tmp/"
+    mode: 0600
+
+- name: Add Mozilla key
+  become: true
+  apt_key:
+    # use locally save key to avoid possible temporary failures
+    # repo: https://launchpad.net/%7Emozillateam/+archive/ubuntu/ppa
+    file: "/tmp/mozilla.pub"
+    state: present
+
+- name: Add Mozilla Team apt repository with Distribution codename
+  become: true
+  apt_repository:
+    repo: "deb https://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu {{ ansible_distribution_release }} main"
+    filename: "mozillateamppa"
+    state: present
+
+- name: Check whether it is the first time we add Mozilla PPA
+  stat:
+    path: "/etc/apt/preferences.d/mozillateamppa"
+  register: mozillateamppa_result
+
+- name: Remove existing transitional packages the first time
+  become: true
+  ansible.builtin.apt:
+    state: absent
+    pkg:
+    - firefox
+    - thunderbird
+  when: not mozillateamppa_result.stat.exists
+
+- name: Copy Mozilla apt preference
+  become: true
+  copy:
+    src: "{{ playbook_dir }}/tasks/files/mozilla/mozillateamppa.txt"
+    dest: "/etc/apt/preferences.d/mozillateamppa"
+    mode: 0644
+
+- name: Install Firefox and Thunderbird from APT
+  become: true
+  ansible.builtin.apt:
+    update_cache: true
+    state: present
+    pkg:
+    - firefox
+    - thunderbird
+
+- name: Copy Mozilla Unattended update preference
+  become: true
+  copy:
+    src: "{{ playbook_dir }}/tasks/files/mozilla/51unattended-upgrades-mozilla.txt"
+    dest: "/etc/apt/apt.conf.d/51unattended-upgrades-mozilla"
+    mode: 0644

@@ -13,5 +13,4 @@
     - apt-transport-https
     - synaptic
     - unison-gtk
-    - thunderbird
     - libfuse2 # required by AppImages, not installed by default in Ubuntu 22.04

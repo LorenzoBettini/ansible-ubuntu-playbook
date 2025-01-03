@@ -23,7 +23,9 @@
         modify_dconf: false
     - include_tasks: tasks/main-packages.yml
     - include_tasks: tasks/homebrew.yml
-    - include_tasks: tasks/firefox.yml
+    - block:
+      - include_tasks: tasks/mozilla.yml
+      tags: mozilla
     - name: Install Oh My Zsh
       ansible.builtin.include_role:
         name: lorenzobettini.oh_my_zsh
