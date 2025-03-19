@@ -1,4 +1,11 @@
 ---
+- name: Install Zathura PDF reader
+  become: true
+  apt:
+    state: present
+    pkg:
+    - zathura-pdf-poppler
+
 - name: Install Latex Packages
   become: true
   apt:
