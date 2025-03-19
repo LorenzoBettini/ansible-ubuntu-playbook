@@ -13,3 +13,4 @@
     - texlive-xetex
     - texlive-bibtex-extra
     - cm-super
+    - latexmk
