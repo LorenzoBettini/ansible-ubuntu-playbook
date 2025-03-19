@@ -22,4 +22,5 @@
     - npm # required for some neovim LSPs, e.g., bashls
     - wl-clipboard # for neovim clipboard sharing in Wayland
     - xclip # for neovim clipboard sharing in X11
+    - tree-sitter-cli # for latex tree-sitter
     state: present
