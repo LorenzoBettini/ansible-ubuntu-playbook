@@ -9,38 +9,9 @@
     components: [main]
     state: present
     enabled: yes
-    signed_by: |
-      -----BEGIN PGP PUBLIC KEY BLOCK-----
-      Comment: Hostname: 
-      Version: Hockeypuck 2.2
-
-      xsFNBGYzfQQBEADDwgPE6FS0DZFRtHnMPZATV4gT8/HifeaI23geSwWMw9oJGpIK
-      A5ej2QWgQe6WN9Clv3TPM621tmqRikrKtfWfEoTBA+PjpoeQOXVWimqNORrBTxUw
-      k60agwExEWD4VbH1Ety7O9l+QaFkwZXIfiG44Z29YAyYMZNO/8FN7y3+rN+szl4x
-      ttmvLUVzIdpHaBj6pPApU0kNu4+p5u7HsQRfXMKUnBNXTUHyh6wavqrjsPkPgnxi
-      ZFMNR+qAu5cHYQXumznXGcJSJWo2xY7Rt21x7dSAElTlIi6poQILVAwNjtXsfvjr
-      loL7Ggo7OYJyxP61c/TWT6dZmLqyaAXr8UQaUAOn/sKbU1KzJLb/7JOl4z8vPZm6
-      Wyzjm7CpEVT3jz1EsDFEsD0ddOmPOoBJM1whttWoQu1GEmWtlnL9kaLwROo5Kkpv
-      hdHes7q7kVPHM7t+tVMauVwCmTZRVc2LczAavrJ0ovuShbJHYOFLLc1QJ/mlBaLK
-      yhoCKj+5MBdvpjlkj8Y2l0X/mk2/1lCKFOt1m8rk4j58tSlWkdGTBClVqJ2j6LZQ
-      J2EVhB+3AjOK4t6rLlRpdS0PGtQuvFbrtPQnlf/nkc0UZVA47irxl53U074NEj65
-      /3W/HFLng4FT7MC+/lIseyvF9kHRxW/Kmxd2M8zgxuX2rVojXx6SutRV7wARAQAB
-      zSJMYXVuY2hwYWQgUFBBIGZvciByZWNvbGwtYmFja3BvcnRzwsGOBBMBCgA4FiEE
-      mHB/WGBJv6MOeJCRezDcwEtmku4FAmYzfQQCGwMFCwkIBwIGFQoJCAsCBBYCAwEC
-      HgECF4AACgkQezDcwEtmku669g/+PmJFCwcJkO9JJ3kDbd/dDtdAuI2xNUzol+gF
-      A1XgtZV3+7mM9wTDU67wyFq5nmZflmSrr+IHfFOqhL5ZYWk+0TXQ0ZbVx7PF+6ne
-      0w/FDJA2olftF52NJIhGgRuyFGT9jemx2RPa3uG90ZQfZKFTnyAHImWdZNnsHgpm
-      /uOVmNnaJZMNBd/AY+yKe3s8JSFqjF24oTQ2bgjaalk7EK0OxOCr9AIG2rBkO1tY
-      IvHfafMk+taCjKiLVTzMoRL0PafRI/pNgL46UVYcbArqPUSImoo5ol/31xwVBw0b
-      dHOBXjcJnxEubSiKQleC9KbRIpvUO8S2NhN63zwZ3zZBwowrEmhv6XjQH9h9wEzz
-      NvB4tE1kSh0tB4f60jPtafBj3E2OEWpluXqwRdaLF4N3MhAWYNjAKDeZCiTy5mYM
-      fdtof0umbxC/piChYp+0FHYIg78lpKXWfZhyKf5CzBcOM7lGYdAeYFNX8MeHtUJU
-      AjP2myd0xHKlROK7QITt+/WateIqLhwUFo5qLpu2W27gJFF/D8p7iP5vWcsQ+Nz2
-      yqLpOvjVILM5dB3SvsT4GOU7gTReCZ+GLRV4s61XwB5enB9QmsGbP4TBRvXuT38P
-      3/OAkRjq6gjk0kygLK8yUH3XZ3Lh9Hr7xGQEXIARGKutqH4cST/BCyT2xZ2JwQXz
-      b1TU3kI=
-      =hRr5
-      -----END PGP PUBLIC KEY BLOCK-----
+    signed_by: "{{ lookup('ansible.builtin.file', 'recoll_signing_key.pub') }}"
+# the signing key can be downloaded from https://launchpad.net/~recoll-backports/+archive/ubuntu/recoll-1.15-on
+# in particular following the link in "Signing key" 
 
 - name: Install Recoll
   become: true
