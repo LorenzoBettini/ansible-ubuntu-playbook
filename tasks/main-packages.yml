@@ -13,4 +13,5 @@
     - apt-transport-https
     - synaptic
     - unison-gtk
+    - ca-certificates # required for verifying PPAs
     - libfuse2 # required by AppImages, not installed by default in Ubuntu 22.04
