@@ -1,31 +1,18 @@
 ---
-- name: Copy Microsoft apt key
-  # The apt_key file is expected to be found on the remote host
-  # so we first need to copy it
-  become: true
-  copy:
-    src: "{{ playbook_dir }}/tasks/files/keys/microsoft.asc"
-    dest: "/tmp/"
-    mode: 0600
-
-- name: Add VS apt key
-  become: true
-  apt_key:
-    # url: 'https://packages.microsoft.com/keys/microsoft.asc'
-    # use locally save key to avoid possible temporary failures
-    file: "/tmp/microsoft.asc"
+- name: Add Microsoft APT repository
+  ansible.builtin.deb822_repository:
+    name: vscode
+    types: [deb]
+    uris:
+      - "https://packages.microsoft.com/repos/vscode"
+    signed_by: "https://packages.microsoft.com/keys/microsoft.asc"
+    suites: [stable]
+    components: [main]
     state: present
+    enabled: yes
 
-- name: Add VS Code repo (apt)
-  become: true
-  apt_repository:
-    repo: 'deb [arch=amd64] https://packages.microsoft.com/repos/vscode stable main'
-    filename: vscode
-    state: present
-
-- name: Install VS Code (apt)
-  become: true
-  apt:
-    update_cache: yes
+- name: Install Visual Studio Code
+  ansible.builtin.apt:
+    update_cache: true
     name: code
     state: present
