@@ -3,8 +3,8 @@
   # The apt_key file is expected to be found on the remote host
   # so we first need to copy it
   become: true
-  copy:
-    src: "{{ playbook_dir }}/tasks/files/keys/dropbox.asc"
+  ansible.builtin.copy:
+    src: "files/dropbox.asc"
     dest: "/etc/apt/keyrings/dropbox.asc"
 
 # To update the local PGP key:
@@ -15,28 +15,18 @@
 # - take the PGP key from there
 
 # bypass apt-key completely and use the complete dep line below, referring to the copied asc key
-# - name: Add Dropbox key
-#   become: true
-#   apt_key:
-#     file: "/tmp/dropbox.asc"
-#     state: present
+# because the package expects to find the key there anyway
 
-# Let's use the Disco repository for good
 - name: Add Dropbox apt repository
   become: true
-  apt_repository:
+  ansible.builtin.apt_repository:
     repo: deb [arch=i386,amd64 signed-by=/etc/apt/keyrings/dropbox.asc] http://linux.dropbox.com/ubuntu noble main
     state: present
+    filename: dropbox
+# use the same filename "dropbox(.list)" that would be created during the installation
 
 - name: Install Dropbox
-  become: true
-  apt:
+  ansible.builtin.apt:
     name: dropbox
-    update_cache: yes
     state: present
-  register: result
-  retries: 5
-  delay: 10
-  until: result is not failed
-# downloading from https://linux.dropbox.com/
-# is extremely flaky, but ignoring errors might undermine idempotency
+    update_cache: yes
