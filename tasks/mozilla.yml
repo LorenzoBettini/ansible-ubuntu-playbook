@@ -7,7 +7,7 @@
 
 - name: Remove Firefox and Thunderbird Snaps
   become: true
-  ansible.builtin.snap:
+  community.general.snap:
     state: absent
     name:
     - firefox
