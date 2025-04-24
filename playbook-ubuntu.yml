@@ -54,7 +54,7 @@
     #- include_tasks: tasks/skype.yml
     - include_tasks: tasks/amarok.yml # Amarok not yet available in Jammy
       when: ansible_distribution_version is version('22.04', '<')
-    - include_tasks: tasks/kernel-mainline.yml
+    #- include_tasks: tasks/kernel-mainline.yml
     - block:
       - include_tasks: tasks/latex.yml
       tags: latex

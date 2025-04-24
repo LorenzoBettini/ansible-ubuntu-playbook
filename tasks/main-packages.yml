@@ -13,4 +13,6 @@
     - apt-transport-https
     - synaptic
     - unison-gtk
+    - python3-debian # required for ansible deb822_repository module
+    - ca-certificates # required for verifying PPAs
     - libfuse2 # required by AppImages, not installed by default in Ubuntu 22.04

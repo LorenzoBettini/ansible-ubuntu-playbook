@@ -1,41 +1,21 @@
 ---
-- name: Copy Recoll apt key
-  # The apt_key file is expected to be found on the remote host
-  # so we first need to copy it
-  become: true
-  copy:
-    src: "{{ playbook_dir }}/tasks/files/keys/recoll_signing_key.pub"
-    dest: "/tmp/"
-    mode: 0600
-
-- name: Add Recoll key
-  become: true
-  apt_key:
-    # use locally save key to avoid possible temporary failures
-    # repo: ppa:recoll-backports/recoll-1.15-on
-    file: "/tmp/recoll_signing_key.pub"
+- name: Add Recoll APT repository
+  ansible.builtin.deb822_repository:
+    name: recoll
+    types: [deb]
+    uris:
+      - "https://ppa.launchpadcontent.net/recoll-backports/recoll-1.15-on/ubuntu"
+    suites: ["{{ ansible_distribution_release }}"]
+    components: [main]
     state: present
-
-- name: Add Recoll apt repository with Distribution codename
-  become: true
-  apt_repository:
-    repo: "deb http://ppa.launchpad.net/recoll-backports/recoll-1.15-on/ubuntu {{ ansible_distribution_release }} main"
-    filename: "recoll-backports-ubuntu-recoll-1_15-on-{{ ansible_distribution_release }}"
-    state: present
-#  when: ansible_distribution_version is version('23.04', '<=')
-
-#- name: Add Recoll apt repository with fixed codename
-#  become: true
-#  apt_repository:
-#    repo: "deb http://ppa.launchpad.net/recoll-backports/recoll-1.15-on/ubuntu lunar main"
-#    filename: "recoll-backports-ubuntu-recoll-1_15-on-lunar"
-#    state: present
-#  when: ansible_distribution_version is version('23.04', '>')
-# And we use the latest available
+    enabled: yes
+    signed_by: "{{ lookup('ansible.builtin.file', 'recoll_signing_key.pub') }}"
+# the signing key can be downloaded from https://launchpad.net/~recoll-backports/+archive/ubuntu/recoll-1.15-on
+# in particular following the link in "Signing key" 
 
 - name: Install Recoll
   become: true
-  apt:
+  ansible.builtin.apt:
     update_cache: yes
     state: present
     pkg:
@@ -43,17 +23,3 @@
     - unrtf
     - untex
     - djvulibre-bin
-
-# Now handled with dotfiles
-# - name: Create Recoll configuration directory
-#   ansible.builtin.file:
-#     path: '~/.recoll'
-#     state: directory
-#     mode: 0775
-
-# - name: Set Recoll configuration
-#   ansible.builtin.copy:
-#     src: "{{ playbook_dir }}/tasks/files/recoll/"
-#     dest: "~/.recoll/"
-#     mode: 0600
-

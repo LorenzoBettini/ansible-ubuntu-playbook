@@ -1,46 +1,27 @@
 ---
-- name: Copy Google Chrome apt key
-  # The apt_key file is expected to be found on the remote host
-  # so we first need to copy it
-  become: true
-  copy:
-    src: "{{ playbook_dir }}/tasks/files/keys/google_linux_signing_key.pub"
-    dest: "/tmp/"
-    mode: 0600
-
-- name: Add Google Chrome apt key
-  become: true
-  apt_key:
-    # url: https://dl-ssl.google.com/linux/linux_signing_key.pub
-    # e.g., wget -q -O - https://dl.google.com/linux/linux_signing_key.pub
-    # use locally save key to avoid possible temporary failures
-    file: "/tmp/google_linux_signing_key.pub"
+- name: Add Google APT repository
+  ansible.builtin.deb822_repository:
+    name: google-chrome
+    types: [deb]
+    uris:
+      - "http://dl.google.com/linux/chrome/deb"
+    signed_by: "https://dl.google.com/linux/linux_signing_key.pub"
+    suites: [stable]
+    components: [main]
     state: present
-
-- stat: path=/etc/default/google-chrome
-  register: etc_default_google_chrome
-
-# This way we avoid Chrome setting up the APT repository:
-# we want to set up it ourselves
-- name: Make sure /etc/default/google-chrome exists
-  become: true
-  file:
-    path: /etc/default/google-chrome
-    state: touch
-    mode: 0644
-  when: etc_default_google_chrome.stat.exists is defined and not etc_default_google_chrome.stat.exists
-
-- name: Add Google Chrome apt repository
-  become: true
-  apt_repository:
-    repo: deb [arch=amd64] https://dl.google.com/linux/chrome/deb/ stable main
-    state: present
-    filename: google-chrome
+    enabled: yes
 
 - name: Install Google Chrome
-  become: true
-  apt:
-    update_cache: yes
+  ansible.builtin.apt:
+    update_cache: true
+    name: google-chrome-stable
     state: present
-    pkg:
-    - google-chrome-stable
+
+# During the installation, Google Chrome creates the google-chrome.list file
+# which is redundant and generates during "apt update" the warning:
+# Target Packages (main/binary-amd64/Packages) is configured multiple times
+# in /etc/apt/sources.list.d/google-chrome.list:3 and /etc/apt/sources.list.d/google-chrome.sources:1
+- name: Remove /etc/apt/sources.list.d/google-chrome.list
+  ansible.builtin.file:
+    path: /etc/apt/sources.list.d/google-chrome.list
+    state: absent
