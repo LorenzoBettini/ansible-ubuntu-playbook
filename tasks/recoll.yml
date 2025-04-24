@@ -1,5 +1,6 @@
 ---
 - name: Add Recoll APT repository
+  become: true
   ansible.builtin.deb822_repository:
     name: recoll
     types: [deb]

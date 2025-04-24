@@ -15,6 +15,7 @@
   when: snap_installed.rc == 0
 
 - name: Add Mozilla APT repository
+  become: true
   ansible.builtin.deb822_repository:
     name: mozillateamppa
     types: [deb]

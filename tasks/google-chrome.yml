@@ -1,5 +1,6 @@
 ---
 - name: Add Google APT repository
+  become: true
   ansible.builtin.deb822_repository:
     name: google-chrome
     types: [deb]
@@ -12,6 +13,7 @@
     enabled: yes
 
 - name: Install Google Chrome
+  become: true
   ansible.builtin.apt:
     update_cache: true
     name: google-chrome-stable
@@ -22,6 +24,7 @@
 # Target Packages (main/binary-amd64/Packages) is configured multiple times
 # in /etc/apt/sources.list.d/google-chrome.list:3 and /etc/apt/sources.list.d/google-chrome.sources:1
 - name: Remove /etc/apt/sources.list.d/google-chrome.list
+  become: true
   ansible.builtin.file:
     path: /etc/apt/sources.list.d/google-chrome.list
     state: absent

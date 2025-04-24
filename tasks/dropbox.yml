@@ -27,6 +27,7 @@
 # use the same filename "dropbox(.list)" that would be created during the installation
 
 - name: Install Dropbox
+  become: true
   ansible.builtin.apt:
     name: dropbox
     state: present
