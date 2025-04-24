@@ -6,6 +6,7 @@
   ansible.builtin.copy:
     src: "files/dropbox.asc"
     dest: "/etc/apt/keyrings/dropbox.asc"
+    mode: 0644
 
 # To update the local PGP key:
 # - download the latest dropbox dep package
