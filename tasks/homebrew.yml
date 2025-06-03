@@ -23,4 +23,5 @@
     - wl-clipboard # for neovim clipboard sharing in Wayland
     - xclip # for neovim clipboard sharing in X11
     - tree-sitter-cli # for latex tree-sitter
+    - git-delta # for better git diffs in Lazygit
     state: present
