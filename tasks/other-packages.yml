@@ -29,7 +29,7 @@
     state: present
     pkg:
     - duf
-  when: ansible_distribution_version is version('22.04', '>=')
+  when: ansible_facts.distribution_version is version('22.04', '>=')
 
 - name: Install chezmoi_modify_manager x86_64
   become: true

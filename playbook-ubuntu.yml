@@ -2,12 +2,13 @@
 - hosts: all
   pre_tasks:
     - name: System details
-      debug: msg="{{ item }}"
-      with_items: 
-      - "{{ ansible_distribution }}"
-      - "{{ ansible_distribution_release }}"
-      - "{{ ansible_distribution_version }}"
-      - "{{ ansible_distribution_major_version }}"
+      debug:
+        msg: "{{ item }}"
+      loop:
+        - "{{ ansible_facts.distribution }}"
+        - "{{ ansible_facts.distribution_release }}"
+        - "{{ ansible_facts.distribution_version }}"
+        - "{{ ansible_facts.distribution_major_version }}"
     - name: update repositories
       become: true
       apt: update_cache=yes
@@ -48,12 +49,12 @@
     - include_tasks: tasks/other-packages.yml
     - include_tasks: tasks/version-dependent-packages.yml
     - include_tasks: tasks/touchegg.yml
-      when: ansible_distribution_version is version('20.04', '>=') and ansible_distribution_version is version('22.04', '<')
+      when: ansible_facts.distribution_version is version('20.04', '>=') and ansible_facts.distribution_version is version('22.04', '<')
       # In 22.04 I use Wayland where touchpad gestures work automatically
     # Skype requires snap and does not work well in Ansible/Docker/Systemd
     #- include_tasks: tasks/skype.yml
     - include_tasks: tasks/amarok.yml # Amarok not yet available in Jammy
-      when: ansible_distribution_version is version('22.04', '<')
+      when: ansible_facts.distribution_version is version('22.04', '<')
     #- include_tasks: tasks/kernel-mainline.yml
     - block:
       - include_tasks: tasks/latex.yml

@@ -19,8 +19,8 @@
 - name: Add Touchegg apt repository
   become: true
   apt_repository:
-    repo: "deb http://ppa.launchpad.net/touchegg/stable/ubuntu {{ ansible_distribution_release }} main"
-    filename: "touchegg-ubuntu-stable-{{ ansible_distribution_release }}"
+    repo: "deb http://ppa.launchpad.net/touchegg/stable/ubuntu {{ ansible_facts.distribution_release }} main"
+    filename: "touchegg-ubuntu-stable-{{ ansible_facts.distribution_release }}"
     state: present
 
 - name: Install Touchegg
