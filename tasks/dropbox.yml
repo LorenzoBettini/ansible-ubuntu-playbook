@@ -20,11 +20,18 @@
 
 - name: Add Dropbox apt repository
   become: true
-  ansible.builtin.apt_repository:
-    repo: deb [arch=i386,amd64 signed-by=/etc/apt/keyrings/dropbox.asc] http://linux.dropbox.com/ubuntu noble main
+  ansible.builtin.deb822_repository:
+    name: dropbox
+    types: [deb]
+    uris:
+      - "http://linux.dropbox.com/ubuntu"
+    suites: [noble]
+    components: [main]
+    architectures: [i386, amd64]
     state: present
-    filename: dropbox
-# use the same filename "dropbox(.list)" that would be created during the installation
+    enabled: yes
+    signed_by: /etc/apt/keyrings/dropbox.asc
+# use the same filename "dropbox(.sources)" that would be created during the installation
 
 - name: Install Dropbox
   become: true

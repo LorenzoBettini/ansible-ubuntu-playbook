@@ -1,8 +1,8 @@
 ---
 - name: Check whether snap is installed and on system path 
-  ansible.builtin.command: 'which snap' 
+  ansible.builtin.command: snap version
   register: snap_installed
-  ignore_errors: yes
+  failed_when: false
   changed_when: false
 
 - name: Remove Firefox and Thunderbird Snaps
@@ -21,7 +21,7 @@
     types: [deb]
     uris:
       - "https://ppa.launchpadcontent.net/mozillateam/ppa/ubuntu"
-    suites: ["{{ ansible_distribution_release }}"]
+    suites: ["{{ ansible_facts.distribution_release }}"]
     components: [main]
     state: present
     enabled: yes
