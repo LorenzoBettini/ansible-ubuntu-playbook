@@ -1,4 +1,10 @@
 ---
+- name: Check whether Dropbox apt key is already installed
+  become: true
+  ansible.builtin.stat:
+    path: /etc/apt/keyrings/dropbox.asc
+  register: dropbox_apt_key
+
 - name: Copy Dropbox apt key
   # The apt_key file is expected to be found on the remote host
   # so we first need to copy it
@@ -7,6 +13,7 @@
     src: "files/dropbox.asc"
     dest: "/etc/apt/keyrings/dropbox.asc"
     mode: 0644
+  when: not dropbox_apt_key.stat.exists
 
 # To update the local PGP key:
 # - download the latest dropbox dep package
