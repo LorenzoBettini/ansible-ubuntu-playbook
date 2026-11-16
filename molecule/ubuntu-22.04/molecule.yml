@@ -11,9 +11,8 @@ platforms:
   - name: ubuntu-jammy-instance
     image: ubuntu-jammy-ansible
     dockerfile: ./Dockerfile
-    build_image: true
 provisioner:
   name: ansible
   playbooks:
-    converge: ../default/converge.yml
+    converge: converge.yml
     verify: ../default/verify.yml
