@@ -3,3 +3,5 @@
   hosts: all
 
 - import_playbook: ../../playbook-ubuntu.yml
+  vars:
+    skip_homebrew_packages: true
