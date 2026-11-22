@@ -5,14 +5,14 @@
     repo: ppa:pgomes/amarok
     state: present
     codename: impish # Jammy not yet supported
-  when: ansible_distribution_version is version('22.04', '>=')
+  when: ansible_facts.distribution_version is version('22.04', '>=')
 
 - name: Add Amarok KF5 snapshots with automatic Codename
   become: true
   apt_repository:
     repo: ppa:pgomes/amarok
     state: present
-  when: ansible_distribution_version is version('21.10', '<=')
+  when: ansible_facts.distribution_version is version('21.10', '<=')
 
 - name: Install Amarok
   become: true

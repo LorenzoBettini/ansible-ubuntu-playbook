@@ -7,7 +7,7 @@
     state: absent
     pkg:
     - mlocate
-  when: ansible_distribution_version is version('21.04', '>=')
+  when: ansible_facts.distribution_version is version('21.04', '>=')
 
 - name: Install plocate
   become: true
@@ -15,4 +15,4 @@
     state: present
     pkg:
     - plocate
-  when: ansible_distribution_version is version('21.04', '>=')
+  when: ansible_facts.distribution_version is version('21.04', '>=')

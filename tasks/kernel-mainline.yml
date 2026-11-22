@@ -19,8 +19,8 @@
 - name: Add Mainline apt repository
   become: true
   apt_repository:
-    repo: "deb http://ppa.launchpad.net/cappelikan/ppa/ubuntu/ {{ ansible_distribution_release }} main"
-    filename: "cappelikan-ubuntu-ppa-{{ ansible_distribution_release }}"
+    repo: "deb http://ppa.launchpad.net/cappelikan/ppa/ubuntu/ {{ ansible_facts.distribution_release }} main"
+    filename: "cappelikan-ubuntu-ppa-{{ ansible_facts.distribution_release }}"
     state: present
 
 - name: Install Mainline

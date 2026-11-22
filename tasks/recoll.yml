@@ -6,7 +6,7 @@
     types: [deb]
     uris:
       - "https://ppa.launchpadcontent.net/recoll-backports/recoll-1.15-on/ubuntu"
-    suites: ["{{ ansible_distribution_release }}"]
+    suites: ["{{ ansible_facts.distribution_release }}"]
     components: [main]
     state: present
     enabled: yes

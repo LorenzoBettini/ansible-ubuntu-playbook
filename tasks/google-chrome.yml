@@ -1,4 +1,9 @@
 ---
+- name: Check whether Google Chrome created its APT source
+  ansible.builtin.stat:
+    path: /etc/apt/sources.list.d/google-chrome.sources
+  register: google_chrome_sources
+
 - name: Add Google APT repository
   become: true
   ansible.builtin.deb822_repository:
@@ -11,6 +16,7 @@
     components: [main]
     state: present
     enabled: yes
+  when: not google_chrome_sources.stat.exists
 
 - name: Install Google Chrome
   become: true

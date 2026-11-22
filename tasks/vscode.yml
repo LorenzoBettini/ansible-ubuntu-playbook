@@ -1,11 +1,19 @@
 ---
+- name: Preseed VSCode to not manage the APT repository
+  become: true
+  ansible.builtin.debconf:
+    name: code
+    question: code/add-microsoft-repo
+    value: 'false'
+    vtype: boolean
+
 - name: Add Microsoft APT repository
   become: true
   ansible.builtin.deb822_repository:
     name: vscode
     types: [deb]
     uris:
-      - "https://packages.microsoft.com/repos/vscode"
+      - "https://packages.microsoft.com/repos/code"
     signed_by: "https://packages.microsoft.com/keys/microsoft.asc"
     suites: [stable]
     components: [main]
@@ -18,3 +26,9 @@
     update_cache: true
     name: code
     state: present
+
+- name: Remove /etc/apt/sources.list.d/vscode.list
+  become: true
+  ansible.builtin.file:
+    path: /etc/apt/sources.list.d/vscode.list
+    state: absent
